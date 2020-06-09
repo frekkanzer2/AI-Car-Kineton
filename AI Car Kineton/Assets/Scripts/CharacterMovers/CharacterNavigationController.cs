@@ -23,7 +23,7 @@ public class CharacterNavigationController : MonoBehaviour
     void Update()
     {
         
-        if(Vector3.Distance(transform.position, destination) > 1.5)
+        if(Vector3.Distance(transform.position, destination) > 2)
         {
             Vector3 destinationDirection = destination - transform.position;
             destinationDirection.y = 0;
