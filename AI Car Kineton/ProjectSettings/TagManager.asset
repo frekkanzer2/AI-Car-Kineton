@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Fire
   - HumanStop
+  - StopCar
+  - Checkpoint
+  - EndGame
   - OutOfMap
   layers:
   - Default
