@@ -13,3 +13,5 @@ ML Agents: https://github.com/Unity-Technologies/ml-agents<br/>
 <img width="400" src="https://github.com/frekkanzer2/AI-Car-Kineton/blob/master/screenshots/parking1.png?raw=true">
 <img width="400" src="https://github.com/frekkanzer2/AI-Car-Kineton/blob/master/screenshots/parking2.png?raw=true">
 <img width="400" src="https://github.com/frekkanzer2/AI-Car-Kineton/blob/master/screenshots/parking3.png?raw=true">
+<img width="400" src="https://github.com/frekkanzer2/AI-Car-Kineton/blob/master/screenshots/walking1.png?raw=true">
+<img width="400" src="https://github.com/frekkanzer2/AI-Car-Kineton/blob/master/screenshots/walking2.png?raw=true">
