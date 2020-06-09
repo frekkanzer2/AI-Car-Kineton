@@ -10,6 +10,7 @@ TagManager:
   - Checkpoint
   - EndGame
   - OutOfMap
+  - Human
   layers:
   - Default
   - TransparentFX

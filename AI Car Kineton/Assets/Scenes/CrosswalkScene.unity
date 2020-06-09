@@ -5199,6 +5199,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6279497704993714747, guid: bf01fde600f209041af1eb2a4b1f3f79,
+        type: 3}
+      propertyPath: m_TagString
+      value: Human
+      objectReference: {fileID: 0}
     - target: {fileID: 6279860244723432625, guid: bf01fde600f209041af1eb2a4b1f3f79,
         type: 3}
       propertyPath: currentWaypoint
@@ -5277,6 +5282,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pedastrian1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707492642351525071, guid: d3d8a45dcc7ec024aaa9c0ad5be03ca7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Human
       objectReference: {fileID: 0}
     - target: {fileID: 7708814567900161901, guid: d3d8a45dcc7ec024aaa9c0ad5be03ca7,
         type: 3}
