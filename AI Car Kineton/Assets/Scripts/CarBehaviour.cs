@@ -14,7 +14,7 @@ public class CarBehaviour : MonoBehaviour {
     private GameObject wheel_front_left, wheel_front_right, wheel_back_left, wheel_back_right;
     private GameObject steering_wheel;
 
-    private GameObject brakeLight1, brakeLight2;
+    private GameObject brakeLight1R, brakeLight1L, brakeLight2R, brakeLight2L;
 
     private Direction lastDirection, actualDirection;
     private bool isBraking = false;
@@ -30,13 +30,10 @@ public class CarBehaviour : MonoBehaviour {
         wheel_front_right = GameObject.Find("Wheel_front_right");
         wheel_back_left = GameObject.Find("Wheel_back_left");
         wheel_back_right = GameObject.Find("Wheel_back_right");
-
-
-        brakeLight1 = GameObject.Find("BrakeLight1");
-        brakeLight1.SetActive(false);
-
-        brakeLight2 = GameObject.Find("BrakeLight2");
-        brakeLight2.SetActive(false);
+        brakeLight1R = GameObject.Find("BrakeLight1_dx");
+        brakeLight1L = GameObject.Find("BrakeLight1_sx");
+        brakeLight2R = GameObject.Find("BrakeLight2_dx");
+        brakeLight2L = GameObject.Find("BrakeLight2_sx");
 
         wc_fl = wheel_front_left.GetComponentInParent<WheelCollider>();
         wc_fr = wheel_front_right.GetComponentInParent<WheelCollider>();
@@ -98,22 +95,33 @@ public class CarBehaviour : MonoBehaviour {
             brake(0.035f);
             isBraking = true;
             speed = 0;
+            brakeLight1R.SetActive(true);
+            brakeLight1L.SetActive(true);
+            brakeLight2R.SetActive(true);
+            brakeLight2L.SetActive(true);
         } else if (localVelocity.z < 0.1f * (-1) && actualDirection == Direction.Acceleration) {
             Debug.Log("QUA");
             brake(0.035f * 2);
             isBraking = true;
             speed = 0;
+            brakeLight1R.SetActive(true);
+            brakeLight1L.SetActive(true);
+            brakeLight2R.SetActive(true);
+            brakeLight2L.SetActive(true);
         } else {
             isBraking = false;
+            brakeLight1R.SetActive(false);
+            brakeLight1L.SetActive(false);
+            brakeLight2R.SetActive(false);
+            brakeLight2L.SetActive(false);
         }
         // Manual brake
         if (Input.GetKey(KeyCode.Q)) {
             brake(0.035f);
-
-            //brake light 
-            
-            brakeLight1.SetActive(true);
-            brakeLight2.SetActive(true);
+            brakeLight1R.SetActive(true);
+            brakeLight1L.SetActive(true);
+            brakeLight2R.SetActive(true);
+            brakeLight2L.SetActive(true);
         } else if (!isBraking) {
             Debug.Log("Not braking");
             wc_bl.brakeTorque = 0;
@@ -122,12 +130,6 @@ public class CarBehaviour : MonoBehaviour {
             wc_fr.brakeTorque = 0;
             wc_bl.motorTorque = speed;
             wc_br.motorTorque = speed;
-
-
-            //brake light 
-
-            brakeLight1.SetActive(false);
-            brakeLight2.SetActive(false);
         }
         // Idle
         if (actualDirection == Direction.Stop) brake(0.005f);
