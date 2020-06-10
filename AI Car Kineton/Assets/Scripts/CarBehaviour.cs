@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CarBehaviour : MonoBehaviour {
 
+
+
     public float staticSpeed = 5000f;
     public float brakeForce = 100000f;
     private float speed = 0;
@@ -11,6 +13,9 @@ public class CarBehaviour : MonoBehaviour {
     private WheelCollider wc_fl, wc_fr, wc_bl, wc_br; // f -> front, l -> left, r -> right
     private GameObject wheel_front_left, wheel_front_right, wheel_back_left, wheel_back_right;
     private GameObject steering_wheel;
+
+    private GameObject brakeLight1, brakeLight2;
+
     private Direction lastDirection, actualDirection;
     private bool isBraking = false;
     Vector3 myPosition; Quaternion myRotation;
@@ -25,6 +30,14 @@ public class CarBehaviour : MonoBehaviour {
         wheel_front_right = GameObject.Find("Wheel_front_right");
         wheel_back_left = GameObject.Find("Wheel_back_left");
         wheel_back_right = GameObject.Find("Wheel_back_right");
+
+
+        brakeLight1 = GameObject.Find("BrakeLight1");
+        brakeLight1.SetActive(false);
+
+        brakeLight2 = GameObject.Find("BrakeLight2");
+        brakeLight2.SetActive(false);
+
         wc_fl = wheel_front_left.GetComponentInParent<WheelCollider>();
         wc_fr = wheel_front_right.GetComponentInParent<WheelCollider>();
         wc_bl = wheel_back_left.GetComponentInParent<WheelCollider>();
@@ -96,6 +109,11 @@ public class CarBehaviour : MonoBehaviour {
         // Manual brake
         if (Input.GetKey(KeyCode.Q)) {
             brake(0.035f);
+
+            //brake light 
+            
+            brakeLight1.SetActive(true);
+            brakeLight2.SetActive(true);
         } else if (!isBraking) {
             Debug.Log("Not braking");
             wc_bl.brakeTorque = 0;
@@ -104,6 +122,12 @@ public class CarBehaviour : MonoBehaviour {
             wc_fr.brakeTorque = 0;
             wc_bl.motorTorque = speed;
             wc_br.motorTorque = speed;
+
+
+            //brake light 
+
+            brakeLight1.SetActive(false);
+            brakeLight2.SetActive(false);
         }
         // Idle
         if (actualDirection == Direction.Stop) brake(0.005f);
