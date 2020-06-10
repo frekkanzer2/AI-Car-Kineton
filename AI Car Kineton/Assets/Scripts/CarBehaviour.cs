@@ -10,18 +10,21 @@ public class CarBehaviour : MonoBehaviour {
     private WheelCollider wc_fl, wc_fr, wc_bl, wc_br; // f -> front, l -> left, r -> right
     private GameObject wheel_front_left, wheel_front_right, wheel_back_left, wheel_back_right;
     private GameObject steering_wheel;
+    Vector3 myPosition; Quaternion myRotation;
 
     // Start is called before the first frame update
     void Start() {
+        myPosition = new Vector3(0, 0, 0);
+        myRotation = new Quaternion(0, 0, 0, 0);
         carBody = GetComponent<Rigidbody>();
         wheel_front_left = GameObject.Find("Wheel_front_left");
         wheel_front_right = GameObject.Find("Wheel_front_right");
         wheel_back_left = GameObject.Find("Wheel_back_left");
         wheel_back_right = GameObject.Find("Wheel_back_right");
-        wc_fl = wheel_front_left.GetComponent<WheelCollider>();
-        wc_fr = wheel_front_right.GetComponent<WheelCollider>();
-        wc_bl = wheel_back_left.GetComponent<WheelCollider>();
-        wc_br = wheel_back_right.GetComponent<WheelCollider>();
+        wc_fl = wheel_front_left.GetComponentInParent<WheelCollider>();
+        wc_fr = wheel_front_right.GetComponentInParent<WheelCollider>();
+        wc_bl = wheel_back_left.GetComponentInParent<WheelCollider>();
+        wc_br = wheel_back_right.GetComponentInParent<WheelCollider>();
     }
 
     // Update is called once per frame
@@ -32,11 +35,13 @@ public class CarBehaviour : MonoBehaviour {
 
         //Rotation
         rotation();
+        followWheelRotation();
 
     }
 
     private void verticalMovement() {
         float v = Input.GetAxis("Vertical") * staticSpeed;
+        Debug.Log(v);
         wc_bl.motorTorque = v;
         wc_br.motorTorque = v;
         if (Input.GetKey(KeyCode.Q)) {
@@ -60,8 +65,27 @@ public class CarBehaviour : MonoBehaviour {
         float h = Input.GetAxis("Horizontal") * 35;
         wc_fl.steerAngle = h;
         wc_fr.steerAngle = h;
-        wheel_front_left.transform.localRotation = Quaternion.Euler(0, h, 0);
-        wheel_front_right.transform.localRotation = Quaternion.Euler(0, h, 0);
+        /*wheel_front_left.transform.localRotation = Quaternion.Euler(0, h, 0);
+        wheel_front_right.transform.localRotation = Quaternion.Euler(0, h, 0);*/
+    }
+
+    private void followWheelRotation() {
+        //front right
+        wc_fr.GetWorldPose(out myPosition, out myRotation);
+        wheel_front_right.transform.position = myPosition;
+        wheel_front_right.transform.rotation = myRotation;
+        //front left
+        wc_fl.GetWorldPose(out myPosition, out myRotation);
+        wheel_front_left.transform.position = myPosition;
+        wheel_front_left.transform.rotation = myRotation;
+        //back right
+        wc_br.GetWorldPose(out myPosition, out myRotation);
+        wheel_back_right.transform.position = myPosition;
+        wheel_back_right.transform.rotation = myRotation;
+        //back left
+        wc_bl.GetWorldPose(out myPosition, out myRotation);
+        wheel_back_left.transform.position = myPosition;
+        wheel_back_left.transform.rotation = myRotation;
     }
 
     //Other functions
