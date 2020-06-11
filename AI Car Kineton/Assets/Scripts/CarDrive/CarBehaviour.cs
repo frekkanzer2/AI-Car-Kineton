@@ -24,6 +24,13 @@ public class CarBehaviour : MonoBehaviour {
     private float SPD_LIMIT_STEERING_MAX = 28.0f;
     private float friction = 0; //difference to set in rotation for high speed -> x variable
 
+    //Automatic cam manager
+    [Tooltip("Positive: automatic camera activated | Negative: manual camera" + "\r\n" + "If positive, attach the camera controller in the following field.")]
+    public bool autoCam = true;
+    public GameObject camControllerObj;
+    private CameraController camController;
+    private Camera frontcam, backcam;
+
     // Start is called before the first frame update
     void Start() {
         lastDirection = Direction.Stop;
@@ -45,6 +52,11 @@ public class CarBehaviour : MonoBehaviour {
         wc_br = wheel_back_right.GetComponentInParent<WheelCollider>();
 
         if (SPD_LIMIT_STEERING == 0) SPD_LIMIT_STEERING = 14.0f;
+        if (autoCam) {
+            camController = camControllerObj.GetComponent<CameraController>();
+            frontcam = GameObject.Find("AutoCamera_Front").GetComponent<Camera>();
+            backcam = GameObject.Find("AutoCamera_Behind").GetComponent<Camera>();
+        }
     }
 
     // Update is called once per frame
@@ -56,6 +68,9 @@ public class CarBehaviour : MonoBehaviour {
         //Rotation
         rotation();
         followWheelRotation();
+
+        //Automatic camera
+        if (autoCam) autocamManager();
 
     }
 
@@ -75,7 +90,7 @@ public class CarBehaviour : MonoBehaviour {
         // Getting acceleration
         float v = Input.GetAxis("Vertical") * staticSpeed;
         if (v > 1000) v = 1000;
-        if (v < -1000) v = -1000;
+        if (v < -200) v = -200;
         speed += v;
         // Checking acceleration limit
         if (speed > staticSpeed) speed = staticSpeed;
@@ -194,6 +209,12 @@ public class CarBehaviour : MonoBehaviour {
         wc_fl.brakeTorque = brakeForce;
         wc_fr.brakeTorque = brakeForce;
         decrementSpeed(1f, decrement);
+    }
+
+    private void autocamManager() {
+        float localVelocity = getVelocitySpeed();
+        if (localVelocity >= 0) camController.activateCamera(frontcam);
+        else camController.activateCamera(backcam);
     }
 
     //Other functions

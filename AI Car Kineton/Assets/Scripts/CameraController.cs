@@ -154,4 +154,13 @@ public class CameraController : MonoBehaviour {
         }
     }
 
+    public void activateCamera(Camera camToActive) {
+        for (int i = 0; i < 10; i++) {
+            Camera c = (Camera)cameraList[i];
+            if (c == null) continue;
+            if (c.Equals(camToActive)) c.enabled = true;
+            else c.enabled = false;
+        }
+    }
+
 }
