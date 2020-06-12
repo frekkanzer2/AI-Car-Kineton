@@ -61,7 +61,7 @@ public class CharacterNavigationController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        if(collision.gameObject.CompareTag("Human") || collision.gameObject.CompareTag("Environment Object"))
+        if(collision.gameObject.CompareTag("Human") || collision.gameObject.CompareTag("Environment Object") || collision.gameObject.CompareTag("Player"))
         {
             transform.position = startPosition;
             transform.rotation = startRotation;
