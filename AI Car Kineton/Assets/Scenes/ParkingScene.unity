@@ -12240,6 +12240,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
+      propertyPath: camControllerObj
+      value: 
+      objectReference: {fileID: 519818305}
+    - target: {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
+      propertyPath: SPD_LIMIT_STEERING
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1900164493, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: SPD_LIMIT_STEERING
       value: 8
@@ -12260,7 +12268,7 @@ PrefabInstance:
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.919
+      value: 15.93
       objectReference: {fileID: 0}
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
@@ -12270,7 +12278,7 @@ PrefabInstance:
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.552
+      value: 13.55
       objectReference: {fileID: 0}
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}

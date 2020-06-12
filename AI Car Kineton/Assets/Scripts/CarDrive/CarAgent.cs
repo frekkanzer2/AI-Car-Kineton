@@ -13,21 +13,30 @@ public class CarAgent : Agent {
     private WheelCollider wc_fl, wc_fr, wc_bl, wc_br; // f -> front, l -> left, r -> right
     private GameObject wheel_front_left, wheel_front_right, wheel_back_left, wheel_back_right;
     private GameObject steering_wheel;
+
     private GameObject brakeLight1R, brakeLight1L, brakeLight2R, brakeLight2L;
+
     private Direction lastDirection, actualDirection;
     private bool isBraking = false;
     Vector3 myPosition; Quaternion myRotation;
-    //variables for agent
+
+    //vars for curve steering fix
+    [Tooltip("Default value: 14. You can insert 0 and the system will automatically load 14.")]
+    public float SPD_LIMIT_STEERING = 14f;
+    private float SPD_LIMIT_STEERING_MAX = 28.0f;
+    private float friction = 0; //difference to set in rotation for high speed -> x variable
+
+    //Automatic cam manager
+    [Tooltip("Positive: automatic camera activated | Negative: manual camera" + "\r\n" + "If positive, attach the camera controller in the following field.")]
+    public bool autoCam = true;
+    public GameObject camControllerObj;
+    private CameraController camController;
+    private Camera frontcam, backcam;
+
+    //Agent spawn position
     private Vector3 spawnPosition;
 
     // Start code in initialization method
-
-    // Update is called once per frame
-    void Update() {
-
-        
-
-    }
 
     //Enumarator
     private enum Direction {
@@ -54,14 +63,18 @@ public class CarAgent : Agent {
         brakeLight1L = GameObject.Find("BrakeLight1_sx");
         brakeLight2R = GameObject.Find("BrakeLight2_dx");
         brakeLight2L = GameObject.Find("BrakeLight2_sx");
+
         wc_fl = wheel_front_left.GetComponentInParent<WheelCollider>();
         wc_fr = wheel_front_right.GetComponentInParent<WheelCollider>();
         wc_bl = wheel_back_left.GetComponentInParent<WheelCollider>();
         wc_br = wheel_back_right.GetComponentInParent<WheelCollider>();
-        //agent initialization
-        spawnPosition = transform.position;
-        var statsRecorder = Academy.Instance.StatsRecorder;
-        statsRecorder.Add("MyMetric", 1.0f);
+
+        if (SPD_LIMIT_STEERING == 0) SPD_LIMIT_STEERING = 14.0f;
+        if (autoCam) {
+            camController = camControllerObj.GetComponent<CameraController>();
+            frontcam = GameObject.Find("AutoCamera_Front").GetComponent<Camera>();
+            backcam = GameObject.Find("AutoCamera_Behind").GetComponent<Camera>();
+        }
     }
 
     public override void OnEpisodeBegin() {
@@ -94,6 +107,9 @@ public class CarAgent : Agent {
         //Rotation
         rotation(vectorAction[0]);
         followWheelRotation();
+
+        //Automatic camera
+        if (autoCam) autocamManager();
 
     }
 
@@ -138,34 +154,22 @@ public class CarAgent : Agent {
             brake(0.035f);
             isBraking = true;
             speed = 0;
-            brakeLight1R.SetActive(true);
-            brakeLight1L.SetActive(true);
-            brakeLight2R.SetActive(true);
-            brakeLight2L.SetActive(true);
+            switchLight(true);
         }
         else if (localVelocity.z < 0.1f * (-1) && actualDirection == Direction.Acceleration) {
             brake(0.035f * 2);
             isBraking = true;
             speed = 0;
-            brakeLight1R.SetActive(true);
-            brakeLight1L.SetActive(true);
-            brakeLight2R.SetActive(true);
-            brakeLight2L.SetActive(true);
+            switchLight(true);
         }
         else {
             isBraking = false;
-            brakeLight1R.SetActive(false);
-            brakeLight1L.SetActive(false);
-            brakeLight2R.SetActive(false);
-            brakeLight2L.SetActive(false);
+            switchLight(false);
         }
         // Manual brake
         if (brakeAgent == 1f) {
             brake(0.035f);
-            brakeLight1R.SetActive(true);
-            brakeLight1L.SetActive(true);
-            brakeLight2R.SetActive(true);
-            brakeLight2L.SetActive(true);
+            switchLight(true);
         }
         else if (!isBraking) {
             wc_bl.brakeTorque = 0;
@@ -185,9 +189,39 @@ public class CarAgent : Agent {
     }
 
     private void rotation(float horizontal) {
-        float h = horizontal * 35;
-        wc_fl.steerAngle = h;
-        wc_fr.steerAngle = h;
+        float localRotation = horizontal * 35;
+        float startingRotationSpeed = getVelocitySpeed(); //auto speed in velocity
+        if (startingRotationSpeed > SPD_LIMIT_STEERING) {
+            // auto speed in velocity > 14.0f 
+            if (startingRotationSpeed > SPD_LIMIT_STEERING_MAX)
+                startingRotationSpeed = SPD_LIMIT_STEERING_MAX;
+            // auto speed in velocity will be set at max of 28.0f
+            // startingRotationSpeed is a variable -> y
+            // 14 < y <= 28
+            // SPD_LIMIT_STEERING < y <= SPD_LIMIT_STEERING_MAX
+            // at 14 spd correspond 35 rotation
+            // at y spd correspond x rotation
+            // 14 : 35 = y : x
+            friction = 35 * startingRotationSpeed / SPD_LIMIT_STEERING;
+            // friction is the rotation difference, so...
+            friction -= 35;
+        }
+
+        //Reliability checks
+        if (friction < 0) friction = 0;
+        else if (friction > 0) {
+            if (friction > 35) friction = 35;
+            friction /= 100;
+        }
+
+        wc_fl.steerAngle = localRotation;
+        wc_fr.steerAngle = localRotation;
+
+        if (startingRotationSpeed > SPD_LIMIT_STEERING &&
+            (localRotation == 35 || localRotation == 35 * (-1))) {
+            brake(friction);
+            switchLight(true);
+        }
     }
 
     private void followWheelRotation() {
@@ -217,6 +251,12 @@ public class CarAgent : Agent {
         decrementSpeed(1f, decrement);
     }
 
+    private void autocamManager() {
+        float localVelocity = getVelocitySpeed();
+        if (localVelocity >= -1) camController.activateCamera(frontcam);
+        else camController.activateCamera(backcam);
+    }
+
     private void resetCar() {
         transform.position = spawnPosition;
         transform.rotation = Quaternion.identity;
@@ -225,6 +265,10 @@ public class CarAgent : Agent {
     }
 
     //Other functions
+    private float getVelocitySpeed() {
+        return transform.InverseTransformDirection(carBody.velocity).z;
+    }
+
     private void decrementSpeed(float toCheck, float decrement) {
         if ((carBody.velocity.x > toCheck || carBody.velocity.x < toCheck * (-1)) || (carBody.velocity.y > toCheck || carBody.velocity.y < toCheck * (-1))
             || (carBody.velocity.z > toCheck || carBody.velocity.z < toCheck * (-1))) {
@@ -241,6 +285,18 @@ public class CarAgent : Agent {
             if (carBody.velocity.z < toCheck * (-1))
                 carBody.velocity = new Vector3(carBody.velocity.x, carBody.velocity.y, carBody.velocity.z + decrement);
         }
+    }
+
+    private void switchLight(bool switchCommand) {
+        brakeLight1R.SetActive(switchCommand);
+        brakeLight1L.SetActive(switchCommand);
+        brakeLight2R.SetActive(switchCommand);
+        brakeLight2L.SetActive(switchCommand);
+    }
+
+    //Testing method
+    private void debug_localVelocity() {
+        Debug.Log(transform.InverseTransformDirection(carBody.velocity));
     }
 
 }
