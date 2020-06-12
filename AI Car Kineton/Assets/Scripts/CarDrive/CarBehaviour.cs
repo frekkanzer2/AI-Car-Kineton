@@ -245,6 +245,20 @@ public class CarBehaviour : MonoBehaviour {
         brakeLight2L.SetActive(switchCommand);
     }
 
+    /*
+     
+        COLLISION METHODS
+         
+         */
+
+    private void OnTriggerStay(Collider other) {
+        if (other.bounds.Contains(GetComponent<BoxCollider>().bounds.min)
+             && other.bounds.Contains(GetComponent<BoxCollider>().bounds.max)) {
+            // Inside the box collider
+            Debug.Log("SUCCESSFULLY PARKING!");
+        }
+    }
+
     //Testing method
     private void debug_localVelocity() {
         Debug.Log(transform.InverseTransformDirection(carBody.velocity));

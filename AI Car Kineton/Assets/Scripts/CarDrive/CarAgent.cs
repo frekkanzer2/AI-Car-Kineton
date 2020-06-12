@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
+using UnityEngine.SceneManagement;
 
 public class CarAgent : Agent {
 
@@ -262,6 +263,78 @@ public class CarAgent : Agent {
         transform.rotation = Quaternion.identity;
         speed = 0;
         carBody.velocity = Vector3.zero;
+    }
+
+    /*
+     
+        COLLISIONS CHECKS
+         
+         */
+
+    private void OnCollisionEnter(Collision collision) {
+        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
+            //Collision code for Parking Scene
+            if (collision.gameObject.CompareTag("Environment Object")) {
+                AddReward(-0.5f);
+                EndEpisode();
+            }
+            else if (collision.gameObject.CompareTag("Environment Car")) {
+                AddReward(-1f);
+                EndEpisode();
+            }
+        } else if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
+            //Collision code for Crosswalk Scene
+            if (collision.gameObject.CompareTag("Environment Object")) {
+                AddReward(-0.5f);
+                EndEpisode();
+            }
+            if (collision.gameObject.CompareTag("Human")) {
+                AddReward(-1f);
+                EndEpisode();
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
+            //Collision code for Parking Scene
+            if (other.gameObject.CompareTag("Checkpoint")) {
+                AddReward(1f);
+            } else if (other.gameObject.CompareTag("OutOfMap")) {
+                AddReward(-3f);
+                EndEpisode();
+            }
+        }
+        else if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
+            //Collision code for Crosswalk Scene
+            if (other.gameObject.CompareTag("EndGame")) {
+                AddReward(3f);
+                EndEpisode();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
+            //Collision code for Parking Scene
+
+        }
+        else if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
+            //Collision code for Crosswalk Scene
+
+        }
+    }
+
+    private void OnTriggerStay(Collider other) {
+        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
+            //Collision code for Parking Scene
+            if (other.bounds.Contains(GetComponent<BoxCollider>().bounds.min)
+             && other.bounds.Contains(GetComponent<BoxCollider>().bounds.max)) {
+                // Inside the box collider
+                AddReward(3f);
+                EndEpisode();
+            }
+        }
     }
 
     //Other functions

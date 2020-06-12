@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1377145083091681361}
   m_Layer: 0
   m_Name: OutOfMap
-  m_TagString: Untagged
+  m_TagString: OutOfMap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

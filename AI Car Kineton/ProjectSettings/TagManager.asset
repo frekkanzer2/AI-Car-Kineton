@@ -5,13 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Fire
-  - HumanStop
   - StopCar
   - Checkpoint
   - EndGame
   - OutOfMap
   - Human
   - Environment Object
+  - Environment Car
   layers:
   - Default
   - TransparentFX

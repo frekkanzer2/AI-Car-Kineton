@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_2 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.705
@@ -213,6 +217,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bus_1
       objectReference: {fileID: 0}
+    - target: {fileID: 1959030373088092, guid: fc4245223e4122142bb14239d44230ef, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
+      objectReference: {fileID: 0}
     - target: {fileID: 4353972167979376, guid: fc4245223e4122142bb14239d44230ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.55
@@ -287,6 +295,10 @@ PrefabInstance:
     - target: {fileID: 150262, guid: e0c9e7b86067ab64dacba4d674191ebb, type: 3}
       propertyPath: m_Name
       value: painted_wall_barrier
+      objectReference: {fileID: 0}
+    - target: {fileID: 150262, guid: e0c9e7b86067ab64dacba4d674191ebb, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 416204, guid: e0c9e7b86067ab64dacba4d674191ebb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -382,6 +394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Police_car (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1646981259178978, guid: f463242ba59e68243b7a693d4f0cfc18, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4870167790249810, guid: f463242ba59e68243b7a693d4f0cfc18, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.56
@@ -456,6 +472,10 @@ PrefabInstance:
     - target: {fileID: 1645035555999368, guid: b0061394c12a98242930329b043b6a79, type: 3}
       propertyPath: m_Name
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645035555999368, guid: b0061394c12a98242930329b043b6a79, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4462270399367906, guid: b0061394c12a98242930329b043b6a79, type: 3}
       propertyPath: m_LocalPosition.x
@@ -538,7 +558,6 @@ GameObject:
   m_Component:
   - component: {fileID: 72869220}
   - component: {fileID: 72869219}
-  - component: {fileID: 72869218}
   m_Layer: 0
   m_Name: AngleCamera_InParking
   m_TagString: MainCamera
@@ -546,14 +565,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &72869218
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72869217}
-  m_Enabled: 1
 --- !u!20 &72869219
 Camera:
   m_ObjectHideFlags: 0
@@ -650,6 +661,10 @@ PrefabInstance:
     - target: {fileID: 1247173097211460, guid: ffa4d200e6c7d9c4b90b3764b7ed86d4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247173097211460, guid: ffa4d200e6c7d9c4b90b3764b7ed86d4, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4004965118951458, guid: ffa4d200e6c7d9c4b90b3764b7ed86d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -766,6 +781,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantPot_C_V01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 16396581252dc7f418d57dad32e882d9, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 16396581252dc7f418d57dad32e882d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.11
@@ -876,6 +895,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantPot_D_V02
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 415ae327681e843459645b9ef3f3a4db, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 415ae327681e843459645b9ef3f3a4db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.467
@@ -950,6 +973,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
       propertyPath: m_Name
       value: fence_2 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1083,6 +1110,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apartment_01_Green
       objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 1cad456603efb354b90ae5caf2257d83,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 1cad456603efb354b90ae5caf2257d83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1157,6 +1189,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1854874103476482, guid: 4ea8f771a7b04ac4faa914f4be6b0e15, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4676838353132196, guid: 4ea8f771a7b04ac4faa914f4be6b0e15, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.432
@@ -1220,6 +1256,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LampPost_A
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 139e334bc86f2bb468ee8db25d7b8d70, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 139e334bc86f2bb468ee8db25d7b8d70, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.16
@@ -1276,6 +1316,10 @@ PrefabInstance:
     - target: {fileID: 1062987304964420, guid: 51a7956dde39d8742a75251ad7b26ce2, type: 3}
       propertyPath: m_Name
       value: car5_interior_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062987304964420, guid: 51a7956dde39d8742a75251ad7b26ce2, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
       objectReference: {fileID: 0}
     - target: {fileID: 4612442489444052, guid: 51a7956dde39d8742a75251ad7b26ce2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1353,6 +1397,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetSign_G
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aceb31403336b2b45bd74f4748b83b90, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aceb31403336b2b45bd74f4748b83b90, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.210192
@@ -1429,6 +1477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Police_car
       objectReference: {fileID: 0}
+    - target: {fileID: 1646981259178978, guid: f463242ba59e68243b7a693d4f0cfc18, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4870167790249810, guid: f463242ba59e68243b7a693d4f0cfc18, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.56
@@ -1504,6 +1556,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_02_Red (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 7705a458e14f6044faae0ebadb2ac026,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 7705a458e14f6044faae0ebadb2ac026,
         type: 3}
@@ -1593,6 +1650,10 @@ PrefabInstance:
     - target: {fileID: 1021998098362612, guid: 7f244f74947481f4381e26d8a7d04c77, type: 3}
       propertyPath: m_Name
       value: car5_interior_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021998098362612, guid: 7f244f74947481f4381e26d8a7d04c77, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
       objectReference: {fileID: 0}
     - target: {fileID: 4006131425210960, guid: 7f244f74947481f4381e26d8a7d04c77, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1745,6 +1806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: stick (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 174412, guid: d91011873a48699488e1c1b9b86925e5, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 461292, guid: d91011873a48699488e1c1b9b86925e5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.711
@@ -1821,6 +1886,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apartment_01_Green (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 1cad456603efb354b90ae5caf2257d83,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 1cad456603efb354b90ae5caf2257d83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1895,6 +1965,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_02_Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 7705a458e14f6044faae0ebadb2ac026,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 7705a458e14f6044faae0ebadb2ac026,
         type: 3}
@@ -1990,7 +2065,6 @@ GameObject:
   m_Component:
   - component: {fileID: 352127100}
   - component: {fileID: 352127102}
-  - component: {fileID: 352127101}
   m_Layer: 0
   m_Name: AngleCamera_SideCityView
   m_TagString: Untagged
@@ -2012,14 +2086,6 @@ Transform:
   m_Father: {fileID: 519818306}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &352127101
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352127099}
-  m_Enabled: 1
 --- !u!20 &352127102
 Camera:
   m_ObjectHideFlags: 0
@@ -2161,6 +2227,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apartment_01_Brown (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2234,6 +2305,10 @@ PrefabInstance:
     - target: {fileID: 1588062700121526, guid: 53193108bef9de140a997ee7d2f52505, type: 3}
       propertyPath: m_Name
       value: parking_fence_prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1588062700121526, guid: 53193108bef9de140a997ee7d2f52505, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4479879941241636, guid: 53193108bef9de140a997ee7d2f52505, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2310,6 +2385,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_01_Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 4af60cdd79cf36d449fdbfd0ca4fb8c2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 4af60cdd79cf36d449fdbfd0ca4fb8c2,
         type: 3}
@@ -2419,6 +2499,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_01_Brown (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4610319450652462086, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
         type: 3}
@@ -2707,6 +2792,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetSign_B
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 05fc8e63a1ec96c47a9e6318e0d4b6e6, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 05fc8e63a1ec96c47a9e6318e0d4b6e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.35
@@ -2824,6 +2913,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345907738522714575, guid: b69451b549634054f878100c3fbfa10e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b69451b549634054f878100c3fbfa10e, type: 3}
@@ -3068,6 +3162,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6e784e826a7585a4e9c64aa527741c45, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6e784e826a7585a4e9c64aa527741c45, type: 3}
       propertyPath: m_LocalPosition.x
       value: -31.36
@@ -3136,6 +3234,10 @@ PrefabInstance:
     - target: {fileID: 1062987304964420, guid: 51a7956dde39d8742a75251ad7b26ce2, type: 3}
       propertyPath: m_Name
       value: car5_interior_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062987304964420, guid: 51a7956dde39d8742a75251ad7b26ce2, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
       objectReference: {fileID: 0}
     - target: {fileID: 4612442489444052, guid: 51a7956dde39d8742a75251ad7b26ce2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3310,6 +3412,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: car3_interior_1
       objectReference: {fileID: 0}
+    - target: {fileID: 1412847438683138, guid: 5b75ee6de40ffdb4b828aa3bcf93ad1d, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
+      objectReference: {fileID: 0}
     - target: {fileID: 4546257375818808, guid: 5b75ee6de40ffdb4b828aa3bcf93ad1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.46
@@ -3386,6 +3492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bench_2_v_1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3e3850fd8012e494fae8f1ef444dc2e2, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3e3850fd8012e494fae8f1ef444dc2e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.372
@@ -3455,6 +3565,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_02_Yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 7a8882f3f4197354c9bf710f974170fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 7a8882f3f4197354c9bf710f974170fc,
         type: 3}
@@ -3529,6 +3644,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 3d80b6ccf651fe943a1988f60b388549, type: 3}
       propertyPath: m_Name
       value: bench_1_v_3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3d80b6ccf651fe943a1988f60b388549, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3d80b6ccf651fe943a1988f60b388549, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3605,6 +3724,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bench_A
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f3878ef94022a6f459f18f2e12cd6813, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f3878ef94022a6f459f18f2e12cd6813, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.169
@@ -3679,6 +3802,10 @@ PrefabInstance:
     - target: {fileID: 128852, guid: a2bef607e5bbd014d8d69755562c0d35, type: 3}
       propertyPath: m_Name
       value: warning_sign
+      objectReference: {fileID: 0}
+    - target: {fileID: 128852, guid: a2bef607e5bbd014d8d69755562c0d35, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 420576, guid: a2bef607e5bbd014d8d69755562c0d35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3886,6 +4013,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A1_prefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1212380520111254, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -53.66
@@ -3980,6 +4111,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: painted_barrier (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114438, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 492470, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23
@@ -4049,6 +4184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1582424665890648, guid: cc4074f22e26fd54599442ef02ee30fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4687545734074558, guid: cc4074f22e26fd54599442ef02ee30fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -35.3
@@ -4111,6 +4250,10 @@ PrefabInstance:
     - target: {fileID: 1567721885225040, guid: 52bea15780ece7d4894b80d89983f2be, type: 3}
       propertyPath: m_Name
       value: car2_interior_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567721885225040, guid: 52bea15780ece7d4894b80d89983f2be, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
       objectReference: {fileID: 0}
     - target: {fileID: 4805090703624000, guid: 52bea15780ece7d4894b80d89983f2be, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4194,6 +4337,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apartment_02_Yellow (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 7a8882f3f4197354c9bf710f974170fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 7a8882f3f4197354c9bf710f974170fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4267,7 +4415,6 @@ GameObject:
   m_Component:
   - component: {fileID: 690328830}
   - component: {fileID: 690328832}
-  - component: {fileID: 690328831}
   m_Layer: 0
   m_Name: AngleCamera_SideParking
   m_TagString: Untagged
@@ -4289,14 +4436,6 @@ Transform:
   m_Father: {fileID: 519818306}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &690328831
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690328829}
-  m_Enabled: 1
 --- !u!20 &690328832
 Camera:
   m_ObjectHideFlags: 0
@@ -4369,6 +4508,10 @@ PrefabInstance:
     - target: {fileID: 1212380520111254, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_Name
       value: Building_A1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212380520111254, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4512,6 +4655,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dupster_Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 258339100396845182, guid: 052a61b69ebf70b4fa4053538a6b2275,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 6420436892772853669, guid: 052a61b69ebf70b4fa4053538a6b2275,
         type: 3}
@@ -4708,6 +4856,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Station
       objectReference: {fileID: 0}
+    - target: {fileID: 4106738263427323207, guid: 55f8cf192e216a54593119d26ffa70dd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55f8cf192e216a54593119d26ffa70dd, type: 3}
 --- !u!4 &774553399 stripped
@@ -4726,6 +4879,10 @@ PrefabInstance:
     - target: {fileID: 128852, guid: a2bef607e5bbd014d8d69755562c0d35, type: 3}
       propertyPath: m_Name
       value: warning_sign (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 128852, guid: a2bef607e5bbd014d8d69755562c0d35, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 420576, guid: a2bef607e5bbd014d8d69755562c0d35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4821,6 +4978,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_02_Red (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 7705a458e14f6044faae0ebadb2ac026,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 7705a458e14f6044faae0ebadb2ac026,
         type: 3}
@@ -4930,6 +5092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LampPost_J (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 52685ed25fdcb1b488b7047664232501, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 52685ed25fdcb1b488b7047664232501, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.3
@@ -5024,6 +5190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop_B_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1213795830858570, guid: 9a52ba64c3a0abf49ad9515917ade04b, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4207401275094340, guid: 9a52ba64c3a0abf49ad9515917ade04b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.7
@@ -5090,6 +5260,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
       propertyPath: m_Name
       value: PlantPot_D_V01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5173,6 +5347,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apartment_01_Brown (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5247,6 +5426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: painted_barrier (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114438, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 492470, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22.822
@@ -5315,7 +5498,6 @@ GameObject:
   m_Component:
   - component: {fileID: 915646324}
   - component: {fileID: 915646323}
-  - component: {fileID: 915646322}
   m_Layer: 0
   m_Name: TopCamera_ParkingView
   m_TagString: Untagged
@@ -5323,14 +5505,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &915646322
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915646321}
-  m_Enabled: 1
 --- !u!20 &915646323
 Camera:
   m_ObjectHideFlags: 0
@@ -5398,6 +5572,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 1f1d790200b479d44b71528a4d59cf95, type: 3}
       propertyPath: m_Name
       value: tree_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1f1d790200b479d44b71528a4d59cf95, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1f1d790200b479d44b71528a4d59cf95, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5474,6 +5652,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_02_Yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 7a8882f3f4197354c9bf710f974170fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 7a8882f3f4197354c9bf710f974170fc,
         type: 3}
@@ -5620,6 +5803,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hot_Dog_Restaurant
       objectReference: {fileID: 0}
+    - target: {fileID: 5043672326251923839, guid: 488b2afff6e70584e9560a98dd9f342f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 488b2afff6e70584e9560a98dd9f342f, type: 3}
 --- !u!4 &929814371 stripped
@@ -5639,6 +5827,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_02_Yellow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 7a8882f3f4197354c9bf710f974170fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 7a8882f3f4197354c9bf710f974170fc,
         type: 3}
@@ -5714,6 +5907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1769484880354316, guid: f96e520d9320b42489ba14b3b98210d9, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4067745292390566, guid: f96e520d9320b42489ba14b3b98210d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.43
@@ -5777,6 +5974,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cone
       objectReference: {fileID: 0}
+    - target: {fileID: 148854, guid: 4adbbae4831a7774ea0645c19218c458, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 461710, guid: 4adbbae4831a7774ea0645c19218c458, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.738228
@@ -5833,6 +6034,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 8d099d309566e4d4fabf0a167d269e1d, type: 3}
       propertyPath: m_Name
       value: bench_2_v_3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8d099d309566e4d4fabf0a167d269e1d, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8d099d309566e4d4fabf0a167d269e1d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5908,6 +6113,10 @@ PrefabInstance:
     - target: {fileID: 1212380520111254, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_Name
       value: Building_A1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212380520111254, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5987,6 +6196,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apartment_01_Green (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 1cad456603efb354b90ae5caf2257d83,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 1cad456603efb354b90ae5caf2257d83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6061,6 +6275,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_I_1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1934853517836424, guid: 931ecb32d754b3f40afc9a688c8cea66, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4421704745708670, guid: 931ecb32d754b3f40afc9a688c8cea66, type: 3}
       propertyPath: m_LocalPosition.x
       value: -42.65
@@ -6123,7 +6341,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1008389477}
   - component: {fileID: 1008389476}
-  - component: {fileID: 1008389475}
   m_Layer: 0
   m_Name: TopCamera_CityView
   m_TagString: Untagged
@@ -6131,14 +6348,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1008389475
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008389474}
-  m_Enabled: 1
 --- !u!20 &1008389476
 Camera:
   m_ObjectHideFlags: 0
@@ -6226,6 +6435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Phone
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 68ee3d17a75022e4ebc3881d12645841, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68ee3d17a75022e4ebc3881d12645841, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.212
@@ -6298,6 +6511,10 @@ PrefabInstance:
     - target: {fileID: 114438, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
       propertyPath: m_Name
       value: painted_barrier
+      objectReference: {fileID: 0}
+    - target: {fileID: 114438, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 492470, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6373,6 +6590,10 @@ PrefabInstance:
     - target: {fileID: 1391131195511258, guid: 57bc6a56c46d6094194293a675271391, type: 3}
       propertyPath: m_Name
       value: car4_interior_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1391131195511258, guid: 57bc6a56c46d6094194293a675271391, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
       objectReference: {fileID: 0}
     - target: {fileID: 4655570947019576, guid: 57bc6a56c46d6094194293a675271391, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6469,6 +6690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree_3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7c673489ae779f4981703d07a67fa6d, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d7c673489ae779f4981703d07a67fa6d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.91
@@ -6537,6 +6762,10 @@ PrefabInstance:
     - target: {fileID: 1199332134306268, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
       propertyPath: m_Name
       value: Building_I_2_Prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199332134306268, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4370792754970456, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6631,6 +6860,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_N_Prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1681277682126416, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4828993989590112, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.91
@@ -6705,6 +6938,10 @@ PrefabInstance:
     - target: {fileID: 174412, guid: d91011873a48699488e1c1b9b86925e5, type: 3}
       propertyPath: m_Name
       value: stick
+      objectReference: {fileID: 0}
+    - target: {fileID: 174412, guid: d91011873a48699488e1c1b9b86925e5, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 461292, guid: d91011873a48699488e1c1b9b86925e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6837,6 +7074,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
       propertyPath: m_Name
       value: fence_2 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6994,6 +7235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree_2
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1f1d790200b479d44b71528a4d59cf95, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1f1d790200b479d44b71528a4d59cf95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.58
@@ -7070,6 +7315,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apartment_01_Green (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 1cad456603efb354b90ae5caf2257d83,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 1cad456603efb354b90ae5caf2257d83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7144,6 +7394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bench_2_v_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3e3850fd8012e494fae8f1ef444dc2e2, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3e3850fd8012e494fae8f1ef444dc2e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.372
@@ -7213,6 +7467,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sign_1
       objectReference: {fileID: 0}
+    - target: {fileID: 196014, guid: b8433bdc340959d4b92f2fa9fc42d091, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 437368, guid: b8433bdc340959d4b92f2fa9fc42d091, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.788
@@ -7280,6 +7538,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_02_Blue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 16c98f1acff2bb0408af0a862cec3154,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 16c98f1acff2bb0408af0a862cec3154,
         type: 3}
@@ -7355,6 +7618,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_01_Blue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 4af60cdd79cf36d449fdbfd0ca4fb8c2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 4af60cdd79cf36d449fdbfd0ca4fb8c2,
         type: 3}
@@ -7538,6 +7806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantPot_D_V01
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30.53
@@ -7683,6 +7955,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apartment_01_Brown (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7756,6 +8033,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
       propertyPath: m_Name
       value: PlantPot_D_V01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7832,6 +8113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cone_orange
       objectReference: {fileID: 0}
+    - target: {fileID: 160334, guid: 56ae742cef70a134b819fe5b677450d0, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 488920, guid: 56ae742cef70a134b819fe5b677450d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.54
@@ -7893,6 +8178,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 52685ed25fdcb1b488b7047664232501, type: 3}
       propertyPath: m_Name
       value: LampPost_J (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 52685ed25fdcb1b488b7047664232501, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 52685ed25fdcb1b488b7047664232501, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8033,6 +8322,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apartment_02_Yellow (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 7a8882f3f4197354c9bf710f974170fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 7a8882f3f4197354c9bf710f974170fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8107,6 +8401,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_01_Blue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 4af60cdd79cf36d449fdbfd0ca4fb8c2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 4af60cdd79cf36d449fdbfd0ca4fb8c2,
         type: 3}
@@ -8217,6 +8516,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Van_Red
       objectReference: {fileID: 0}
+    - target: {fileID: 150149505564761583, guid: eeada097b272dc848a3ed083e6611d7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 6613842687726247349, guid: eeada097b272dc848a3ed083e6611d7f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8284,6 +8588,10 @@ PrefabInstance:
     - target: {fileID: 1421433746022104, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
       propertyPath: m_Name
       value: Building_M_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421433746022104, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4499070825876286, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8359,6 +8667,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 52685ed25fdcb1b488b7047664232501, type: 3}
       propertyPath: m_Name
       value: LampPost_J
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 52685ed25fdcb1b488b7047664232501, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 52685ed25fdcb1b488b7047664232501, type: 3}
       propertyPath: m_IsActive
@@ -8508,6 +8820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wood_barrier (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 497179cecab604da693136a55858ff74, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 497179cecab604da693136a55858ff74, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.99
@@ -8564,6 +8880,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
       propertyPath: m_Name
       value: fence_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8634,6 +8954,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_02_Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 16c98f1acff2bb0408af0a862cec3154,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 16c98f1acff2bb0408af0a862cec3154,
         type: 3}
@@ -8708,6 +9033,10 @@ PrefabInstance:
     - target: {fileID: 100006, guid: 497179cecab604da693136a55858ff74, type: 3}
       propertyPath: m_Name
       value: wood_barrier
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 497179cecab604da693136a55858ff74, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 497179cecab604da693136a55858ff74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8804,6 +9133,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wall_barrier
       objectReference: {fileID: 0}
+    - target: {fileID: 108648, guid: fb934be14696278408574211c4a828bf, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 451412, guid: fb934be14696278408574211c4a828bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.131716
@@ -8892,6 +9225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1212380520111254, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.45
@@ -8972,6 +9309,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d7c673489ae779f4981703d07a67fa6d, type: 3}
       propertyPath: m_Name
       value: tree_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7c673489ae779f4981703d07a67fa6d, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d7c673489ae779f4981703d07a67fa6d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9061,6 +9402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Overpass_B
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 378251485ccc2214689266705249d0a2, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 378251485ccc2214689266705249d0a2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.39
@@ -9117,6 +9462,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 6e784e826a7585a4e9c64aa527741c45, type: 3}
       propertyPath: m_Name
       value: fence_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6e784e826a7585a4e9c64aa527741c45, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6e784e826a7585a4e9c64aa527741c45, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9199,6 +9548,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_01_Brown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4610319450652462086, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
         type: 3}
@@ -9397,6 +9751,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bench_2_v_3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8d099d309566e4d4fabf0a167d269e1d, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8d099d309566e4d4fabf0a167d269e1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.07
@@ -9484,6 +9842,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_02_Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: fb0136cb5bc9dcc4e9453e369de6f8d7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: fb0136cb5bc9dcc4e9453e369de6f8d7,
         type: 3}
@@ -9584,6 +9947,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_01_Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 1cad456603efb354b90ae5caf2257d83,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 1cad456603efb354b90ae5caf2257d83,
         type: 3}
@@ -9741,6 +10109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wall_barrier
       objectReference: {fileID: 0}
+    - target: {fileID: 108648, guid: fb934be14696278408574211c4a828bf, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 451412, guid: fb934be14696278408574211c4a828bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22.003
@@ -9892,6 +10264,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apartment_02_Blue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 16c98f1acff2bb0408af0a862cec3154,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 16c98f1acff2bb0408af0a862cec3154,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9965,6 +10342,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 3d80b6ccf651fe943a1988f60b388549, type: 3}
       propertyPath: m_Name
       value: bench_1_v_3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3d80b6ccf651fe943a1988f60b388549, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3d80b6ccf651fe943a1988f60b388549, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10040,6 +10421,10 @@ PrefabInstance:
     - target: {fileID: 1493739204893626, guid: 1ed1fa55ea71b6a449d2fa4875546965, type: 3}
       propertyPath: m_Name
       value: car1_interior_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1493739204893626, guid: 1ed1fa55ea71b6a449d2fa4875546965, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
       objectReference: {fileID: 0}
     - target: {fileID: 4030148962307310, guid: 1ed1fa55ea71b6a449d2fa4875546965, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10188,6 +10573,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MailBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8776834063523893227, guid: 2eb7b20a1240cc545b9a8ef2da538947,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2eb7b20a1240cc545b9a8ef2da538947, type: 3}
 --- !u!4 &1516066149 stripped
@@ -10288,6 +10678,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1299162206928126, guid: 0676a81b6b274744bac5dd88f3ad09ea, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4601591106160086, guid: 0676a81b6b274744bac5dd88f3ad09ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.13
@@ -10351,6 +10745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_01_Green (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 1cad456603efb354b90ae5caf2257d83,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 1cad456603efb354b90ae5caf2257d83,
         type: 3}
@@ -10437,6 +10836,10 @@ PrefabInstance:
     - target: {fileID: 165212, guid: fbc74bc83918fc94182a214fc2db1395, type: 3}
       propertyPath: m_Name
       value: big_cone_orange
+      objectReference: {fileID: 0}
+    - target: {fileID: 165212, guid: fbc74bc83918fc94182a214fc2db1395, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 411752, guid: fbc74bc83918fc94182a214fc2db1395, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10537,6 +10940,10 @@ PrefabInstance:
     - target: {fileID: 1646981259178978, guid: f463242ba59e68243b7a693d4f0cfc18, type: 3}
       propertyPath: m_Name
       value: Police_car (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646981259178978, guid: f463242ba59e68243b7a693d4f0cfc18, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4870167790249810, guid: f463242ba59e68243b7a693d4f0cfc18, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10687,6 +11094,10 @@ PrefabInstance:
     - target: {fileID: 1206377520915776, guid: 3b4ec0f72c4d8b14bad4b52c863b1a40, type: 3}
       propertyPath: m_Name
       value: car7_interior_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206377520915776, guid: 3b4ec0f72c4d8b14bad4b52c863b1a40, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
       objectReference: {fileID: 0}
     - target: {fileID: 4083283216720746, guid: 3b4ec0f72c4d8b14bad4b52c863b1a40, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10864,6 +11275,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: car1_interior_5
       objectReference: {fileID: 0}
+    - target: {fileID: 1392843169467178, guid: 3038c666a1504d6489bc2293f35d1106, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
+      objectReference: {fileID: 0}
     - target: {fileID: 4551633543687298, guid: 3038c666a1504d6489bc2293f35d1106, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.39
@@ -11021,6 +11436,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree_3
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7c673489ae779f4981703d07a67fa6d, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d7c673489ae779f4981703d07a67fa6d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.37
@@ -11096,6 +11515,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_01_Blue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 4af60cdd79cf36d449fdbfd0ca4fb8c2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 4af60cdd79cf36d449fdbfd0ca4fb8c2,
         type: 3}
@@ -11362,6 +11786,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pawn_Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458154396229358027, guid: a350312ea56382e44b6be0a297ebcae6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a350312ea56382e44b6be0a297ebcae6, type: 3}
@@ -11656,6 +12085,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_2
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.34
@@ -11725,6 +12158,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_01_Brown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: aaa3952fec7a82a44b2b5dd44d34b1fc,
         type: 3}
@@ -11824,6 +12262,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 8d099d309566e4d4fabf0a167d269e1d, type: 3}
       propertyPath: m_Name
       value: bench_2_v_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8d099d309566e4d4fabf0a167d269e1d, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8d099d309566e4d4fabf0a167d269e1d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11925,6 +12367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.34
@@ -11999,6 +12445,10 @@ PrefabInstance:
     - target: {fileID: 1681277682126416, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
       propertyPath: m_Name
       value: Building_N_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681277682126416, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4828993989590112, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12075,6 +12525,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bench_A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f3878ef94022a6f459f18f2e12cd6813, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f3878ef94022a6f459f18f2e12cd6813, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30.37
@@ -12149,6 +12603,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 3d80b6ccf651fe943a1988f60b388549, type: 3}
       propertyPath: m_Name
       value: bench_1_v_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3d80b6ccf651fe943a1988f60b388549, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3d80b6ccf651fe943a1988f60b388549, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12248,6 +12706,10 @@ PrefabInstance:
       propertyPath: SPD_LIMIT_STEERING
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1900164493, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: SPD_LIMIT_STEERING
       value: 8
@@ -12260,6 +12722,11 @@ PrefabInstance:
       propertyPath: camControllerObj
       value: 
       objectReference: {fileID: 519818305}
+    - target: {fileID: 5665523285311036543, guid: 1ff7e699860757e4db5027915478e1e5,
+        type: 3}
+      propertyPath: choose
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7947011537409886379, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: m_Name
@@ -12333,6 +12800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c31d491304d6f444ab1c77751822a980, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.34
@@ -12402,6 +12873,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1140235104640536, guid: d709f190cb36b4f4bb0a23d30417a426, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4546774542237012, guid: d709f190cb36b4f4bb0a23d30417a426, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.17
@@ -12464,6 +12939,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: f3878ef94022a6f459f18f2e12cd6813, type: 3}
       propertyPath: m_Name
       value: Bench_A (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f3878ef94022a6f459f18f2e12cd6813, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f3878ef94022a6f459f18f2e12cd6813, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12539,6 +13018,10 @@ PrefabInstance:
     - target: {fileID: 1608795339562644, guid: 481225ae69def2d4083e458da9863468, type: 3}
       propertyPath: m_Name
       value: car8_interior_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608795339562644, guid: 481225ae69def2d4083e458da9863468, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
       objectReference: {fileID: 0}
     - target: {fileID: 4665266014045632, guid: 481225ae69def2d4083e458da9863468, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12679,6 +13162,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gas_station
+      objectReference: {fileID: 0}
+    - target: {fileID: 6368686047752830889, guid: 29725390facc2bf4ea3ed90cfcb9164d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 6368686047752921993, guid: 29725390facc2bf4ea3ed90cfcb9164d,
         type: 3}
@@ -12865,6 +13353,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantPot_D_V02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 415ae327681e843459645b9ef3f3a4db, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 415ae327681e843459645b9ef3f3a4db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.102
@@ -12940,6 +13432,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_01_Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363539568854081249, guid: 4af60cdd79cf36d449fdbfd0ca4fb8c2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 6978763718362251597, guid: 4af60cdd79cf36d449fdbfd0ca4fb8c2,
         type: 3}
@@ -13030,6 +13527,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: parking_machine_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1324871742632726, guid: 8bd829e114e3a9f46bac4d6a145f5848, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4709623250441894, guid: 8bd829e114e3a9f46bac4d6a145f5848, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.29
@@ -13092,6 +13593,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 05fc8e63a1ec96c47a9e6318e0d4b6e6, type: 3}
       propertyPath: m_Name
       value: StreetSign_B (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 05fc8e63a1ec96c47a9e6318e0d4b6e6, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 05fc8e63a1ec96c47a9e6318e0d4b6e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13212,6 +13717,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Garage
       objectReference: {fileID: 0}
+    - target: {fileID: 8318264697060391321, guid: 481c8f6737ca1e945bce27972243cc57,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 481c8f6737ca1e945bce27972243cc57, type: 3}
 --- !u!4 &2055556475 stripped
@@ -13230,6 +13740,10 @@ PrefabInstance:
     - target: {fileID: 1421433746022104, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
       propertyPath: m_Name
       value: Building_M_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421433746022104, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 4499070825876286, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13306,6 +13820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: parking_fence_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1588062700121526, guid: 53193108bef9de140a997ee7d2f52505, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4479879941241636, guid: 53193108bef9de140a997ee7d2f52505, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.981
@@ -13380,6 +13898,10 @@ PrefabInstance:
     - target: {fileID: 174412, guid: d91011873a48699488e1c1b9b86925e5, type: 3}
       propertyPath: m_Name
       value: stick (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 174412, guid: d91011873a48699488e1c1b9b86925e5, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 461292, guid: d91011873a48699488e1c1b9b86925e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13475,6 +13997,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_I_2_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1199332134306268, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4370792754970456, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24.65
@@ -13547,7 +14073,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2104892568}
   - component: {fileID: 2104892567}
-  - component: {fileID: 2104892566}
   m_Layer: 0
   m_Name: AngleCamera_CityView
   m_TagString: Untagged
@@ -13555,14 +14080,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2104892566
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104892565}
-  m_Enabled: 1
 --- !u!20 &2104892567
 Camera:
   m_ObjectHideFlags: 0
@@ -13630,6 +14147,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
       propertyPath: m_Name
       value: PlantPot_D_V01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 05a609dfeaa0a8342a84c707df86f647, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13706,6 +14227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: car4_interior_4
       objectReference: {fileID: 0}
+    - target: {fileID: 1742160299826258, guid: 4c6e35ff14ba2454cbcd48c46760ff75, type: 3}
+      propertyPath: m_TagString
+      value: Environment Car
+      objectReference: {fileID: 0}
     - target: {fileID: 4488359261144464, guid: 4c6e35ff14ba2454cbcd48c46760ff75, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.500467
@@ -13781,6 +14306,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apartment_02_Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844316436611475116, guid: 7705a458e14f6044faae0ebadb2ac026,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: 7705a458e14f6044faae0ebadb2ac026,
         type: 3}
@@ -13871,6 +14401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LampPost_J (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 52685ed25fdcb1b488b7047664232501, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 52685ed25fdcb1b488b7047664232501, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.3
@@ -13939,6 +14473,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 16396581252dc7f418d57dad32e882d9, type: 3}
       propertyPath: m_Name
       value: PlantPot_C_V01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 16396581252dc7f418d57dad32e882d9, type: 3}
+      propertyPath: m_TagString
+      value: Environment Object
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 16396581252dc7f418d57dad32e882d9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14014,17 +14552,17 @@ PrefabInstance:
     - target: {fileID: 1944730029541684331, guid: 18b580789a8e437409f46ce37e00003e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5461285580636573378, guid: 18b580789a8e437409f46ce37e00003e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.39
+      value: 3.347
       objectReference: {fileID: 0}
     - target: {fileID: 5461285580636573378, guid: 18b580789a8e437409f46ce37e00003e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.59
+      value: 1.659
       objectReference: {fileID: 0}
     - target: {fileID: 5461285580636573378, guid: 18b580789a8e437409f46ce37e00003e,
         type: 3}
@@ -14071,10 +14609,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5461285580636573378, guid: 18b580789a8e437409f46ce37e00003e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5978835
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461285580636573378, guid: 18b580789a8e437409f46ce37e00003e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.3729208
+      objectReference: {fileID: 0}
     - target: {fileID: 6854977694570684728, guid: 18b580789a8e437409f46ce37e00003e,
         type: 3}
       propertyPath: m_Name
       value: EndGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6854977694570684728, guid: 18b580789a8e437409f46ce37e00003e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18b580789a8e437409f46ce37e00003e, type: 3}
@@ -14155,6 +14708,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OutOfMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786306003352983184, guid: 7f7af40e752abab439990bca7c8fdc0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f7af40e752abab439990bca7c8fdc0c, type: 3}
