@@ -2048,7 +2048,6 @@ GameObject:
   - component: {fileID: 7707147436343079194}
   - component: {fileID: 7707147436343079192}
   - component: {fileID: 7707147436343079193}
-  - component: {fileID: 760881788763385863}
   m_Layer: 0
   m_Name: Pedastrian1
   m_TagString: Untagged
@@ -2152,20 +2151,6 @@ MonoBehaviour:
   RotationSpeed: 120
   stopDistance: 2.5
   ReachedDestination: 0
---- !u!136 &760881788763385863
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7707492642351525071}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.28526857
-  m_Height: 1.9094133
-  m_Direction: 1
-  m_Center: {x: 0.012940049, y: 0.87874746, z: 8.657253e-11}
 --- !u!1 &7707526615769191677
 GameObject:
   m_ObjectHideFlags: 0

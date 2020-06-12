@@ -9762,7 +9762,12 @@ PrefabInstance:
         type: 3}
       propertyPath: currentWaypoint
       value: 
-      objectReference: {fileID: 808964796}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707147436343079194, guid: d3d8a45dcc7ec024aaa9c0ad5be03ca7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7707492642351525071, guid: d3d8a45dcc7ec024aaa9c0ad5be03ca7,
         type: 3}
       propertyPath: m_Name
