@@ -7,6 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class CarAgent : Agent {
 
+    /*
+     
+        SPAWNER CLASS
+
+         */
+    public class Spawn {
+        public Vector3 spawnPosition;
+        public Quaternion spawnRotation;
+        public Spawn(Vector3 position, Quaternion rotation) {
+            spawnPosition = position;
+            spawnRotation = rotation;
+        }
+    }
+
     public float staticSpeed = 5000f;
     public float brakeForce = 100000f;
     private float speed = 0;
@@ -34,8 +48,17 @@ public class CarAgent : Agent {
     private CameraController camController;
     private Camera frontcam, backcam;
 
+    /*
+     
+        DO NOT DELETE HERE
+         
+         */
     //Agent spawn position
-    private Vector3 spawnPosition;
+    private ArrayList spawner;
+    [Tooltip("Add here a fixed custom position. Leave empty for the random generator.")]
+    public Vector3 customSpawnPosition;
+    [Tooltip("Add here a fixed custom rotation. Leave empty for the random generator.")]
+    public Quaternion customSpawnRotation;
 
     // Start code in initialization method
 
@@ -52,6 +75,20 @@ public class CarAgent : Agent {
 
     //Initialization
     public override void Initialize() {
+
+        //Spawn Position
+        spawner = new ArrayList(); //ArrayList of Spawn objects
+        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
+            spawner.Add(new Spawn(new Vector3(18.18465f, 0.4371328f, 13.53141f), Quaternion.Euler(0, 270, 1)));
+            spawner.Add(new Spawn(new Vector3(-17.45f, 0.491f, 5.19f), Quaternion.identity));
+            spawner.Add(new Spawn(new Vector3(-8.73f, 0.491f, 4.71f), Quaternion.Euler(0, 180, 0)));
+        }
+        else if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
+            spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -26.8f), Quaternion.identity));
+            spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -12f), Quaternion.identity));
+        }
+        //End of spawn section
+
         lastDirection = Direction.Stop;
         myPosition = new Vector3(0, 0, 0);
         myRotation = new Quaternion(0, 0, 0, 0);
@@ -259,10 +296,29 @@ public class CarAgent : Agent {
     }
 
     private void resetCar() {
-        transform.position = spawnPosition;
-        transform.rotation = Quaternion.identity;
+        carBody.isKinematic = true;
+        executeSpawn();
         speed = 0;
+        // wc_fl, wc_fr, wc_bl, wc_br
+        wc_fl.brakeTorque = Mathf.Infinity;
+        wc_fr.brakeTorque = Mathf.Infinity;
+        wc_bl.brakeTorque = Mathf.Infinity;
+        wc_br.brakeTorque = Mathf.Infinity;
         carBody.velocity = Vector3.zero;
+        carBody.angularVelocity = Vector3.zero;
+        carBody.isKinematic = false;
+    }
+
+    private void executeSpawn() {
+        Spawn mySpawn;
+        if (Vector3.Distance(customSpawnPosition, Vector3.zero) == 0 &&
+            (customSpawnRotation == new Quaternion(0, 0, 0, 0) || customSpawnRotation.Equals(new Quaternion(0, 0, 0, 0))))
+
+            mySpawn = (Spawn)spawner[Random.Range(0, spawner.Count)];
+        else
+            mySpawn = new Spawn(customSpawnPosition, customSpawnRotation);
+        transform.position = mySpawn.spawnPosition;
+        transform.rotation = mySpawn.spawnRotation;
     }
 
     /*
@@ -272,25 +328,49 @@ public class CarAgent : Agent {
          */
 
     private void OnCollisionEnter(Collision collision) {
-        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
-            //Collision code for Parking Scene
-            if (collision.gameObject.CompareTag("Environment Object")) {
-                AddReward(-0.5f);
-                EndEpisode();
-            }
-            else if (collision.gameObject.CompareTag("Environment Car")) {
-                AddReward(-1f);
-                EndEpisode();
-            }
-        } else if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
-            //Collision code for Crosswalk Scene
-            if (collision.gameObject.CompareTag("Environment Object")) {
-                AddReward(-0.5f);
-                EndEpisode();
-            }
-            if (collision.gameObject.CompareTag("Human")) {
-                AddReward(-1f);
-                EndEpisode();
+        
+        if (collision.gameObject.CompareTag("Environment Object")) {
+
+            AddReward(-0.5f);
+            EndEpisode();
+        }
+        else if (collision.gameObject.CompareTag("Environment Car")) {
+
+            AddReward(-1f);
+            EndEpisode();
+        }
+        else if (collision.gameObject.CompareTag("Human")) {
+
+            AddReward(-1f);
+            EndEpisode();
+        }
+        else if (collision.gameObject.CompareTag("Untagged")) {
+            GameObject myParent;
+            myParent = collision.gameObject.transform.parent.gameObject;
+            while (true) {
+                if (myParent == null) break;
+                if (myParent.CompareTag("Untagged")) {
+                    myParent = myParent.transform.parent.gameObject;
+                    continue;
+                }
+                //CASES HERE
+                if (myParent.CompareTag("Environment Object")){
+                    AddReward(-0.5f);
+                    EndEpisode();
+                    break;
+                }
+                else if (myParent.CompareTag("Environment Car")) {
+
+                    AddReward(-1f);
+                    EndEpisode();
+                    break;
+                }
+                else if (myParent.CompareTag("Human")) {
+
+                    AddReward(-1f);
+                    EndEpisode();
+                    break;
+                }
             }
         }
     }

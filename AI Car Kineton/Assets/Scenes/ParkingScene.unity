@@ -12698,6 +12698,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 153616470, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
+      propertyPath: m_BrainParameters.VectorObservationSize
+      value: 23
+      objectReference: {fileID: 0}
     - target: {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: camControllerObj
       value: 
@@ -12709,6 +12713,26 @@ PrefabInstance:
     - target: {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
+      propertyPath: customSpawnPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
+      propertyPath: customSpawnPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
+      propertyPath: customSpawnPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
+      propertyPath: customSpawnRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
+      propertyPath: customSpawnRotation.w
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1900164493, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: SPD_LIMIT_STEERING
@@ -12722,10 +12746,14 @@ PrefabInstance:
       propertyPath: camControllerObj
       value: 
       objectReference: {fileID: 519818305}
+    - target: {fileID: 1900164493, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5665523285311036543, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: choose
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7947011537409886379, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
@@ -12735,17 +12763,17 @@ PrefabInstance:
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.93
+      value: 18.18465
       objectReference: {fileID: 0}
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.491
+      value: 0.4371328
       objectReference: {fileID: 0}
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.55
+      value: 13.53141
       objectReference: {fileID: 0}
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
@@ -14050,12 +14078,18 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 64671492500147286, guid: 1e198ff9400b5064c816d8f779eff296,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1326766579187440763, guid: 1e198ff9400b5064c816d8f779eff296,
         type: 3}
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1326766579187440763, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
 --- !u!4 &2086945734 stripped
 Transform:
