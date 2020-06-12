@@ -328,11 +328,9 @@ public class CarAgent : Agent {
         carBody.velocity = Vector3.zero;
         carBody.angularVelocity = Vector3.zero;
         carBody.isKinematic = false;
-        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
-            foreach (GameObject ped in listOfPedastrians) {
+        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene"))
+            foreach (GameObject ped in listOfPedastrians)
                 ped.GetComponent<CharacterNavigationController>().respawn();
-            }
-        }
     }
 
     private void executeSpawn() {
