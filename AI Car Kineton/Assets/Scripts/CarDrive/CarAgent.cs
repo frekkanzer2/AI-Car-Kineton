@@ -59,6 +59,8 @@ public class CarAgent : Agent {
     public Vector3 customSpawnPosition;
     [Tooltip("Add here a fixed custom rotation. Leave empty for the random generator.")]
     public Quaternion customSpawnRotation;
+    //Pedastrians list
+    ArrayList listOfPedastrians;
 
     // Start code in initialization method
 
@@ -88,6 +90,25 @@ public class CarAgent : Agent {
             spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -12f), Quaternion.identity));
         }
         //End of spawn section
+
+        //Getting pedastrians
+        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
+            listOfPedastrians = new ArrayList();
+            GameObject childContainerOfWPs = null;
+            foreach (Transform child in transform.parent.gameObject.transform)
+                if (child.gameObject.name.Equals("Waypoints container")) {
+                    childContainerOfWPs = child.gameObject;
+                    break;
+                }
+            if (childContainerOfWPs != null)
+                foreach (Transform wpt in childContainerOfWPs.transform)
+                    foreach (Transform item in wpt.gameObject.transform)
+                        if (item.gameObject.name.Equals("Pedastrian1") || item.gameObject.name.Equals("Pedastrian2") || item.gameObject.name.Equals("Pedastrian3")) {
+                            listOfPedastrians.Add(item.gameObject);
+                            break;
+                        }
+        }
+        //End of getting pedastrians
 
         lastDirection = Direction.Stop;
         myPosition = new Vector3(0, 0, 0);
@@ -307,6 +328,11 @@ public class CarAgent : Agent {
         carBody.velocity = Vector3.zero;
         carBody.angularVelocity = Vector3.zero;
         carBody.isKinematic = false;
+        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
+            foreach (GameObject ped in listOfPedastrians) {
+                ped.GetComponent<CharacterNavigationController>().respawn();
+            }
+        }
     }
 
     private void executeSpawn() {
