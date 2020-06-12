@@ -144,8 +144,6 @@ public class CarBehaviour : MonoBehaviour {
             actualDirection = Direction.Stop;
         }
 
-        debug_localVelocity();
-
     }
 
     private void rotation() {
@@ -213,7 +211,7 @@ public class CarBehaviour : MonoBehaviour {
 
     private void autocamManager() {
         float localVelocity = getVelocitySpeed();
-        if (localVelocity >= 0) camController.activateCamera(frontcam);
+        if (localVelocity >= -1) camController.activateCamera(frontcam);
         else camController.activateCamera(backcam);
     }
 
