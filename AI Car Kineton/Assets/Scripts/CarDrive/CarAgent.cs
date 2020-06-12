@@ -47,6 +47,7 @@ public class CarAgent : Agent {
     public GameObject camControllerObj;
     private CameraController camController;
     private Camera frontcam, backcam;
+    GameObject[] actors;
 
     /*
      
@@ -59,7 +60,7 @@ public class CarAgent : Agent {
     public Vector3 customSpawnPosition;
     [Tooltip("Add here a fixed custom rotation. Leave empty for the random generator.")]
     public Quaternion customSpawnRotation;
-
+    GameObject parent;
     // Start code in initialization method
 
     //Enumarator
@@ -75,6 +76,12 @@ public class CarAgent : Agent {
 
     //Initialization
     public override void Initialize() {
+
+
+       parent = transform.parent.gameObject;
+        Debug.Log(parent.name);
+        //actors = parent.FindGameObjectsWithTag("Human");
+
 
         //Spawn Position
         spawner = new ArrayList(); //ArrayList of Spawn objects
