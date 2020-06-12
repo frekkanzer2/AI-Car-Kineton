@@ -14,10 +14,12 @@ public class CharacterNavigationController : MonoBehaviour
     private Animator animator;
     private Vector3 startPosition, startDestination;
     private Quaternion startRotation;
-
+    private Rigidbody rBody;
     // Start is called before the first frame update
     void Start()
     {
+
+        rBody = GetComponent<Rigidbody>();
         startPosition = transform.position;
         startDestination = destination;
         startRotation = transform.rotation;
@@ -34,6 +36,8 @@ public class CharacterNavigationController : MonoBehaviour
             destinationDirection.y = 0;
             float destinationDistance = destinationDirection.magnitude;
             animator.SetBool("move", true);
+
+
 
             if (destinationDistance >= stopDistance)
             {
@@ -72,6 +76,9 @@ public class CharacterNavigationController : MonoBehaviour
 
     public void respawn()
     {
+
+        rBody.velocity = Vector3.zero;
+        rBody.angularVelocity = Vector3.zero;
         destination = startDestination;
         transform.position = startPosition;
         transform.rotation = startRotation;
