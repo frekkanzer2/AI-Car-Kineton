@@ -63,10 +63,16 @@ public class CharacterNavigationController : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Human") || collision.gameObject.CompareTag("Environment Object") || collision.gameObject.CompareTag("Player"))
         {
-            transform.position = startPosition;
-            transform.rotation = startRotation;
+            respawn();
             destination = startDestination;
         }
            
+    }
+
+
+    public void respawn()
+    {
+        transform.position = startPosition;
+        transform.rotation = startRotation;
     }
 }
