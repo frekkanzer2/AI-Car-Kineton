@@ -11,7 +11,9 @@ TagManager:
   - Human
   - Environment Object
   - Environment Car
-  - Walklimit
+  - RiskZone
+  - Walklimit1
+  - Walklimit2
   layers:
   - Default
   - TransparentFX

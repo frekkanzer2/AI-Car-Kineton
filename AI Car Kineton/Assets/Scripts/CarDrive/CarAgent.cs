@@ -28,11 +28,12 @@ public class CarAgent : Agent {
     private WheelCollider wc_fl, wc_fr, wc_bl, wc_br; // f -> front, l -> left, r -> right
     private GameObject wheel_front_left, wheel_front_right, wheel_back_left, wheel_back_right;
     private GameObject steering_wheel;
+    
 
     private GameObject brakeLight1R, brakeLight1L, brakeLight2R, brakeLight2L;
 
     private Direction lastDirection, actualDirection;
-    private bool isBraking = false;
+    private bool isBraking = false, pedOnStreet = false;
     Vector3 myPosition; Quaternion myRotation;
 
     //vars for curve steering fix
@@ -41,6 +42,8 @@ public class CarAgent : Agent {
     private float SPD_LIMIT_STEERING_MAX = 28.0f;
     private float friction = 0; //difference to set in rotation for high speed -> x variable
 
+
+   
     //Automatic cam manager
     [Tooltip("Positive: automatic camera activated | Negative: manual camera" + "\r\n" + "If positive, attach the camera controller in the following field.")]
     public bool autoCam = true;
@@ -62,6 +65,9 @@ public class CarAgent : Agent {
     //Pedastrians list
     ArrayList listOfPedastrians;
 
+    //riskPoint
+    private GameObject riskPoint;
+    
     // Start code in initialization method
 
     //Enumarator
@@ -91,23 +97,38 @@ public class CarAgent : Agent {
         }
         //End of spawn section
 
-        //Getting pedastrians
-        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
-            listOfPedastrians = new ArrayList();
-            GameObject childContainerOfWPs = null;
-            foreach (Transform child in transform.parent.gameObject.transform)
-                if (child.gameObject.name.Equals("Waypoints container")) {
-                    childContainerOfWPs = child.gameObject;
-                    break;
-                }
-            if (childContainerOfWPs != null)
-                foreach (Transform wpt in childContainerOfWPs.transform)
-                    foreach (Transform item in wpt.gameObject.transform)
-                        if (item.gameObject.name.Equals("Pedastrian1") || item.gameObject.name.Equals("Pedastrian2") || item.gameObject.name.Equals("Pedastrian3")) {
-                            listOfPedastrians.Add(item.gameObject);
-                            break;
-                        }
+
+        
+        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")){
+            //Getting RiskPoint
+
+            GameObject parent = transform.parent.gameObject;
+            riskPoint = parent.transform.Find("RiskPoint").gameObject;
+          
+
+            //Getting pedastrians
+            if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene"))
+            {
+                listOfPedastrians = new ArrayList();
+                GameObject childContainerOfWPs = null;
+                foreach (Transform child in transform.parent.gameObject.transform)
+                    if (child.gameObject.name.Equals("Waypoints container"))
+                    {
+                        childContainerOfWPs = child.gameObject;
+                        break;
+                    }
+                if (childContainerOfWPs != null)
+                    foreach (Transform wpt in childContainerOfWPs.transform)
+                        foreach (Transform item in wpt.gameObject.transform)
+                            if (item.gameObject.name.Equals("Pedastrian1") || item.gameObject.name.Equals("Pedastrian2") || item.gameObject.name.Equals("Pedastrian3"))
+                            {
+                                listOfPedastrians.Add(item.gameObject);
+                                break;
+                            }
+
+            }
         }
+
         //End of getting pedastrians
 
         lastDirection = Direction.Stop;
@@ -138,6 +159,7 @@ public class CarAgent : Agent {
             frontcam = GameObject.Find("AutoCamera_Front").GetComponent<Camera>();
             backcam = GameObject.Find("AutoCamera_Behind").GetComponent<Camera>();
         }
+
     }
 
     public override void OnEpisodeBegin() {
@@ -427,15 +449,28 @@ public class CarAgent : Agent {
         else if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
             //Collision code for Crosswalk Scene
             if (other.gameObject.CompareTag("EndGame")) {
-                AddReward(3f);
+                AddReward(2f);
                 EndEpisode();
             }
 
-            if (other.gameObject.CompareTag("Walklimit"))
+            if (other.gameObject.CompareTag("Walklimit1") || other.gameObject.CompareTag("Walklimit2"))
             {
                 AddReward(-3f);
                 EndEpisode();
             }
+
+            if (other.gameObject.CompareTag("RiskZone"))
+            {
+                foreach (GameObject ped in listOfPedastrians)
+                    if (ped.GetComponent<WaypointNavigator>().street) pedOnStreet = true;
+                if (pedOnStreet)
+                {
+                     AddReward(-0.5f);
+                }
+
+
+            }
+
         }
     }
 
