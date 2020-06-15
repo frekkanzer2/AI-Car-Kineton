@@ -188,7 +188,7 @@ public class CarAgent : Agent {
     public override void OnActionReceived(float[] vectorAction) {
 
         //avoid reverse gear for crosswalk scene
-        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")){
+       {
             if (vectorAction[1] < 0) AddReward(-0.1f);
         }
         
@@ -378,8 +378,9 @@ public class CarAgent : Agent {
         else
             mySpawn = new Spawn(customSpawnPosition, customSpawnRotation);
 
-        transform.position = mySpawn.spawnPosition + transform.parent.position;
-        transform.rotation = mySpawn.spawnRotation;
+        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene"))  transform.position = mySpawn.spawnPosition + transform.parent.position;
+        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) transform.position = mySpawn.spawnPosition;
+            transform.rotation = mySpawn.spawnRotation;
     }
 
     /*
