@@ -114,14 +114,18 @@ public class CarAgent : Agent {
         myPosition = new Vector3(0, 0, 0);
         myRotation = new Quaternion(0, 0, 0, 0);
         carBody = GetComponent<Rigidbody>();
-        wheel_front_left = GameObject.Find("Wheel_front_left");
+
+        /*recursive Hierarchy assigment for Wheels, Wheelcolliders and lights*/ 
+        componentsAssigment(transform);
+       
+        /*wheel_front_left = GameObject.Find("Wheel_front_left");
         wheel_front_right = GameObject.Find("Wheel_front_right");
         wheel_back_left = GameObject.Find("Wheel_back_left");
         wheel_back_right = GameObject.Find("Wheel_back_right");
         brakeLight1R = GameObject.Find("BrakeLight1_dx");
         brakeLight1L = GameObject.Find("BrakeLight1_sx");
         brakeLight2R = GameObject.Find("BrakeLight2_dx");
-        brakeLight2L = GameObject.Find("BrakeLight2_sx");
+        brakeLight2L = GameObject.Find("BrakeLight2_sx");*/
 
         wc_fl = wheel_front_left.GetComponentInParent<WheelCollider>();
         wc_fr = wheel_front_right.GetComponentInParent<WheelCollider>();
@@ -151,6 +155,7 @@ public class CarAgent : Agent {
     }
 
     public override void Heuristic(float[] actionsOut) {
+
         actionsOut[0] = Input.GetAxis("Horizontal");
         actionsOut[1] = Input.GetAxis("Vertical");
         if (Input.GetKey(KeyCode.Q))
@@ -160,6 +165,11 @@ public class CarAgent : Agent {
 
     public override void OnActionReceived(float[] vectorAction) {
 
+        //avoid reverse gear for crosswalk scene
+        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")){
+            if (vectorAction[1] < 0) AddReward(-0.1f);
+        }
+        
         //Acceleration and brake
         verticalMovement(vectorAction[1], vectorAction[2]);
 
@@ -320,6 +330,8 @@ public class CarAgent : Agent {
         carBody.isKinematic = true;
         executeSpawn();
         speed = 0;
+
+
         // wc_fl, wc_fr, wc_bl, wc_br
         wc_fl.brakeTorque = Mathf.Infinity;
         wc_fr.brakeTorque = Mathf.Infinity;
@@ -328,12 +340,14 @@ public class CarAgent : Agent {
         carBody.velocity = Vector3.zero;
         carBody.angularVelocity = Vector3.zero;
         carBody.isKinematic = false;
-        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene"))
+
+       /* if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene"))
             foreach (GameObject ped in listOfPedastrians)
-                ped.GetComponent<CharacterNavigationController>().respawn();
+                ped.GetComponent<CharacterNavigationController>().respawn();*/
     }
 
     private void executeSpawn() {
+        
         Spawn mySpawn;
         if (Vector3.Distance(customSpawnPosition, Vector3.zero) == 0 &&
             (customSpawnRotation == new Quaternion(0, 0, 0, 0) || customSpawnRotation.Equals(new Quaternion(0, 0, 0, 0))))
@@ -341,7 +355,8 @@ public class CarAgent : Agent {
             mySpawn = (Spawn)spawner[Random.Range(0, spawner.Count)];
         else
             mySpawn = new Spawn(customSpawnPosition, customSpawnRotation);
-        transform.position = mySpawn.spawnPosition;
+
+        transform.position = mySpawn.spawnPosition + transform.parent.position;
         transform.rotation = mySpawn.spawnRotation;
     }
 
@@ -415,6 +430,12 @@ public class CarAgent : Agent {
                 AddReward(3f);
                 EndEpisode();
             }
+
+            if (other.gameObject.CompareTag("Walklimit"))
+            {
+                AddReward(-3f);
+                EndEpisode();
+            }
         }
     }
 
@@ -471,9 +492,56 @@ public class CarAgent : Agent {
         brakeLight2L.SetActive(switchCommand);
     }
 
+
+    //Support Function
+
+    private void componentsAssigment(Transform t)
+    {
+        foreach (Transform child in t)
+        {
+            componentsAssigment(child);
+            GameObject tmp = child.gameObject;
+            switch (tmp.name)
+            {
+         
+                case "Wheel_front_left":
+                    wheel_front_left = tmp;
+                    break;
+                case "Wheel_front_right":
+                    wheel_front_right = tmp;
+                    break;
+                case "Wheel_back_left":
+                    wheel_back_left = tmp;
+                    break;
+                case "Wheel_back_right":
+                    wheel_back_right = tmp;
+                    break;
+                case "BrakeLight1_dx":
+                    brakeLight1R = tmp;
+                    break;
+                case "BrakeLight1_sx":
+                    brakeLight1L = tmp;
+                    break;
+                case "BrakeLight2_dx":
+                    brakeLight2R = tmp;
+                    break;
+
+                case "BrakeLight2_sx":
+                    brakeLight2L = tmp;
+                    break;
+            }
+           
+
+        }
+    }
     //Testing method
     private void debug_localVelocity() {
         Debug.Log(transform.InverseTransformDirection(carBody.velocity));
+    }
+
+    private Vector3 debug_localPosition()
+    {
+        return transform.localPosition;
     }
 
 }

@@ -12717,41 +12717,6 @@ PrefabInstance:
       propertyPath: camControllerObj
       value: 
       objectReference: {fileID: 519818305}
-    - target: {fileID: 7759753410378822356, guid: 1ff7e699860757e4db5027915478e1e5,
-        type: 3}
-      propertyPath: m_DetectableTags.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759753410378822356, guid: 1ff7e699860757e4db5027915478e1e5,
-        type: 3}
-      propertyPath: m_DetectableTags.Array.data[0]
-      value: Environment Object
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759753410378822356, guid: 1ff7e699860757e4db5027915478e1e5,
-        type: 3}
-      propertyPath: m_DetectableTags.Array.data[1]
-      value: Environment Car
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759753410378822356, guid: 1ff7e699860757e4db5027915478e1e5,
-        type: 3}
-      propertyPath: m_DetectableTags.Array.data[2]
-      value: Human
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759753410378822356, guid: 1ff7e699860757e4db5027915478e1e5,
-        type: 3}
-      propertyPath: m_DetectableTags.Array.data[3]
-      value: EndGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759753410378822356, guid: 1ff7e699860757e4db5027915478e1e5,
-        type: 3}
-      propertyPath: m_DetectableTags.Array.data[4]
-      value: Checkpoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759753410378822356, guid: 1ff7e699860757e4db5027915478e1e5,
-        type: 3}
-      propertyPath: m_DetectableTags.Array.data[5]
-      value: OutOfMap
-      objectReference: {fileID: 0}
     - target: {fileID: 7947011537409886379, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: m_Name

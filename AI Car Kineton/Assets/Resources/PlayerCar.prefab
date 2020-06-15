@@ -709,7 +709,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SensorName: RayPerceptionSensor
-  m_DetectableTags: []
+  m_DetectableTags:
+  - Environment Object
+  - Environment Car
+  - Human
+  - EndGame
+  - Checkpoint
+  - OutOfMap
   m_RaysPerDirection: 5
   m_MaxRayDegrees: 180
   m_SphereCastRadius: 0.3
@@ -913,7 +919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4108243722907104, guid: 1ec4107ed8885d5419742874eef5262c, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4629800637605076, guid: 1ec4107ed8885d5419742874eef5262c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1042,17 +1048,17 @@ PrefabInstance:
     - target: {fileID: 4966834251013256471, guid: 1ec4107ed8885d5419742874eef5262c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5203125635348371820, guid: 1ec4107ed8885d5419742874eef5262c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7037097210984303131, guid: 1ec4107ed8885d5419742874eef5262c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7481197604471765854, guid: 1ec4107ed8885d5419742874eef5262c,
         type: 3}
@@ -1113,15 +1119,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7947898134877099911}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7189855687732650196 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 976125094297778003, guid: 1ec4107ed8885d5419742874eef5262c,
-    type: 3}
-  m_PrefabInstance: {fileID: 7947898134877099911}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7243154893971882852 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 776941572834284771, guid: 1ec4107ed8885d5419742874eef5262c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7947898134877099911}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7189855687732650196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 976125094297778003, guid: 1ec4107ed8885d5419742874eef5262c,
     type: 3}
   m_PrefabInstance: {fileID: 7947898134877099911}
   m_PrefabAsset: {fileID: 0}
