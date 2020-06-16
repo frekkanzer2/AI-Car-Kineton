@@ -7,13 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class CrossWalkCarAgent : CarAgent {
     
+
+
     //Pedastrians list
     private ArrayList listOfPedastrians;
 
-    //riskPoint
-    private GameObject riskPoint;
-    
-    
+    //riskAnalisis
+    private float xDist, zDist;
+    private bool xCheck, zCheck;
+   // private GameObject riskPoint;
+
+
     //Initialization
     public override void Initialize() {
         base.Initialize();
@@ -24,7 +28,7 @@ public class CrossWalkCarAgent : CarAgent {
        //Getting RiskPoint
 
         GameObject parent = transform.parent.gameObject;
-        riskPoint = parent.transform.Find("RiskPoint").gameObject;
+        //riskPoint = parent.transform.Find("RiskPoint").gameObject;
           
         
         //Getting Pedastrian List
@@ -63,7 +67,21 @@ public class CrossWalkCarAgent : CarAgent {
     public override void OnActionReceived(float[] vectorAction) {
         base.OnActionReceived(vectorAction);
         if (vectorAction[1] < 0) AddReward(-0.1f);
-       
+
+        foreach (GameObject ped in listOfPedastrians)
+        {
+            xDist = ped.transform.position.x - transform.position.x;
+            zDist = ped.transform.position.z - transform.position.z;
+            xCheck = (-1.5 < xDist) && (xDist < 2);
+            zCheck = (0 < zDist) && zDist < 10;
+
+            if ((xCheck && zCheck) && (vectorAction[2] == 1) && (vectorAction[1] == 0) )
+            {
+
+                AddReward(0.01f );
+                //Debug.Log("Here " + 0.1f * zDist );
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision) {
@@ -80,7 +98,7 @@ public class CrossWalkCarAgent : CarAgent {
         }*/
         else if (collision.gameObject.CompareTag("Human")) {
 
-            AddReward(-1f);
+            AddReward(-5f);
             EndEpisode();
         }
         else if (collision.gameObject.CompareTag("Untagged")) {
@@ -106,7 +124,7 @@ public class CrossWalkCarAgent : CarAgent {
                 }*/
                 else if (myParent.CompareTag("Human")) {
 
-                    AddReward(-1f);
+                    AddReward(-5f);
                     EndEpisode();
                     break;
                 }
@@ -117,7 +135,7 @@ public class CrossWalkCarAgent : CarAgent {
     private void OnTriggerEnter(Collider other) {
         //Collision code for Crosswalk Scene
         if (other.gameObject.CompareTag("EndGame")) {
-            AddReward(2f);
+            AddReward(1f);
             EndEpisode();
         }
 
@@ -127,17 +145,18 @@ public class CrossWalkCarAgent : CarAgent {
             EndEpisode();
         }
 
-        if (other.gameObject.CompareTag("RiskZone"))
+        /*if (other.gameObject.CompareTag("RiskZone"))
         {
             foreach (GameObject ped in listOfPedastrians)
                 if (ped.GetComponent<WaypointNavigator>().street) pedOnStreet = true;
+
             if (pedOnStreet)
             {
-                    AddReward(-0.5f);
+                Debug.Log("pedastrians on street");
             }
 
 
-        }
+        }*/
 
         
     }
