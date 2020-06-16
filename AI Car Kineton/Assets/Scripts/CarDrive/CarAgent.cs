@@ -12,6 +12,7 @@ public class CarAgent : Agent {
         SPAWNER CLASS
 
          */
+
     public class Spawn {
         public Vector3 spawnPosition;
         public Quaternion spawnRotation;
@@ -79,6 +80,9 @@ public class CarAgent : Agent {
 
     //Initialization
     public override void Initialize() {
+        //Spawner ArrayList initialization
+        spawner = new ArrayList();
+
         //Initialization Parameters
         lastDirection = Direction.Stop;
         myPosition = new Vector3(0, 0, 0);
@@ -312,121 +316,6 @@ public class CarAgent : Agent {
         transform.position = mySpawn.spawnPosition + transform.parent.position;
         transform.rotation = mySpawn.spawnRotation;
     }
-
-    /*
-     
-        COLLISIONS CHECKS
-         
-         */
-
-  /*  protected void OnCollisionEnter(Collision collision) {
-        
-        if (collision.gameObject.CompareTag("Environment Object")) {
-
-            AddReward(-0.5f);
-            EndEpisode();
-        }
-        else if (collision.gameObject.CompareTag("Environment Car")) {
-
-            AddReward(-1f);
-            EndEpisode();
-        }
-        else if (collision.gameObject.CompareTag("Human")) {
-
-            AddReward(-1f);
-            EndEpisode();
-        }
-        else if (collision.gameObject.CompareTag("Untagged")) {
-            GameObject myParent;
-            myParent = collision.gameObject.transform.parent.gameObject;
-            while (true) {
-                if (myParent == null) break;
-                if (myParent.CompareTag("Untagged")) {
-                    myParent = myParent.transform.parent.gameObject;
-                    continue;
-                }
-                //CASES HERE
-                if (myParent.CompareTag("Environment Object")){
-                    AddReward(-0.5f);
-                    EndEpisode();
-                    break;
-                }
-                else if (myParent.CompareTag("Environment Car")) {
-
-                    AddReward(-1f);
-                    EndEpisode();
-                    break;
-                }
-                else if (myParent.CompareTag("Human")) {
-
-                    AddReward(-1f);
-                    EndEpisode();
-                    break;
-                }
-            }
-        }
-    }
-
-    protected void OnTriggerEnter(Collider other) {
-        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
-            //Collision code for Parking Scene
-            if (other.gameObject.CompareTag("Checkpoint")) {
-                AddReward(1f);
-            } else if (other.gameObject.CompareTag("OutOfMap")) {
-                AddReward(-3f);
-                EndEpisode();
-            }
-        }
-        else if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
-            //Collision code for Crosswalk Scene
-            if (other.gameObject.CompareTag("EndGame")) {
-                AddReward(2f);
-                EndEpisode();
-            }
-
-            if (other.gameObject.CompareTag("Walklimit1") || other.gameObject.CompareTag("Walklimit2"))
-            {
-                AddReward(-3f);
-                EndEpisode();
-            }
-
-            if (other.gameObject.CompareTag("RiskZone"))
-            {
-                foreach (GameObject ped in listOfPedastrians)
-                    if (ped.GetComponent<WaypointNavigator>().street) pedOnStreet = true;
-                if (pedOnStreet)
-                {
-                     AddReward(-0.5f);
-                }
-
-
-            }
-
-        }
-    }
-
-    protected void OnTriggerExit(Collider other) {
-        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
-            //Collision code for Parking Scene
-
-        }
-        else if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
-            //Collision code for Crosswalk Scene
-
-        }
-    }
-
-    protected void OnTriggerStay(Collider other) {
-        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
-            //Collision code for Parking Scene
-            if (other.bounds.Contains(GetComponent<BoxCollider>().bounds.min)
-             && other.bounds.Contains(GetComponent<BoxCollider>().bounds.max)) {
-                // Inside the box collider
-                AddReward(3f);
-                EndEpisode();
-            }
-        }
-    }*/
 
     //Other functions
     protected float getVelocitySpeed() {

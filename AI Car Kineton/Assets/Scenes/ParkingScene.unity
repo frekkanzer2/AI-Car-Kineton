@@ -12823,7 +12823,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 153616473, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
 --- !u!4 &1900164489 stripped
 Transform:
@@ -12831,6 +12832,35 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1900164488}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1906269388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7947011537409886379, guid: 1ff7e699860757e4db5027915478e1e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1900164488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1906269389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906269388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1243bb5c90041fe41baafa3909bce45e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  staticSpeed: 5000
+  brakeForce: 100000
+  SPD_LIMIT_STEERING: 8
+  autoCam: 1
+  camControllerObj: {fileID: 519818305}
+  customSpawnPosition: {x: 0, y: 0, z: 0}
+  customSpawnRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &1908642691
 PrefabInstance:
   m_ObjectHideFlags: 0
