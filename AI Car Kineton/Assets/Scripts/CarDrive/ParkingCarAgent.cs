@@ -5,81 +5,59 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using UnityEngine.SceneManagement;
 
-public class CarAgent : Agent {
+public class ParkingCarAgent : CarAgent {
 
-    /*
-     
-        SPAWNER CLASS
-
-         */
-    public class Spawn {
-        public Vector3 spawnPosition;
-        public Quaternion spawnRotation;
-        public Spawn(Vector3 position, Quaternion rotation) {
-            spawnPosition = position;
-            spawnRotation = rotation;
-        }
-    }
-
-    public float staticSpeed = 5000f;
-    public float brakeForce = 100000f;
-    protected float speed = 0;
-    protected Rigidbody carBody;
-    protected WheelCollider wc_fl, wc_fr, wc_bl, wc_br; // f -> front, l -> left, r -> right
-    protected GameObject wheel_front_left, wheel_front_right, wheel_back_left, wheel_back_right;
-    protected GameObject steering_wheel;
-    
-
-    protected GameObject brakeLight1R, brakeLight1L, brakeLight2R, brakeLight2L;
-
-    protected Direction lastDirection, actualDirection;
-    protected bool isBraking = false, pedOnStreet = false;
-    protected Vector3 myPosition;
-    protected Quaternion myRotation;
-
-    //vars for curve steering fix
-    [Tooltip("Default value: 14. You can insert 0 and the system will automatically load 14.")]
-    public float SPD_LIMIT_STEERING = 14f;
-    protected float SPD_LIMIT_STEERING_MAX = 28.0f;
-    protected float friction = 0; //difference to set in rotation for high speed -> x variable
-
-
-   
-    //Automatic cam manager
-    [Tooltip("Positive: automatic camera activated | Negative: manual camera" + "\r\n" + "If positive, attach the camera controller in the following field.")]
-    public bool autoCam = true;
-    public GameObject camControllerObj;
-    protected CameraController camController;
-    protected Camera frontcam, backcam;
-
-    /*
-     
-        DO NOT DELETE HERE
-         
-         */
-    //Agent spawn position
-    protected ArrayList spawner;
-    [Tooltip("Add here a fixed custom position. Leave empty for the random generator.")]
-    public Vector3 customSpawnPosition;
-    [Tooltip("Add here a fixed custom rotation. Leave empty for the random generator.")]
-    public Quaternion customSpawnRotation;
-    
-    // Start code in initialization method
-
-    //Enumarator
-    protected enum Direction {
-        Acceleration,
-        Backward,
-        Stop
-    }
-
-    /*
-                AGENT FUNCTIONS
-         */
-
+  
     //Initialization
     public override void Initialize() {
-        //Initialization Parameters
+
+        //Spawn Position
+        spawner = new ArrayList(); //ArrayList of Spawn objects
+        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
+            spawner.Add(new Spawn(new Vector3(18.18465f, 0.4371328f, 13.53141f), Quaternion.Euler(0, 270, 1)));
+            spawner.Add(new Spawn(new Vector3(-17.45f, 0.491f, 5.19f), Quaternion.identity));
+            spawner.Add(new Spawn(new Vector3(-8.73f, 0.491f, 4.71f), Quaternion.Euler(0, 180, 0)));
+        }
+        else if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")) {
+            spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -26.8f), Quaternion.identity));
+            spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -12f), Quaternion.identity));
+        }
+        //End of spawn section
+
+
+        
+        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene")){
+            //Getting RiskPoint
+
+            GameObject parent = transform.parent.gameObject;
+            riskPoint = parent.transform.Find("RiskPoint").gameObject;
+          
+
+            //Getting pedastrians
+            if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene"))
+            {
+                listOfPedastrians = new ArrayList();
+                GameObject childContainerOfWPs = null;
+                foreach (Transform child in transform.parent.gameObject.transform)
+                    if (child.gameObject.name.Equals("Waypoints container"))
+                    {
+                        childContainerOfWPs = child.gameObject;
+                        break;
+                    }
+                if (childContainerOfWPs != null)
+                    foreach (Transform wpt in childContainerOfWPs.transform)
+                        foreach (Transform item in wpt.gameObject.transform)
+                            if (item.gameObject.name.Equals("Pedastrian1") || item.gameObject.name.Equals("Pedastrian2") || item.gameObject.name.Equals("Pedastrian3"))
+                            {
+                                listOfPedastrians.Add(item.gameObject);
+                                break;
+                            }
+
+            }
+        }
+
+        //End of getting pedastrians
+
         lastDirection = Direction.Stop;
         myPosition = new Vector3(0, 0, 0);
         myRotation = new Quaternion(0, 0, 0, 0);
@@ -88,6 +66,14 @@ public class CarAgent : Agent {
         /*recursive Hierarchy assigment for Wheels, Wheelcolliders and lights*/ 
         componentsAssigment(transform);
        
+        /*wheel_front_left = GameObject.Find("Wheel_front_left");
+        wheel_front_right = GameObject.Find("Wheel_front_right");
+        wheel_back_left = GameObject.Find("Wheel_back_left");
+        wheel_back_right = GameObject.Find("Wheel_back_right");
+        brakeLight1R = GameObject.Find("BrakeLight1_dx");
+        brakeLight1L = GameObject.Find("BrakeLight1_sx");
+        brakeLight2R = GameObject.Find("BrakeLight2_dx");
+        brakeLight2L = GameObject.Find("BrakeLight2_sx");*/
 
         wc_fl = wheel_front_left.GetComponentInParent<WheelCollider>();
         wc_fr = wheel_front_right.GetComponentInParent<WheelCollider>();
@@ -127,6 +113,12 @@ public class CarAgent : Agent {
     }
 
     public override void OnActionReceived(float[] vectorAction) {
+
+        //avoid reverse gear for crosswalk scene
+       {
+            if (vectorAction[1] < 0) AddReward(-0.1f);
+        }
+        
         //Acceleration and brake
         verticalMovement(vectorAction[1], vectorAction[2]);
 
@@ -143,7 +135,7 @@ public class CarAgent : Agent {
                 CUSTOM FUNCTIONS
          */
 
-    protected void verticalMovement(float vertical, float brakeAgent) {
+    private void verticalMovement(float vertical, float brakeAgent) {
 
         /*
             Car uses speed to move.
@@ -214,7 +206,7 @@ public class CarAgent : Agent {
         }
     }
 
-    protected void rotation(float horizontal) {
+    private void rotation(float horizontal) {
         float localRotation = horizontal * 35;
         float startingRotationSpeed = getVelocitySpeed(); //auto speed in velocity
         if (startingRotationSpeed > SPD_LIMIT_STEERING) {
@@ -250,7 +242,7 @@ public class CarAgent : Agent {
         }
     }
 
-    protected void followWheelRotation() {
+    private void followWheelRotation() {
         //front right
         wc_fr.GetWorldPose(out myPosition, out myRotation);
         wheel_front_right.transform.position = myPosition;
@@ -269,7 +261,7 @@ public class CarAgent : Agent {
         wheel_back_left.transform.rotation = myRotation;
     }
 
-    protected void brake(float decrement) {
+    private void brake(float decrement) {
         wc_bl.brakeTorque = brakeForce;
         wc_br.brakeTorque = brakeForce;
         wc_fl.brakeTorque = brakeForce;
@@ -277,13 +269,13 @@ public class CarAgent : Agent {
         decrementSpeed(1f, decrement);
     }
 
-    protected void autocamManager() {
+    private void autocamManager() {
         float localVelocity = getVelocitySpeed();
         if (localVelocity >= -1) camController.activateCamera(frontcam);
         else camController.activateCamera(backcam);
     }
 
-    protected void resetCar() {
+    private void resetCar() {
         carBody.isKinematic = true;
         executeSpawn();
         speed = 0;
@@ -297,9 +289,13 @@ public class CarAgent : Agent {
         carBody.velocity = Vector3.zero;
         carBody.angularVelocity = Vector3.zero;
         carBody.isKinematic = false;
+
+       /* if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene"))
+            foreach (GameObject ped in listOfPedastrians)
+                ped.GetComponent<CharacterNavigationController>().respawn();*/
     }
 
-    protected void executeSpawn() {
+    private void executeSpawn() {
         
         Spawn mySpawn;
         if (Vector3.Distance(customSpawnPosition, Vector3.zero) == 0 &&
@@ -319,7 +315,7 @@ public class CarAgent : Agent {
          
          */
 
-  /*  protected void OnCollisionEnter(Collision collision) {
+    private void OnCollisionEnter(Collision collision) {
         
         if (collision.gameObject.CompareTag("Environment Object")) {
 
@@ -367,7 +363,7 @@ public class CarAgent : Agent {
         }
     }
 
-    protected void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) {
         if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
             //Collision code for Parking Scene
             if (other.gameObject.CompareTag("Checkpoint")) {
@@ -405,7 +401,7 @@ public class CarAgent : Agent {
         }
     }
 
-    protected void OnTriggerExit(Collider other) {
+    private void OnTriggerExit(Collider other) {
         if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
             //Collision code for Parking Scene
 
@@ -416,7 +412,7 @@ public class CarAgent : Agent {
         }
     }
 
-    protected void OnTriggerStay(Collider other) {
+    private void OnTriggerStay(Collider other) {
         if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) {
             //Collision code for Parking Scene
             if (other.bounds.Contains(GetComponent<BoxCollider>().bounds.min)
@@ -426,14 +422,14 @@ public class CarAgent : Agent {
                 EndEpisode();
             }
         }
-    }*/
+    }
 
     //Other functions
-    protected float getVelocitySpeed() {
+    private float getVelocitySpeed() {
         return transform.InverseTransformDirection(carBody.velocity).z;
     }
 
-    protected void decrementSpeed(float toCheck, float decrement) {
+    private void decrementSpeed(float toCheck, float decrement) {
         if ((carBody.velocity.x > toCheck || carBody.velocity.x < toCheck * (-1)) || (carBody.velocity.y > toCheck || carBody.velocity.y < toCheck * (-1))
             || (carBody.velocity.z > toCheck || carBody.velocity.z < toCheck * (-1))) {
             if (carBody.velocity.x > toCheck)
@@ -451,14 +447,17 @@ public class CarAgent : Agent {
         }
     }
 
-    protected void switchLight(bool switchCommand) {
+    private void switchLight(bool switchCommand) {
         brakeLight1R.SetActive(switchCommand);
         brakeLight1L.SetActive(switchCommand);
         brakeLight2R.SetActive(switchCommand);
         brakeLight2L.SetActive(switchCommand);
     }
 
-    protected void componentsAssigment(Transform t)
+
+    //Support Function
+
+    private void componentsAssigment(Transform t)
     {
         foreach (Transform child in t)
         {
@@ -497,13 +496,12 @@ public class CarAgent : Agent {
 
         }
     }
-    
     //Testing method
-    protected void debug_localVelocity() {
+    private void debug_localVelocity() {
         Debug.Log(transform.InverseTransformDirection(carBody.velocity));
     }
 
-    protected Vector3 debug_localPosition()
+    private Vector3 debug_localPosition()
     {
         return transform.localPosition;
     }
