@@ -17,7 +17,7 @@ public class CrossWalkCarAgent : CarAgent {
     //Initialization
     public override void Initialize() {
         base.Initialize();
-        spawner = new ArrayList();
+       
         spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -26.8f), Quaternion.identity));
         spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -12f), Quaternion.identity));
       
@@ -73,11 +73,11 @@ public class CrossWalkCarAgent : CarAgent {
             AddReward(-0.5f);
             EndEpisode();
         }
-        else if (collision.gameObject.CompareTag("Environment Car")) {
+        /*else if (collision.gameObject.CompareTag("Environment Car")) {
 
             AddReward(-1f);
             EndEpisode();
-        }
+        }*/
         else if (collision.gameObject.CompareTag("Human")) {
 
             AddReward(-1f);
@@ -98,12 +98,12 @@ public class CrossWalkCarAgent : CarAgent {
                     EndEpisode();
                     break;
                 }
-                else if (myParent.CompareTag("Environment Car")) {
+                /*else if (myParent.CompareTag("Environment Car")) {
 
                     AddReward(-1f);
                     EndEpisode();
                     break;
-                }
+                }*/
                 else if (myParent.CompareTag("Human")) {
 
                     AddReward(-1f);
