@@ -378,9 +378,8 @@ public class CarAgent : Agent {
         else
             mySpawn = new Spawn(customSpawnPosition, customSpawnRotation);
 
-        if (SceneManager.GetActiveScene().name.Equals("CrosswalkScene"))  transform.position = mySpawn.spawnPosition + transform.parent.position;
-        if (SceneManager.GetActiveScene().name.Equals("ParkingScene")) transform.position = mySpawn.spawnPosition;
-            transform.rotation = mySpawn.spawnRotation;
+        transform.position = mySpawn.spawnPosition + transform.parent.position;
+        transform.rotation = mySpawn.spawnRotation;
     }
 
     /*
