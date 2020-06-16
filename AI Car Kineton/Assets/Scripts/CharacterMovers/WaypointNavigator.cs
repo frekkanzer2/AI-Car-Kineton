@@ -8,8 +8,8 @@ public class WaypointNavigator : MonoBehaviour
     CharacterNavigationController controller;
     public WayPoint currentWaypoint;
     public bool direction = true, startDirection;
-    
-    public bool street = false;
+   
+    /*public bool street = false;*/
    
     private void Awake()
     {
@@ -59,47 +59,17 @@ public class WaypointNavigator : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+
+   
+
+    /*private void OnTriggerEnter(Collider other)
     {
-        if (startDirection)
+        if (other.gameObject.CompareTag("Walklimit1") || other.gameObject.CompareTag("Walklimit2"))
         {
-            if (other.gameObject.CompareTag("Walklimit1"))
-            {
-                if (direction)
-                {
-                    street = true;
-                }
-                else street = false;
-            }
-            else if (other.gameObject.CompareTag("Walklimit2"))
-            {
-                if (direction)
-                {
-                    street = false;
-                }
-                else street = true; 
-            }
-        } else
-        {
-            if (other.gameObject.CompareTag("Walklimit1"))
-            {
-                if (direction)
-                {
-                    street = false;
-                }
-                else street = true;
-            }
-            else if (other.gameObject.CompareTag("Walklimit2"))
-            {
-                if (direction)
-                {
-                    street = true;
-                }
-                else street = false; 
-            }
+            if (street) street = false;
+            else street = true;
         }
+    }*/
+
       
-
-
-    }
 }

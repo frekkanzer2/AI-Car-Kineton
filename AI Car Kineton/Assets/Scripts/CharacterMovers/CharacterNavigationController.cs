@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterNavigationController : MonoBehaviour
 {
 
+    public bool idle;
     public Vector3 destination;
     public bool reachedDestination = false;
     public float MovementSpeed = 1f;
@@ -29,50 +30,56 @@ public class CharacterNavigationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(Vector3.Distance(transform.position, destination) > 2.5f)
-        {
-            Vector3 destinationDirection = destination - transform.position;
-            destinationDirection.y = 0;
-            float destinationDistance = destinationDirection.magnitude;
-            animator.SetBool("move", true);
-
-
-
-            if (destinationDistance >= stopDistance)
+        if (!idle) {
+            if (Vector3.Distance(transform.position, destination) > 2.5f)
             {
-                reachedDestination = false;
-                Quaternion targetRotation = Quaternion.LookRotation(destinationDirection);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation.normalized, targetRotation, RotationSpeed * Time.deltaTime);
-               
+                Vector3 destinationDirection = destination - transform.position;
+                destinationDirection.y = 0;
+                float destinationDistance = destinationDirection.magnitude;
+                animator.SetBool("move", true);
 
+
+
+                if (destinationDistance >= stopDistance)
+                {
+                    reachedDestination = false;
+                    Quaternion targetRotation = Quaternion.LookRotation(destinationDirection);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation.normalized, targetRotation, RotationSpeed * Time.deltaTime);
+
+
+                }
             }
-        }  else
-        {
+            else
+            {
 
-          
-            reachedDestination = true;
-            animator.SetBool("move", false);
+
+                reachedDestination = true;
+                animator.SetBool("move", false);
+            }
         }
+        
+
+    
     }
 
     public void SetDestination(Vector3 destination)
     {
+        
         this.destination = destination;
         reachedDestination = false;
     }
 
+
     private void OnCollisionEnter(Collision collision)
     {
 
-        if(collision.gameObject.CompareTag("Human") || collision.gameObject.CompareTag("Environment Object") || collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Human") || collision.gameObject.CompareTag("Environment Object") || collision.gameObject.CompareTag("Player"))
         {
             respawn();
-            
-        }
-           
-    }
 
+        }
+
+    }
 
     public void respawn()
     {
