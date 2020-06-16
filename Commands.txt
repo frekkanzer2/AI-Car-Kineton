@@ -1,0 +1,2 @@
+Apri tensorboard con i grafici
+tensorboard --logdir summaries

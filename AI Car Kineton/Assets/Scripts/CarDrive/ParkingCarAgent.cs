@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class ParkingCarAgent : CarAgent {
 
+    private GameObject collidedCheckpoint;
+    private bool hasChecked = false;
   
     //Initialization
     public override void Initialize() {
@@ -15,23 +17,7 @@ public class ParkingCarAgent : CarAgent {
         spawner.Add(new Spawn(new Vector3(-17.45f, 0.491f, 5.19f), Quaternion.identity));
         spawner.Add(new Spawn(new Vector3(-8.73f, 0.491f, 4.71f), Quaternion.Euler(0, 180, 0)));
     }
-
-    public override void OnEpisodeBegin() {
-        base.OnEpisodeBegin();
-    }
-
-    public override void CollectObservations(VectorSensor sensor) {
-        base.CollectObservations(sensor);
-    }
-
-    public override void Heuristic(float[] actionsOut) {
-        base.Heuristic(actionsOut);
-    }
-
-    public override void OnActionReceived(float[] vectorAction) {
-        base.OnActionReceived(vectorAction);
-    }
-
+    
     /*
      
         COLLISIONS CHECKS
@@ -39,14 +25,13 @@ public class ParkingCarAgent : CarAgent {
          */
 
     private void OnCollisionEnter(Collision collision) {
-        
+        Debug.Log("Collided with " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Environment Object")) {
             AddReward(-0.5f);
             EndEpisode();
         }
         else if (collision.gameObject.CompareTag("Environment Car")) {
-
-            AddReward(-1f);
+            AddReward(-2f);
             EndEpisode();
         }
         else if (collision.gameObject.CompareTag("Untagged")) {
@@ -61,11 +46,13 @@ public class ParkingCarAgent : CarAgent {
                 //CASES HERE
                 if (myParent.CompareTag("Environment Object")){
                     AddReward(-0.5f);
+                    Debug.Log("Inside collided with " + myParent.tag);
                     EndEpisode();
                     break;
                 }
                 else if (myParent.CompareTag("Environment Car")) {
-                    AddReward(-1f);
+                    AddReward(-2f);
+                    Debug.Log("Inside collided with " + myParent.tag);
                     EndEpisode();
                     break;
                 }
@@ -76,21 +63,41 @@ public class ParkingCarAgent : CarAgent {
     private void OnTriggerEnter(Collider other) {
         //Collision code for Parking Scene
         if (other.gameObject.CompareTag("Checkpoint")) {
+            Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
             AddReward(1f);
+            collidedCheckpoint = other.gameObject;
+            collidedCheckpoint.SetActive(false);
         } else if (other.gameObject.CompareTag("OutOfMap")) {
+            Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
             AddReward(-3f);
             EndEpisode();
+        } else if (other.gameObject.CompareTag("Walklimit1")) {
+            Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
+            AddReward(-0.5f);
+            EndEpisode();
+        } else if (other.gameObject.CompareTag("EndGame") && !hasChecked) {
+            Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
+            AddReward(3f);
+            hasChecked = true;
         }
+
     }
 
     private void OnTriggerStay(Collider other) {
         //Collision code for Parking Scene
-        if (other.bounds.Contains(GetComponent<BoxCollider>().bounds.min)
+        if (other.gameObject.CompareTag("EndGame") && other.bounds.Contains(GetComponent<BoxCollider>().bounds.min)
             && other.bounds.Contains(GetComponent<BoxCollider>().bounds.max)) {
             // Inside the box collider
-            AddReward(3f);
+            AddReward(10f);
+            Debug.Log("PERFECT PARKING DONE!");
             EndEpisode();
         }
+    }
+
+    public override void OnEpisodeBegin() {
+        base.OnEpisodeBegin();
+        if (collidedCheckpoint != null)
+            collidedCheckpoint.SetActive(true);
     }
 
 }

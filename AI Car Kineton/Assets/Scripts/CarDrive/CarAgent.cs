@@ -392,8 +392,7 @@ public class CarAgent : Agent {
         Debug.Log(transform.InverseTransformDirection(carBody.velocity));
     }
 
-    protected Vector3 debug_localPosition()
-    {
+    protected Vector3 debug_localPosition(){
         return transform.localPosition;
     }
 
