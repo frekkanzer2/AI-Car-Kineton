@@ -1,0 +1,17 @@
+Open Tensorboard with stats
+tensorboard --logdir summaries
+
+Get all ML Agents commands
+mlagents-learn --help
+
+Start a training session
+mlagents-learn <trainer-config-file.yaml> --run-id=<session-id>
+
+Rewrite a training session
+mlagents-learn <trainer-config-file.yaml> --run-id=<session-id> --force
+
+Resume a previously interrupted training session
+mlagents-learn <trainer-config-file.yaml> --run-id=<session-id> --resume
+
+Start a training session from another session
+mlagents-learn <trainer-config-file.yaml> --run-id=<session-id> --initialize-from=<previous-session-id>
