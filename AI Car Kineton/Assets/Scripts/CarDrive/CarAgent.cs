@@ -314,7 +314,7 @@ public class CarAgent : Agent {
             mySpawn = new Spawn(customSpawnPosition, customSpawnRotation);
 
         transform.position = mySpawn.spawnPosition + transform.parent.position;
-        transform.rotation = mySpawn.spawnRotation;
+        transform.rotation = Quaternion.Euler(mySpawn.spawnRotation.x, mySpawn.spawnRotation.y, mySpawn.spawnRotation.z);
     }
 
     //Other functions
