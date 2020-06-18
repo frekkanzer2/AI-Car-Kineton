@@ -30,6 +30,7 @@ public class CharacterNavigationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(startDestination);
         if (!idle) {
             if (Vector3.Distance(transform.position, destination) > 2.5f)
             {
@@ -70,16 +71,7 @@ public class CharacterNavigationController : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.gameObject.CompareTag("Human") || collision.gameObject.CompareTag("Environment Object") || collision.gameObject.CompareTag("Player"))
-        {
-            respawn();
-
-        }
-
-    }
+    
 
     public void respawn()
     {

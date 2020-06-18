@@ -6,13 +6,14 @@ public class WaypointNavigator : MonoBehaviour
 {
 
     CharacterNavigationController controller;
-    public WayPoint currentWaypoint;
+    public WayPoint currentWaypoint, startWaypoint;
     public bool direction = true, startDirection;
    
     /*public bool street = false;*/
    
     private void Awake()
     {
+        startWaypoint = currentWaypoint;
         startDirection = direction;
         controller = GetComponent<CharacterNavigationController>(); 
        
@@ -59,8 +60,21 @@ public class WaypointNavigator : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
 
-   
+        if (collision.gameObject.CompareTag("Human") || collision.gameObject.CompareTag("Environment Object") || collision.gameObject.CompareTag("Player"))
+        {
+            respawn();
+
+        }
+
+    }
+    public void respawn()
+    {
+        currentWaypoint = startWaypoint;
+        controller.respawn();
+    }
 
     /*private void OnTriggerEnter(Collider other)
     {
@@ -71,5 +85,5 @@ public class WaypointNavigator : MonoBehaviour
         }
     }*/
 
-      
+
 }
