@@ -11,6 +11,7 @@ public class CrossWalkCarAgent : CarAgent {
     private ArrayList listOfPedastrians;
 
     //riskAnalisis
+    private float maxZdist;
     private float xDist, zDist;
     private bool xCheck, zCheck;
 
@@ -68,7 +69,7 @@ public class CrossWalkCarAgent : CarAgent {
         actionsOut[0] = Input.GetAxisRaw("Vertical");
         
 
-        if (actionsOut[0] < 0) AddReward(-1000f);
+        if (actionsOut[0] < 0) AddReward(-10f);
 
         if (Input.GetKeyDown(KeyCode.Q))
             actionsOut[1] = 1f;
@@ -94,38 +95,41 @@ public class CrossWalkCarAgent : CarAgent {
 
 
         //mooving controls
-        if (vectorAction[0] < 0) AddReward(-100f);
+        if (vectorAction[0] < 0 && !pedCheck)  AddReward(-1000f);
+        
+
         if (pedCheck && (vectorAction[0] <= 0.001 && vectorAction[0] >= 0))
         {
-            AddReward(10f);
-            Debug.Log("correct stop");
+            AddReward(10f * maxZdist);
+            
         } else if (!pedCheck && vectorAction[1] > 0)
         {
-            Debug.Log("correct move");
-            AddReward(10f);
+            AddReward(50f);
         }
 
-        if (pedCheck && (vectorAction[0] != 0))
+        if (pedCheck && (vectorAction[0] > 0))
         {
-            Debug.Log("uncorrect move");
-            AddReward(-100f);
+          AddReward(-100f);
+            
         }
 
         //braking controls
         if (pedCheck && manualBrake)
         {
-            Debug.Log("correct brake");
-            AddReward(10f);
+            AddReward(10f * (maxZdist*10));
+
+
         }  if (!pedCheck && manualBrake)
         {
-            Debug.Log("uncorrect brake");
-            AddReward(-100f);
+            Debug.Log("Uncorrect brake");
+            AddReward(-10000f);
         }
         
         
         //Debug.Log(GetCumulativeReward());
 
     }
+
 
 
    
@@ -147,7 +151,9 @@ public class CrossWalkCarAgent : CarAgent {
             while (true) {
                 if (myParent == null) break;
                 if (myParent.CompareTag("Untagged")) {
+                    Debug.Log(myParent.name);
                     myParent = myParent.transform.parent.gameObject;
+
                     continue;
                 }
                 //CASES HERE
@@ -156,15 +162,10 @@ public class CrossWalkCarAgent : CarAgent {
                     EndEpisode();
                     break;
                 }
-                /*else if (myParent.CompareTag("Environment Car")) {
-
-                    AddReward(-1f);
-                    EndEpisode();
-                    break;
-                }*/
+                
                 else if (myParent.CompareTag("Human")) {
 
-                    AddReward(-5f);
+                    AddReward(-100000f);
                     EndEpisode();
                     break;
                 }
@@ -175,7 +176,7 @@ public class CrossWalkCarAgent : CarAgent {
     private void OnTriggerEnter(Collider other) {
         //Collision code for Crosswalk Scene
         if (other.gameObject.CompareTag("EndGame")) {
-            AddReward(0.5f);
+            AddReward(5f);
             EndEpisode();
         }
 
@@ -198,16 +199,20 @@ public class CrossWalkCarAgent : CarAgent {
 
     private bool checkPedastrians() {
 
+        maxZdist = 0;
         bool pedOnTrajectory = false;
         foreach (GameObject ped in listOfPedastrians)
          {
              xDist = ped.transform.position.x - transform.position.x;
              zDist = ped.transform.position.z - transform.position.z;
-             xCheck = (-1.5 < xDist) && (xDist < 2);
+             xCheck = (-2 < xDist) && (xDist < 3.5);
              zCheck = (0 < zDist) && zDist < 10;
 
-            if ((xCheck && zCheck) && !pedOnTrajectory) pedOnTrajectory = true;
-             
+            if ((xCheck && zCheck) && !pedOnTrajectory)
+            {
+                if (zDist > maxZdist) maxZdist = zDist;
+                pedOnTrajectory = true;
+            }
          }
 
         return pedOnTrajectory;
