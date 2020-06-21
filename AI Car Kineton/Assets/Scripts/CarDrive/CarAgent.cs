@@ -52,12 +52,7 @@ public class CarAgent : Agent {
     public GameObject camControllerObj;
     protected CameraController camController;
     protected Camera frontcam, backcam;
-
-    /*
-     
-        DO NOT DELETE HERE
-         
-         */
+    
     //Agent spawn position
     protected ArrayList spawner;
     [Tooltip("Add here a fixed custom position. Leave empty for the random generator.")]
@@ -122,7 +117,6 @@ public class CarAgent : Agent {
     }
 
     public override void Heuristic(float[] actionsOut) {
-
         actionsOut[0] = Input.GetAxis("Horizontal");
         actionsOut[1] = Input.GetAxis("Vertical");
         if (Input.GetKey(KeyCode.Q))
@@ -131,6 +125,7 @@ public class CarAgent : Agent {
     }
 
     public override void OnActionReceived(float[] vectorAction) {
+
         //Acceleration and brake
         verticalMovement(vectorAction[1], vectorAction[2]);
 
@@ -197,7 +192,12 @@ public class CarAgent : Agent {
             switchLight(false);
         }
         // Manual brake
-        if (brakeAgent == 1f) {
+        /*
+         
+            BRAKE PARAMETER CORRECTED HERE
+         
+         */
+        if (brakeAgent >= 0.5f) {
             brake(0.035f);
             switchLight(true);
         }
@@ -291,8 +291,6 @@ public class CarAgent : Agent {
         carBody.isKinematic = true;
         executeSpawn();
         speed = 0;
-
-
         // wc_fl, wc_fr, wc_bl, wc_br
         wc_fl.brakeTorque = Mathf.Infinity;
         wc_fr.brakeTorque = Mathf.Infinity;
@@ -307,14 +305,16 @@ public class CarAgent : Agent {
         
         Spawn mySpawn;
         if (Vector3.Distance(customSpawnPosition, Vector3.zero) == 0 &&
-            (customSpawnRotation == new Quaternion(0, 0, 0, 0) || customSpawnRotation.Equals(new Quaternion(0, 0, 0, 0))))
+            (customSpawnRotation == new Quaternion(0, 0, 0, 0) || customSpawnRotation.Equals(new Quaternion(0, 0, 0, 0)))) {
 
             mySpawn = (Spawn)spawner[Random.Range(0, spawner.Count)];
-        else
+            transform.position = mySpawn.spawnPosition + transform.parent.position;
+            transform.rotation = mySpawn.spawnRotation;
+        } else {
             mySpawn = new Spawn(customSpawnPosition, customSpawnRotation);
-
-        transform.position = mySpawn.spawnPosition + transform.parent.position;
-        transform.rotation = Quaternion.Euler(mySpawn.spawnRotation.x, mySpawn.spawnRotation.y, mySpawn.spawnRotation.z);
+            transform.position = mySpawn.spawnPosition + transform.parent.position;
+            transform.rotation = Quaternion.Euler(mySpawn.spawnRotation.x, mySpawn.spawnRotation.y, mySpawn.spawnRotation.z);
+        }
     }
 
     //Other functions

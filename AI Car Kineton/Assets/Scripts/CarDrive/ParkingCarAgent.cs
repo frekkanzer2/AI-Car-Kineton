@@ -6,18 +6,18 @@ using Unity.MLAgents.Sensors;
 using UnityEngine.SceneManagement;
 
 public class ParkingCarAgent : CarAgent {
-
-    private GameObject collidedCheckpoint;
-    private bool hasChecked = false;
   
     //Initialization
     public override void Initialize() {
         base.Initialize();
-        spawner.Add(new Spawn(new Vector3(18.18465f, 0.4371328f, 13.53141f), Quaternion.Euler(0, 270, 1)));
-        spawner.Add(new Spawn(new Vector3(-17.45f, 0.491f, 5.19f), Quaternion.identity));
-        spawner.Add(new Spawn(new Vector3(-8.73f, 0.491f, 4.71f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(-7.15f, 0.438f, 3.97f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(-3.29f, 0.438f, 0.33f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(5.26f, 0.438f, 0.33f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(5.38f, 0.438f, 0.66f), Quaternion.Euler(0, 250, 0)));
+        spawner.Add(new Spawn(new Vector3(-3.68f, 0.438f, -3.68f), Quaternion.Euler(0, 90, 0)));
+        spawner.Add(new Spawn(new Vector3(-5.74f, 0.438f, 3.17f), Quaternion.Euler(0, 120, 0)));
     }
-    
+
     /*
      
         COLLISIONS CHECKS
@@ -31,7 +31,7 @@ public class ParkingCarAgent : CarAgent {
             EndEpisode();
         }
         else if (collision.gameObject.CompareTag("Environment Car")) {
-            AddReward(-2f);
+            AddReward(-100f);
             EndEpisode();
         }
         else if (collision.gameObject.CompareTag("Untagged")) {
@@ -51,7 +51,7 @@ public class ParkingCarAgent : CarAgent {
                     break;
                 }
                 else if (myParent.CompareTag("Environment Car")) {
-                    AddReward(-2f);
+                    AddReward(-100f);
                     Debug.Log("Inside collided with " + myParent.tag);
                     EndEpisode();
                     break;
@@ -62,42 +62,64 @@ public class ParkingCarAgent : CarAgent {
 
     private void OnTriggerEnter(Collider other) {
         //Collision code for Parking Scene
-        if (other.gameObject.CompareTag("Checkpoint")) {
+        if (other.gameObject.CompareTag("OutOfMap")) {
+            Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
+            AddReward(-10f);
+            EndEpisode();
+        } else if (other.gameObject.CompareTag("EndGame")) {
             Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
             AddReward(1f);
-            collidedCheckpoint = other.gameObject;
-            collidedCheckpoint.SetActive(false);
-        } else if (other.gameObject.CompareTag("OutOfMap")) {
-            Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
-            AddReward(-3f);
-            EndEpisode();
-        } else if (other.gameObject.CompareTag("Walklimit1")) {
-            Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
-            AddReward(-0.5f);
-            EndEpisode();
-        } else if (other.gameObject.CompareTag("EndGame") && !hasChecked) {
-            Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
-            AddReward(3f);
-            hasChecked = true;
         }
 
     }
 
     private void OnTriggerStay(Collider other) {
         //Collision code for Parking Scene
-        if (other.gameObject.CompareTag("EndGame") && other.bounds.Contains(GetComponent<BoxCollider>().bounds.min)
-            && other.bounds.Contains(GetComponent<BoxCollider>().bounds.max)) {
-            // Inside the box collider
-            AddReward(10f);
-            Debug.Log("PERFECT PARKING DONE!");
-            EndEpisode();
+        if (other.gameObject.CompareTag("EndGame")) {
+            float assign = 0;
+            int counter = 0;
+            if (checkWheelInsideBox(wc_fl, (BoxCollider)other)) {
+                assign += 0.01f;
+                counter++;
+            }
+            if (checkWheelInsideBox(wc_fr, (BoxCollider)other)) {
+                assign += 0.01f;
+                counter++;
+            }
+            if (checkWheelInsideBox(wc_bl, (BoxCollider)other)) {
+                assign += 0.01f;
+                counter++;
+            }
+            if (checkWheelInsideBox(wc_br, (BoxCollider)other)) {
+                assign += 0.01f;
+                counter++;
+            }
+            if (counter == 4) {
+                assign *= 2;
+                if ((getVelocitySpeed() > 0.1f && getVelocitySpeed() < 2) || (getVelocitySpeed() < -0.1f && getVelocitySpeed() > -2)) {
+                    //Moving on parking
+                    float extraGain = 2;
+                    float actualVSpeed = getVelocitySpeed();
+                    if (actualVSpeed < 0) actualVSpeed *= (-1);
+                    extraGain -= actualVSpeed;
+                    assign += (extraGain / 2);
+                } else if (getVelocitySpeed() < 0.1f && getVelocitySpeed() > -0.1f) {
+                    //Stopped on parking
+                    Debug.Log("P E R F E C T   P A R K I N G");
+                    assign = 100;
+                    AddReward(assign);
+                    EndEpisode();
+                }
+            }
+            AddReward(assign);
         }
     }
 
-    public override void OnEpisodeBegin() {
-        base.OnEpisodeBegin();
-        if (collidedCheckpoint != null)
-            collidedCheckpoint.SetActive(true);
+    private bool checkWheelInsideBox(WheelCollider toCheck, BoxCollider container) {
+        if (container.bounds.Contains(toCheck.bounds.min) &&
+            container.bounds.Contains(toCheck.bounds.max))
+            return true;
+        else return false;
     }
 
 }
