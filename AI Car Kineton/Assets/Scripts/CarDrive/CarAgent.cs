@@ -419,14 +419,21 @@ public class CarAgent : Agent {
 
     protected void debug_drawDestination() {
         if (drawRay) {
-            Debug.DrawLine(transform.position, connectedEndGame.transform.position, Color.cyan);
+           
+            Debug.DrawLine(transform.position, connectedEndGame.transform.position, Color.yellow);
+            Vector3 point = transform.InverseTransformPoint(connectedEndGame.transform.position);
+            float angle = Mathf.Atan2(point.x, point.z) * Mathf.Rad2Deg;
+            Debug.Log(angle);
+            
         }
     }
 
     //Overrided methods, useful for not specializated agents
     private void Update() {
         debug_drawDestination();
-        Debug.Log(getRewardOnDirection(connectedEndGame));
+       // Debug.Log(getRewardOnDirection(connectedEndGame));
     }
 
+
+  
 }
