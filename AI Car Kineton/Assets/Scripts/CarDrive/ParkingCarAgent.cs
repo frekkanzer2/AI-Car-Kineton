@@ -30,6 +30,16 @@ public class ParkingCarAgent : CarAgent {
             Debug.Log("High speed!");
             AddReward(-0.02f);
         }
+        float p = getRewardOnDirection(connectedEndGame);
+        if (p > 0) {
+            Debug.Log("DIRECTION - RIGHT");
+            p = 0.01f;
+        }
+        if (p < 0) {
+            Debug.Log("DIRECTION - WRONG");
+            p = -0.01f;
+        }
+        AddReward(p);
     }
 
     private void OnCollisionEnter(Collision collision) {
@@ -76,7 +86,7 @@ public class ParkingCarAgent : CarAgent {
             EndEpisode();
         } else if (other.gameObject.CompareTag("EndGame")) {
             Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
-            AddReward(200f);
+            AddReward(250f);
         }
 
     }
