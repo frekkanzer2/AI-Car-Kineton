@@ -74,14 +74,19 @@ public class CrossWalkCarAgent : CarAgent {
         if (Input.GetKeyDown(KeyCode.Q))
             actionsOut[1] = 1f;
         else actionsOut[1] = 0f;
+
+       // actionsOut[2] = Input.GetAxis("Horizontal");
+
     }
 
     public override void OnActionReceived(float[] vectorAction) {
         //base.OnActionReceived(vectorAction);
         
         verticalMovement(vectorAction[0], vectorAction[1]);
+        //Rotation
+       // rotation(vectorAction[2]);
+       // followWheelRotation();
 
-      
         if (vectorAction[1] >= 0.5)
         {
             //Debug.Log(vectorAction[1]);
@@ -121,7 +126,7 @@ public class CrossWalkCarAgent : CarAgent {
 
         }  if (!pedCheck && manualBrake)
         {
-            Debug.Log("Uncorrect brake");
+            //Debug.Log("Uncorrect brake");
             AddReward(-10000f);
         }
         
@@ -182,17 +187,9 @@ public class CrossWalkCarAgent : CarAgent {
 
         if (other.gameObject.CompareTag("Walklimit1") || other.gameObject.CompareTag("Walklimit2"))
         {
-            AddReward(-3f);
+            AddReward(-100f);
             EndEpisode();
         }
-        
-    }
-
-    private void OnTriggerExit(Collider other) {
-       
-    }
-
-    private void OnTriggerStay(Collider other) {
         
     }
 
