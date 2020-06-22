@@ -6656,6 +6656,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  drawRay: 0
   staticSpeed: 5000
   brakeForce: 100000
   SPD_LIMIT_STEERING: 8
@@ -22780,6 +22781,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  drawRay: 0
   staticSpeed: 5000
   brakeForce: 100000
   SPD_LIMIT_STEERING: 8
@@ -25844,6 +25846,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  drawRay: 1
   staticSpeed: 5000
   brakeForce: 100000
   SPD_LIMIT_STEERING: 8
@@ -27040,8 +27043,7 @@ PrefabInstance:
     - target: {fileID: 153616470, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 7bbe42b4425bbfc4c8ad61949385ed23,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 153616470, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: m_BehaviorType
       value: 0
@@ -35754,6 +35756,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  drawRay: 0
   staticSpeed: 5000
   brakeForce: 100000
   SPD_LIMIT_STEERING: 8
@@ -36993,6 +36996,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  drawRay: 0
   staticSpeed: 5000
   brakeForce: 100000
   SPD_LIMIT_STEERING: 8
@@ -59345,6 +59349,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  drawRay: 0
   staticSpeed: 5000
   brakeForce: 100000
   SPD_LIMIT_STEERING: 8

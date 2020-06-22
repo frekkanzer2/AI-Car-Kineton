@@ -22,9 +22,12 @@ public class CarAgent : Agent {
         }
     }
 
+    public bool drawRay = false;
+
     public float staticSpeed = 5000f;
     public float brakeForce = 100000f;
     protected float speed = 0;
+    protected GameObject connectedEndGame;
     protected Rigidbody carBody;
     protected WheelCollider wc_fl, wc_fr, wc_bl, wc_br; // f -> front, l -> left, r -> right
     protected GameObject wheel_front_left, wheel_front_right, wheel_back_left, wheel_back_right;
@@ -86,7 +89,7 @@ public class CarAgent : Agent {
 
         /*recursive Hierarchy assigment for Wheels, Wheelcolliders and lights*/ 
         componentsAssigment(transform);
-       
+        getLocalEndGame(transform.parent);
 
         wc_fl = wheel_front_left.GetComponentInParent<WheelCollider>();
         wc_fr = wheel_front_right.GetComponentInParent<WheelCollider>();
@@ -377,16 +380,34 @@ public class CarAgent : Agent {
                 case "BrakeLight2_dx":
                     brakeLight2R = tmp;
                     break;
-
                 case "BrakeLight2_sx":
                     brakeLight2L = tmp;
                     break;
+                
             }
-           
-
         }
     }
-    
+
+    protected void getLocalEndGame(Transform t) {
+        foreach (Transform child in t) {
+            getLocalEndGame(child);
+            GameObject tmp = child.gameObject;
+            switch (tmp.name) {
+
+                case "EndGame":
+                    connectedEndGame = tmp;
+                    break;
+
+            }
+        }
+    }
+
+    protected int getRewardOnDirection(GameObject toObj) {
+        BoxCollider toReach = toObj.GetComponent<BoxCollider>();
+        Vector3 direction = (toReach.transform.position - transform.position).normalized;
+        return (int) (Vector3.Dot(carBody.velocity.normalized, direction) * 10);
+    }
+
     //Testing method
     protected void debug_localVelocity() {
         Debug.Log(transform.InverseTransformDirection(carBody.velocity));
@@ -394,6 +415,18 @@ public class CarAgent : Agent {
 
     protected Vector3 debug_localPosition(){
         return transform.localPosition;
+    }
+
+    protected void debug_drawDestination() {
+        if (drawRay) {
+            Debug.DrawLine(transform.position, connectedEndGame.transform.position, Color.cyan);
+        }
+    }
+
+    //Overrided methods, useful for not specializated agents
+    private void Update() {
+        debug_drawDestination();
+        Debug.Log(getRewardOnDirection(connectedEndGame));
     }
 
 }

@@ -11,7 +11,7 @@ public class ParkingCarAgent : CarAgent {
     public override void Initialize() {
         base.Initialize();
         spawner.Add(new Spawn(new Vector3(-7.15f, 0.438f, 3.97f), Quaternion.Euler(0, 180, 0)));
-        spawner.Add(new Spawn(new Vector3(-3.29f, 0.438f, 0.33f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(-3.29f, 0.438f, 2f), Quaternion.Euler(0, 180, 0)));
         spawner.Add(new Spawn(new Vector3(5.26f, 0.438f, 0.33f), Quaternion.Euler(0, 180, 0)));
         spawner.Add(new Spawn(new Vector3(5.38f, 0.438f, 0.66f), Quaternion.Euler(0, 250, 0)));
         spawner.Add(new Spawn(new Vector3(-3.68f, 0.438f, -3.68f), Quaternion.Euler(0, 90, 0)));
@@ -24,10 +24,18 @@ public class ParkingCarAgent : CarAgent {
          
          */
 
+    private void Update() {
+        debug_drawDestination();
+        if (getVelocitySpeed() > 4) {
+            Debug.Log("High speed!");
+            AddReward(-0.02f);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision) {
         Debug.Log("Collided with " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Environment Object")) {
-            AddReward(-0.5f);
+            AddReward(-100f);
             EndEpisode();
         }
         else if (collision.gameObject.CompareTag("Environment Car")) {
@@ -45,7 +53,7 @@ public class ParkingCarAgent : CarAgent {
                 }
                 //CASES HERE
                 if (myParent.CompareTag("Environment Object")){
-                    AddReward(-0.5f);
+                    AddReward(-100f);
                     Debug.Log("Inside collided with " + myParent.tag);
                     EndEpisode();
                     break;
@@ -64,11 +72,11 @@ public class ParkingCarAgent : CarAgent {
         //Collision code for Parking Scene
         if (other.gameObject.CompareTag("OutOfMap")) {
             Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
-            AddReward(-10f);
+            AddReward(-100f);
             EndEpisode();
         } else if (other.gameObject.CompareTag("EndGame")) {
             Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
-            AddReward(1f);
+            AddReward(200f);
         }
 
     }
@@ -95,18 +103,20 @@ public class ParkingCarAgent : CarAgent {
                 counter++;
             }
             if (counter == 4) {
+                Debug.Log("SUCCESS - All wheels inside");
                 assign *= 2;
-                if ((getVelocitySpeed() > 0.1f && getVelocitySpeed() < 2) || (getVelocitySpeed() < -0.1f && getVelocitySpeed() > -2)) {
+                if ((getVelocitySpeed() > 0.2f && getVelocitySpeed() < 1) || (getVelocitySpeed() < -0.2f && getVelocitySpeed() > -1)) {
                     //Moving on parking
-                    float extraGain = 2;
+                    Debug.Log("SUCCESS - Low speed on parking");
+                    float extraGain = 1;
                     float actualVSpeed = getVelocitySpeed();
                     if (actualVSpeed < 0) actualVSpeed *= (-1);
                     extraGain -= actualVSpeed;
                     assign += (extraGain / 2);
-                } else if (getVelocitySpeed() < 0.1f && getVelocitySpeed() > -0.1f) {
+                } else if (getVelocitySpeed() < 0.2f && getVelocitySpeed() > -0.2f) {
                     //Stopped on parking
-                    Debug.Log("P E R F E C T   P A R K I N G");
-                    assign = 100;
+                    Debug.Log("SUCCESS - PERFECT PARKING!");
+                    assign = 500;
                     AddReward(assign);
                     EndEpisode();
                 }

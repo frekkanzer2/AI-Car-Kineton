@@ -214,4 +214,10 @@ public class CrossWalkCarAgent : CarAgent {
 
         return pedOnTrajectory;
     }
+
+    private void Update() {
+        debug_drawDestination();
+        Debug.Log(getRewardOnDirection(connectedEndGame));
+    }
+
 }
