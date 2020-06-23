@@ -23,6 +23,11 @@ public class CarAgent : Agent {
     }
 
     public bool drawRay = false;
+    [Tooltip("Insert here the duration of the episode in seconds.")]
+    public int episodeDuration = 1;
+    [Tooltip("Insert here the negative reward when the episode reaches the time limit.")]
+    public float epDurationNegativeReward = 0f;
+    private int episode_actualFrames = 0;
 
     public float staticSpeed = 5000f;
     public float brakeForce = 100000f;
@@ -36,7 +41,7 @@ public class CarAgent : Agent {
 
     protected GameObject brakeLight1R, brakeLight1L, brakeLight2R, brakeLight2L;
 
-    protected Direction lastDirection, actualDirection;
+    protected Direction actualDirection;
     protected bool isBraking = false, pedOnStreet = false;
     protected Vector3 myPosition;
     protected Quaternion myRotation;
@@ -82,10 +87,13 @@ public class CarAgent : Agent {
         spawner = new ArrayList();
 
         //Initialization Parameters
-        lastDirection = Direction.Stop;
         myPosition = new Vector3(0, 0, 0);
         myRotation = new Quaternion(0, 0, 0, 0);
         carBody = GetComponent<Rigidbody>();
+
+        //Setting episode duration
+        episodeDuration *= 60;
+        episode_actualFrames = episodeDuration;
 
         /*recursive Hierarchy assigment for Wheels, Wheelcolliders and lights*/ 
         componentsAssigment(transform);
@@ -255,6 +263,108 @@ public class CarAgent : Agent {
             brake(friction);
             switchLight(true);
         }
+
+    }
+
+    protected Vector2 getDistanceFromObject(GameObject destination) {
+        float dest_x, dest_z, from_x, from_z;
+        dest_x = destination.transform.position.x;
+        dest_z = destination.transform.position.z;
+        from_x = transform.position.x;
+        from_z = transform.position.z;
+        return new Vector2(Mathf.Abs(dest_x - from_x), Mathf.Abs(dest_z - from_z));
+    }
+
+    protected void directionAssignmentSystem(float reward, bool debug = false) {
+        //Getting angle
+        float carAngle = getAngleMeasure(connectedEndGame);
+        float assignment = 0;
+        //Checking by direction
+        if (actualDirection == Direction.Acceleration) {
+            /*
+             * OK CASES
+             */
+            //straight check
+            if ((carAngle < 3 && carAngle >= 0 && wc_fl.steerAngle <= 15f && wc_fl.steerAngle >= 0) ||
+                (carAngle > -3 && carAngle < 0 && wc_fl.steerAngle >= -15f && wc_fl.steerAngle < 0))
+                assignment = reward;
+            //Car should steer of max 35*
+            //right steer check
+            if ((carAngle > 3 && carAngle <= 35 && wc_fl.steerAngle > 3 && wc_fl.steerAngle <= 35) ||
+                //left steer check
+                (carAngle < -3 && carAngle >= -35 && wc_fl.steerAngle < -3 && wc_fl.steerAngle >= -35))
+                assignment = reward;
+            //Checking for angle > 35 or < -35
+            //right steer check
+            if ((carAngle > 35 && wc_fl.steerAngle > 20) ||
+                //left steer check
+                (carAngle < -35 && wc_fl.steerAngle < -20))
+                assignment = reward;
+            /*
+             * WRONG CASES
+             */
+            //straight check
+            if ((carAngle < 3 && carAngle >= 0 && wc_fl.steerAngle >= -15f && wc_fl.steerAngle <= 0) ||
+                (carAngle > -3 && carAngle < 0 && wc_fl.steerAngle <= 15f && wc_fl.steerAngle > 0))
+                assignment = reward * (-1);
+            //Car should steer of max 35*
+            //right steer check
+            if ((carAngle > 3 && carAngle <= 35 && wc_fl.steerAngle < -3 && wc_fl.steerAngle >= -35) ||
+                //left steer check
+                (carAngle < -3 && carAngle >= -35 && wc_fl.steerAngle > 3 && wc_fl.steerAngle <= 35))
+                assignment = reward * (-1);
+            //Checking for angle > 35 or < -35
+            //right steer check
+            if ((carAngle > 35 && wc_fl.steerAngle < -20) ||
+                //left steer check
+                (carAngle < -35 && wc_fl.steerAngle > 20))
+                assignment = reward * (-1);
+        }
+        else if (actualDirection == Direction.Backward) {
+            /*
+             * WRONG CASES
+             */
+            //straight check
+            if ((carAngle < 3 && carAngle >= 0 && wc_fl.steerAngle <= 15f && wc_fl.steerAngle >= 0) ||
+                (carAngle > -3 && carAngle < 0 && wc_fl.steerAngle >= -15f && wc_fl.steerAngle < 0))
+                assignment = reward * (-1);
+            //Car should steer of max 35*
+            //right steer check
+            if ((carAngle > 3 && carAngle <= 35 && wc_fl.steerAngle > 3 && wc_fl.steerAngle <= 35) ||
+                //left steer check
+                (carAngle < -3 && carAngle >= -35 && wc_fl.steerAngle < -3 && wc_fl.steerAngle >= -35))
+                assignment = reward * (-1);
+            //Checking for angle > 35 or < -35
+            //right steer check
+            if ((carAngle > 35 && wc_fl.steerAngle > 20) ||
+                //left steer check
+                (carAngle < -35 && wc_fl.steerAngle < -20))
+                assignment = reward * (-1);
+            /*
+             * OK CASES
+             */
+            //straight check
+            if ((carAngle < 3 && carAngle >= 0 && wc_fl.steerAngle >= -15f && wc_fl.steerAngle <= 0) ||
+                (carAngle > -3 && carAngle < 0 && wc_fl.steerAngle <= 15f && wc_fl.steerAngle > 0))
+                assignment = reward;
+            //Car should steer of max 35*
+            //right steer check
+            if ((carAngle > 3 && carAngle <= 35 && wc_fl.steerAngle < -3 && wc_fl.steerAngle >= -35) ||
+                //left steer check
+                (carAngle < -3 && carAngle >= -35 && wc_fl.steerAngle > 3 && wc_fl.steerAngle <= 35))
+                assignment = reward;
+            //Checking for angle > 35 or < -35
+            //right steer check
+            if ((carAngle > 35 && wc_fl.steerAngle < -20) ||
+                //left steer check
+                (carAngle < -35 && wc_fl.steerAngle > 20))
+                assignment = reward;
+        }
+        AddReward(assignment);
+        if (debug) {
+            if (assignment > 0) Debug.Log("Right direction");
+            if (assignment < 0) Debug.Log("Wrong direction");
+        }
     }
 
     protected void followWheelRotation() {
@@ -302,6 +412,7 @@ public class CarAgent : Agent {
         carBody.velocity = Vector3.zero;
         carBody.angularVelocity = Vector3.zero;
         carBody.isKinematic = false;
+        episode_actualFrames = episodeDuration;
     }
 
     protected void executeSpawn() {
@@ -408,6 +519,25 @@ public class CarAgent : Agent {
         return (int) (Vector3.Dot(carBody.velocity.normalized, direction) * 10);
     }
 
+    protected float getAngleMeasure(GameObject destination) {
+        Vector3 point = transform.InverseTransformPoint(destination.transform.position);
+        return Mathf.Atan2(point.x, point.z) * Mathf.Rad2Deg;
+    }
+
+    protected float getAngleMeasure(GameObject origin, GameObject destination) {
+        Vector3 point = origin.transform.InverseTransformPoint(destination.transform.position);
+        return Mathf.Atan2(point.x, point.z) * Mathf.Rad2Deg;
+    }
+
+    // YOU SHOULD CALL IT IN THE UPDATE METHOD
+    protected void episodeExecution() {
+        episode_actualFrames--;
+        if (episode_actualFrames == 0) {
+            AddReward(epDurationNegativeReward);
+            EndEpisode();
+        }
+    }
+
     //Testing method
     protected void debug_localVelocity() {
         Debug.Log(transform.InverseTransformDirection(carBody.velocity));
@@ -419,19 +549,14 @@ public class CarAgent : Agent {
 
     protected void debug_drawDestination() {
         if (drawRay) {
-           
             Debug.DrawLine(transform.position, connectedEndGame.transform.position, Color.yellow);
-            Vector3 point = transform.InverseTransformPoint(connectedEndGame.transform.position);
-            float angle = Mathf.Atan2(point.x, point.z) * Mathf.Rad2Deg;
-            Debug.Log(angle);
-            
         }
     }
 
     //Overrided methods, useful for not specializated agents
     private void Update() {
         debug_drawDestination();
-       // Debug.Log(getRewardOnDirection(connectedEndGame));
+        directionAssignmentSystem(0.02f);
     }
 
 

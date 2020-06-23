@@ -6,7 +6,9 @@ using Unity.MLAgents.Sensors;
 using UnityEngine.SceneManagement;
 
 public class ParkingCarAgent : CarAgent {
-  
+
+    private Vector2 latestRecordDistance;
+
     //Initialization
     public override void Initialize() {
         base.Initialize();
@@ -16,6 +18,46 @@ public class ParkingCarAgent : CarAgent {
         spawner.Add(new Spawn(new Vector3(5.38f, 0.438f, 0.66f), Quaternion.Euler(0, 250, 0)));
         spawner.Add(new Spawn(new Vector3(-3.68f, 0.438f, -3.68f), Quaternion.Euler(0, 90, 0)));
         spawner.Add(new Spawn(new Vector3(-5.74f, 0.438f, 3.17f), Quaternion.Euler(0, 120, 0)));
+        latestRecordDistance = getDistanceFromObject(connectedEndGame);
+    }
+
+    //Update
+    private void Update() {
+        debug_drawDestination();
+        if (getVelocitySpeed() > 4) {
+            Debug.Log("High speed!");
+            AddReward(-0.02f);
+        }
+        episodeExecution();
+        directionAssignmentSystem(0.01f, true);
+        recordNewDistances(0.02f, true);
+    }
+
+    /*
+     
+        METHODS
+         
+         */
+
+    private void recordNewDistances(float reward, bool debug = false) {
+        Vector2 pickedDistance = getDistanceFromObject(connectedEndGame);
+        if (pickedDistance.x < latestRecordDistance.x && pickedDistance.y < latestRecordDistance.y) {
+            if (debug) Debug.Log("Car reduced her distance.");
+            latestRecordDistance = pickedDistance;
+            AddReward(reward);
+        }
+    }
+
+    private bool checkWheelInsideBox(WheelCollider toCheck, BoxCollider container) {
+        if (container.bounds.Contains(toCheck.bounds.min) &&
+            container.bounds.Contains(toCheck.bounds.max))
+            return true;
+        else return false;
+    }
+
+    public override void OnEpisodeBegin() {
+        base.OnEpisodeBegin();
+        latestRecordDistance = getDistanceFromObject(connectedEndGame);
     }
 
     /*
@@ -23,24 +65,6 @@ public class ParkingCarAgent : CarAgent {
         COLLISIONS CHECKS
          
          */
-
-    private void Update() {
-        debug_drawDestination();
-        if (getVelocitySpeed() > 4) {
-            Debug.Log("High speed!");
-            AddReward(-0.02f);
-        }
-        float p = getRewardOnDirection(connectedEndGame);
-        if (p > 0) {
-            Debug.Log("DIRECTION - RIGHT");
-            p = 0.01f;
-        }
-        if (p < 0) {
-            Debug.Log("DIRECTION - WRONG");
-            p = -0.01f;
-        }
-        AddReward(p);
-    }
 
     private void OnCollisionEnter(Collision collision) {
         Debug.Log("Collided with " + collision.gameObject.tag);
@@ -133,13 +157,6 @@ public class ParkingCarAgent : CarAgent {
             }
             AddReward(assign);
         }
-    }
-
-    private bool checkWheelInsideBox(WheelCollider toCheck, BoxCollider container) {
-        if (container.bounds.Contains(toCheck.bounds.min) &&
-            container.bounds.Contains(toCheck.bounds.max))
-            return true;
-        else return false;
     }
 
 }
