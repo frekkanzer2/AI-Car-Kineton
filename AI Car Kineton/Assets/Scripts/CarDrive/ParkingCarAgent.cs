@@ -24,13 +24,14 @@ public class ParkingCarAgent : CarAgent {
     //Update
     private void Update() {
         debug_drawDestination();
-        if (getVelocitySpeed() > 4) {
+        if (getVelocitySpeed() > 4 || getVelocitySpeed() < -4) {
             Debug.Log("High speed!");
-            AddReward(-0.02f);
+            AddReward(-0.5f);
         }
         episodeExecution();
         directionAssignmentSystem(0.01f, true);
         recordNewDistances(0.02f, true);
+        AddReward(-0.1f);
     }
 
     /*

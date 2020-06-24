@@ -118,13 +118,10 @@ public class CarAgent : Agent {
     }
 
     public override void CollectObservations(VectorSensor sensor) {
-        sensor.AddObservation(transform.position);
-        sensor.AddObservation(transform.rotation);
-        //saving wheels rotations
-        sensor.AddObservation(wheel_front_left.transform.rotation);
-        sensor.AddObservation(wheel_front_right.transform.rotation);
-        sensor.AddObservation(wheel_back_left.transform.rotation);
-        sensor.AddObservation(wheel_back_right.transform.rotation);
+        sensor.AddObservation(transform.localPosition);
+        sensor.AddObservation(transform.localPosition - connectedEndGame.transform.localPosition);
+        sensor.AddObservation(getVelocitySpeed());
+        sensor.AddObservation(wc_fl.steerAngle);
     }
 
     public override void Heuristic(float[] actionsOut) {
@@ -557,6 +554,10 @@ public class CarAgent : Agent {
     private void Update() {
         debug_drawDestination();
         directionAssignmentSystem(0.02f);
+        if (getVelocitySpeed() > 4) {
+            Debug.Log("High speed!");
+            AddReward(-0.02f);
+        }
     }
 
 
