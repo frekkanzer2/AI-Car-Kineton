@@ -14,6 +14,7 @@ public class CrossWalkCarAgent2 : CarAgent {
     private float maxZdist;
     private float xDist, zDist;
     private bool xCheck, zCheck;
+    private Vector3 toTarget;
 
     //rotation analisis
     private float rotationAngle;
@@ -104,13 +105,14 @@ public class CrossWalkCarAgent2 : CarAgent {
         else manualBrake = false;
         
         pedCheck = checkPedastrians();
+       // if (pedCheck) Debug.Log(gameObject.name + "Pedastrian on street");
 
 
         //mooving controls
 
         //retro
         if (vectorAction[0] < 0 && !pedCheck) {
-            Debug.Log("Retro");
+            //Debug.Log("Retro");
             AddReward(-5f);
         }
 
@@ -120,7 +122,7 @@ public class CrossWalkCarAgent2 : CarAgent {
         {
             if (getVelocitySpeed() < 0.2 && getVelocitySpeed() > -0.2)
             {
-                Debug.Log("Correct Speed");
+                //Debug.Log("Correct Speed " + (maxZdist * 10f));
                 AddReward(maxZdist*10f);
             } else AddReward(-0.5f);
 
@@ -128,28 +130,35 @@ public class CrossWalkCarAgent2 : CarAgent {
         else
         {
 
-            if (getVelocitySpeed() < 0.2 && getVelocitySpeed() > -0.2)
+            if (getVelocitySpeed() < 3 && getVelocitySpeed() > -3)
             {
                 
-                AddReward(-0.5f);
+                AddReward(-2f);
             }
-            else AddReward(0.5f);
+            else AddReward(+1f);
         }
 
         if (!pedCheck && manualBrake)
         {
 
-            Debug.Log("Wronh Brake");
-            //Debug.Log("Uncorrect brake");
-            AddReward(-10f);
+           // Debug.Log("Wrong Brake");
+           
+            AddReward(-100f);
         }
 
+        if (pedCheck && manualBrake)
+        {
+
+            //Debug.Log("Correct Brake");
+            //Debug.Log("Uncorrect brake");
+            AddReward(1f);
+        }
 
         //Debug.Log(GetCumulativeReward());
 
         //rotation check
         rotationAngle = debug_Destination();
-        if ((vectorAction[2] > 0.1 || vectorAction[2] < 0.1) && pedCheck) AddReward(-10f);
+        if ((vectorAction[2] > 0.1 || vectorAction[2] < 0.1) && pedCheck) AddReward(-30f);
         if (transform.position.y < -0.5) EndEpisode();
           
        
@@ -224,7 +233,7 @@ public class CrossWalkCarAgent2 : CarAgent {
 
         if (other.gameObject.CompareTag("Walklimit1") || other.gameObject.CompareTag("Walklimit2"))
         {
-            AddReward(-100f);
+            AddReward(-150f);
             EndEpisode();
         }
         
@@ -237,16 +246,29 @@ public class CrossWalkCarAgent2 : CarAgent {
         bool pedOnTrajectory = false;
         foreach (GameObject ped in listOfPedastrians)
          {
-             xDist = ped.transform.position.x - transform.position.x;
-             zDist = ped.transform.position.z - transform.position.z;
-             xCheck = (-2 < xDist) && (xDist < 3.5);
-             zCheck = (0 < zDist) && zDist < 10;
 
-            if ((xCheck && zCheck) && !pedOnTrajectory)
+            toTarget = (ped.transform.position - transform.position).normalized;
+
+            if (Vector3.Dot(toTarget, transform.forward) > 0)
             {
-                if (zDist > maxZdist) maxZdist = zDist;
-                pedOnTrajectory = true;
+               
+                xDist = (ped.transform.position.x - transform.position.x) + 2;
+                zDist = Mathf.Abs(ped.transform.position.z - transform.position.z);
+               
+
+                xCheck = (0 < xDist) && (xDist < 5.5);
+                zCheck = (0 < zDist) && (zDist < 10);
+               
+
+                if (xCheck && zCheck) Debug.Log("pedastrian " + ped.name + " is in a risk point for " + gameObject.name + " .");
+
+                if ((xCheck && zCheck) && !pedOnTrajectory)
+                {
+                    if (zDist > maxZdist) maxZdist = zDist;
+                    pedOnTrajectory = true;
+                }
             }
+       
          }
 
         return pedOnTrajectory;
@@ -272,6 +294,6 @@ public class CrossWalkCarAgent2 : CarAgent {
             AddReward(-0.05f);
         }*/
 
-        directionAssignmentSystem(0.1f, true);
+       // directionAssignmentSystem(0.1f, true);
     }
 }
