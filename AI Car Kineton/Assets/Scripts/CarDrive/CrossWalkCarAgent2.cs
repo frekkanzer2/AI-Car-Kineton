@@ -15,6 +15,8 @@ public class CrossWalkCarAgent2 : CarAgent {
     private float xDist, zDist;
     private bool xCheck, zCheck;
 
+    //rotation analisis
+    private float rotationAngle;
     // brake boolean checks
     private bool manualBrake = false, pedCheck;
  
@@ -22,7 +24,8 @@ public class CrossWalkCarAgent2 : CarAgent {
     //Initialization
     public override void Initialize() {
         base.Initialize();
-       
+
+        
         spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -26.8f), Quaternion.identity));
         spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -12f), Quaternion.identity));
       
@@ -55,10 +58,14 @@ public class CrossWalkCarAgent2 : CarAgent {
 
     public override void OnEpisodeBegin() {
         base.OnEpisodeBegin();
+       
     }
 
-    public override void CollectObservations(VectorSensor sensor) {
+    public override void CollectObservations(VectorSensor sensor)
+    {
         base.CollectObservations(sensor);
+        sensor.AddObservation(transform.position);
+        
     }
 
     public override void Heuristic(float[] actionsOut) {
@@ -82,11 +89,12 @@ public class CrossWalkCarAgent2 : CarAgent {
     public override void OnActionReceived(float[] vectorAction) {
         //base.OnActionReceived(vectorAction);
         
+        //moovmemt
         verticalMovement(vectorAction[0], vectorAction[1]);
         //Rotation
-       rotation(vectorAction[2]);
-       followWheelRotation();
-
+        rotation(vectorAction[2]);
+        followWheelRotation();
+        //brake
         if (vectorAction[1] >= 0.5)
         {
             //Debug.Log(vectorAction[1]);
@@ -94,50 +102,79 @@ public class CrossWalkCarAgent2 : CarAgent {
             brake(1f);
         }
         else manualBrake = false;
-
-
+        
         pedCheck = checkPedastrians();
 
 
         //mooving controls
-        if (vectorAction[0] < 0 && !pedCheck)  AddReward(-1000f);
-        
 
-        if (pedCheck && (vectorAction[0] <= 0.001 && vectorAction[0] >= 0))
-        {
-            AddReward(10f * maxZdist);
-            
-        } else if (!pedCheck && vectorAction[1] > 0)
-        {
-            AddReward(50f);
+        //retro
+        if (vectorAction[0] < 0 && !pedCheck) {
+            Debug.Log("Retro");
+            AddReward(-5f);
         }
 
-        if (pedCheck && (vectorAction[0] > 0))
+        if (vectorAction[0] > 0 && !pedCheck) AddReward(0.1f);
+
+        if (pedCheck)
         {
-          AddReward(-100f);
-            
+            if (getVelocitySpeed() < 0.2 && getVelocitySpeed() > -0.2)
+            {
+                Debug.Log("Correct Speed");
+                AddReward(maxZdist*10f);
+            } else AddReward(-0.5f);
+
+        }
+        else
+        {
+
+            if (getVelocitySpeed() < 0.2 && getVelocitySpeed() > -0.2)
+            {
+                
+                AddReward(-0.5f);
+            }
+            else AddReward(0.5f);
         }
 
-        //braking controls
-        if (pedCheck && manualBrake)
+        if (!pedCheck && manualBrake)
         {
-            AddReward(10f * (maxZdist*10));
 
-
-        }  if (!pedCheck && manualBrake)
-        {
+            Debug.Log("Wronh Brake");
             //Debug.Log("Uncorrect brake");
-            AddReward(-10000f);
+            AddReward(-10f);
         }
-        
-        
+
+
         //Debug.Log(GetCumulativeReward());
 
+        //rotation check
+        rotationAngle = debug_Destination();
+        if ((vectorAction[2] > 0.1 || vectorAction[2] < 0.1) && pedCheck) AddReward(-10f);
+        if (transform.position.y < -0.5) EndEpisode();
+          
+       
     }
 
 
+    /* if (pedCheck && (vectorAction[0] <= 0.1 && vectorAction[0] >= 0))
+      {
+          AddReward(maxZdist/10);
 
-   
+      }*/
+
+    /* if (pedCheck && (vectorAction[0] > 0))
+     {
+         AddReward(-0.5f);
+
+     }*/
+
+    //braking controls
+    /*if (pedCheck && manualBrake)
+    {
+        AddReward(maxZdist/4);
+    }
+    */
+    
     private void OnCollisionEnter(Collision collision) {
         
         if (collision.gameObject.CompareTag("Environment Object")) {
@@ -147,7 +184,7 @@ public class CrossWalkCarAgent2 : CarAgent {
         }
         else if (collision.gameObject.CompareTag("Human")) {
 
-            AddReward(-100000f);
+            AddReward(-150f);
             EndEpisode();
         }
         else if (collision.gameObject.CompareTag("Untagged")) {
@@ -170,7 +207,7 @@ public class CrossWalkCarAgent2 : CarAgent {
                 
                 else if (myParent.CompareTag("Human")) {
 
-                    AddReward(-100000f);
+                    AddReward(-150f);
                     EndEpisode();
                     break;
                 }
@@ -181,13 +218,13 @@ public class CrossWalkCarAgent2 : CarAgent {
     private void OnTriggerEnter(Collider other) {
         //Collision code for Crosswalk Scene
         if (other.gameObject.CompareTag("EndGame")) {
-            AddReward(5f);
+            AddReward(50f);
             EndEpisode();
         }
 
         if (other.gameObject.CompareTag("Walklimit1") || other.gameObject.CompareTag("Walklimit2"))
         {
-            AddReward(-10000f);
+            AddReward(-100f);
             EndEpisode();
         }
         
@@ -215,10 +252,26 @@ public class CrossWalkCarAgent2 : CarAgent {
         return pedOnTrajectory;
     }
 
-    //Overrided methods, useful for not specializated agents
-    private void Update()
+    //local debug destination
+    private float debug_Destination()
     {
-        debug_drawDestination();
-        //Debug.Log(getRewardOnDirection(connectedEndGame));
+        if (drawRay) Debug.DrawLine(transform.position, connectedEndGame.transform.position, Color.yellow);
+        Vector3 point = transform.InverseTransformPoint(connectedEndGame.transform.position);
+        float angle = Mathf.Atan2(point.x, point.z) * Mathf.Rad2Deg;
+        return angle;
+    }
+
+    //Overrided methods, useful for not specializated agents
+     private void Update()
+     {
+
+        AddReward(-1f);
+       /* if (getVelocitySpeed() > 4 || getVelocitySpeed() < -4)
+        {
+            Debug.Log("High speed!");
+            AddReward(-0.05f);
+        }*/
+
+        directionAssignmentSystem(0.1f, true);
     }
 }

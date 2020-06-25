@@ -57,8 +57,15 @@ public class CrossWalkCarAgent : CarAgent {
         base.OnEpisodeBegin();
     }
 
-    public override void CollectObservations(VectorSensor sensor) {
-        base.CollectObservations(sensor);
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        sensor.AddObservation(transform.position);
+        sensor.AddObservation(transform.rotation);
+        //saving wheels rotations
+        sensor.AddObservation(wheel_front_left.transform.rotation);
+        sensor.AddObservation(wheel_front_right.transform.rotation);
+        sensor.AddObservation(wheel_back_left.transform.rotation);
+        sensor.AddObservation(wheel_back_right.transform.rotation);
     }
 
     public override void Heuristic(float[] actionsOut) {
