@@ -8,16 +8,42 @@ using UnityEngine.SceneManagement;
 public class ParkingCarAgent : CarAgent {
 
     private Vector2 latestRecordDistance;
+    private bool hasCollidedWithEndGame = false;
 
     //Initialization
     public override void Initialize() {
         base.Initialize();
+
         spawner.Add(new Spawn(new Vector3(-7.15f, 0.438f, 3.97f), Quaternion.Euler(0, 180, 0)));
         spawner.Add(new Spawn(new Vector3(-3.29f, 0.438f, 2f), Quaternion.Euler(0, 180, 0)));
         spawner.Add(new Spawn(new Vector3(5.26f, 0.438f, 0.33f), Quaternion.Euler(0, 180, 0)));
         spawner.Add(new Spawn(new Vector3(5.38f, 0.438f, 0.66f), Quaternion.Euler(0, 250, 0)));
         spawner.Add(new Spawn(new Vector3(-7.54f, 0.438f, 0.96f), Quaternion.Euler(0, 90, 0)));
         spawner.Add(new Spawn(new Vector3(-5.74f, 0.438f, 3.17f), Quaternion.Euler(0, 120, 0)));
+        spawner.Add(new Spawn(new Vector3(-7.74f, 0.438f, 2.64f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(-4.56f, 0.438f, 2.64f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(-4.8f, 0.438f, 1.2f), Quaternion.Euler(0, 270, 0)));
+        spawner.Add(new Spawn(new Vector3(7.34f, 0.438f, 0.39f), Quaternion.Euler(0, 90, 0)));
+        spawner.Add(new Spawn(new Vector3(-5.62f, 0.438f, 5.63f), Quaternion.Euler(0, 270, 0)));
+        spawner.Add(new Spawn(new Vector3(0.52f, 0.438f, -1.16f), Quaternion.Euler(0, 270, 0)));
+        spawner.Add(new Spawn(new Vector3(-5.27f, 0.438f, -1.16f), Quaternion.Euler(0, 90, 0)));
+        spawner.Add(new Spawn(new Vector3(3.33f, 0.438f, -1.16f), Quaternion.Euler(0, 90, 0)));
+        spawner.Add(new Spawn(new Vector3(3.33f, 0.438f, -1.16f), Quaternion.Euler(0, 270, 0)));
+        spawner.Add(new Spawn(new Vector3(-2.37f, 0.438f, -4.7f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(6.2f, 0.438f, -4.7f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(6.54f, 0.438f, 4.66f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(3.43f, 0.438f, 4.66f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(0.42f, 0.438f, 4.66f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(-4.62f, 0.438f, 4.11f), Quaternion.Euler(0, 270, 0)));
+        spawner.Add(new Spawn(new Vector3(-5.29f, 0.438f, 3.11f), Quaternion.Euler(0, 200, 0)));
+        spawner.Add(new Spawn(new Vector3(-7.78f, 0.438f, -0.63f), Quaternion.Euler(0, 90, 0)));
+        spawner.Add(new Spawn(new Vector3(-7.79f, 0.438f, 5.58f), Quaternion.Euler(0, 90, 0)));
+        spawner.Add(new Spawn(new Vector3(-2.66f, 0.438f, 0.15f), Quaternion.Euler(0, 270, 0)));
+        spawner.Add(new Spawn(new Vector3(-2.52f, 0.438f, -4.69f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(-5.21f, 0.438f, -4.58f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(-5.32839f, 0.438f, 3.110045f), Quaternion.Euler(0, 200, 0)));
+        spawner.Add(new Spawn(new Vector3(-5.370404f, 0.438f, 3.118563f), Quaternion.Euler(0, 396, 0)));
+
         latestRecordDistance = getDistanceFromObject(connectedEndGame);
     }
 
@@ -31,7 +57,7 @@ public class ParkingCarAgent : CarAgent {
         episodeExecution();
         directionAssignmentSystem(0.01f, true);
         recordNewDistances(0.02f, true);
-        AddReward(-0.1f);
+        AddReward(-0.2f);
     }
 
     /*
@@ -109,8 +135,9 @@ public class ParkingCarAgent : CarAgent {
             Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
             AddReward(-100f);
             EndEpisode();
-        } else if (other.gameObject.CompareTag("EndGame")) {
+        } else if (other.gameObject.CompareTag("EndGame") && !hasCollidedWithEndGame) {
             Debug.Log("OnTriggerEnter collided with " + other.gameObject.tag);
+            hasCollidedWithEndGame = true;
             AddReward(250f);
         }
 
@@ -155,9 +182,28 @@ public class ParkingCarAgent : CarAgent {
                     AddReward(assign);
                     EndEpisode();
                 }
-            }
+            }/* else if (counter < 4 && getVelocitySpeed() < 0.2f && getVelocitySpeed() > -0.2f) {
+                Debug.Log("ERROR - Speed to low without 4 wheels in parking");
+                assign = -0.2f;
+            }*/
             AddReward(assign);
         }
+    }
+
+    protected void resetCar() {
+        carBody.isKinematic = true;
+        executeSpawn();
+        speed = 0;
+        // wc_fl, wc_fr, wc_bl, wc_br
+        wc_fl.brakeTorque = Mathf.Infinity;
+        wc_fr.brakeTorque = Mathf.Infinity;
+        wc_bl.brakeTorque = Mathf.Infinity;
+        wc_br.brakeTorque = Mathf.Infinity;
+        carBody.velocity = Vector3.zero;
+        carBody.angularVelocity = Vector3.zero;
+        carBody.isKinematic = false;
+        episode_actualSeconds = episodeDuration;
+        hasCollidedWithEndGame = false;
     }
 
 }

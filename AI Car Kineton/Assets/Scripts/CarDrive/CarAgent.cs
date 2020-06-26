@@ -27,7 +27,7 @@ public class CarAgent : Agent {
     public int episodeDuration = 1;
     [Tooltip("Insert here the negative reward when the episode reaches the time limit.")]
     public float epDurationNegativeReward = 0f;
-    private int episode_actualFrames = 0;
+    protected int episode_actualSeconds = 0;
 
     public float staticSpeed = 5000f;
     public float brakeForce = 100000f;
@@ -92,8 +92,7 @@ public class CarAgent : Agent {
         carBody = GetComponent<Rigidbody>();
 
         //Setting episode duration
-        episodeDuration *= 60;
-        episode_actualFrames = episodeDuration;
+        episode_actualSeconds = episodeDuration;
 
         /*recursive Hierarchy assigment for Wheels, Wheelcolliders and lights*/ 
         componentsAssigment(transform);
@@ -409,7 +408,7 @@ public class CarAgent : Agent {
         carBody.velocity = Vector3.zero;
         carBody.angularVelocity = Vector3.zero;
         carBody.isKinematic = false;
-        episode_actualFrames = episodeDuration;
+        episode_actualSeconds = episodeDuration;
     }
 
     protected void executeSpawn() {
@@ -528,8 +527,8 @@ public class CarAgent : Agent {
 
     // YOU SHOULD CALL IT IN THE UPDATE METHOD
     protected void episodeExecution() {
-        episode_actualFrames--;
-        if (episode_actualFrames == 0) {
+        episode_actualSeconds = episode_actualSeconds - (int) Time.deltaTime;
+        if (episode_actualSeconds <= 0) {
             AddReward(epDurationNegativeReward);
             EndEpisode();
         }
@@ -559,7 +558,5 @@ public class CarAgent : Agent {
             AddReward(-0.02f);
         }
     }
-
-
   
 }
