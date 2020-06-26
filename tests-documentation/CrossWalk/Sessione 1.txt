@@ -1,0 +1,7 @@
+La prima sessione di addestramento è servita per capire come la macchina prendeva confidenza con i movimenti e con l'ambiente di scena,
+i risultati sono stati molto scarsi nei primi test da 500 mila tentativi, i comandi di addestramento nello script generale
+erano poco specializzati e l'auto non reagiva bene agli input che la console immetteva.
+
+ Importanti criteri utili per le successive sessioni di test:
+Nonostante l'auto continuasse a muoversi totalmente a caso, impostando dei piccoli reward negativi sul comando di retromarcia, 
+l'auto ha appreso il senso di marcia corretto, evitando di andare costantemente indietro. 

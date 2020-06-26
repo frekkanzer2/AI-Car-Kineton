@@ -1,0 +1,20 @@
+Sessione 2
+A seguito della mancanza di traiettoria dell'auto, si è pensato di introdurre i limiti di carreggiata, al fine di far capire all'auto
+il giusto senso di marcia.
+
+I 5 test della sessione due, specialmente con l'introduzione dei limiti di carreggiata hanno permesso di far prendere all'auto cosienza
+della corretta triettoria da seguire, in particolar modo, settando i raggi a ventaglio davanti l'auto, in modo tale da far avere all'agente
+una precisa visione dei walk limit e dei pedoni sulla sua traiettoria. 
+
+Primi Test della sessione 
+- Non conoscendo ancora  come comportarsi con i pedoni, l'auto pur riuscendo a raggiungerli, cercava di continuare dritta 
+per la sua traiettoria, cercando di evitarli, sterzando - dato il semplice reward negativo a contatto con il pedone.
+
+Test successivi 3-4-5
+-Al fine di far migliorare l'auto. dopo la specializzazione in due script per ereditarietà, è stato implementato il meccanismo di distanze
+(Risk Zone V1) dai pedoni, in modo tale da specializzare in maniera più granulare i reward quando l'auto era vicino ad un pedone sulla sua 
+traiettoria. 
+
+-- Tale sessione non ha portato miglioramenti significativi all'addestramento dell'auto dato che nonostante la prima bozza del meccanismo
+di Risk Zone, i reward assegnati e i movimenti di sterzata erano ancora poco controllati e l'auto non percepiva come fermarsi correttamente
+in prossimità dei pedoni... Viceversa conoscendo la sua traiettoria verso l'end game, preferiva cercare di schivarli e tirare dritto.

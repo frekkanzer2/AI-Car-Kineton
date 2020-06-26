@@ -1,0 +1,12 @@
+La sessione di test 4 è stata finalizzata al miglioramento della simulazione, i tentativi
+di test sono stati molto più alti rispetto alla sessione precede, molto ha influito
+il sistema di RayPerceptionSensor3D, ingrandendo le sfere, l'auto sulla sua traiettoria percepiva
+correttamente il pedone e ha cominciato a frenare sempre meglio in vicinanza del pedone.
+
+La sessione ha permesso finalmente di raggiungere il comportamento desiderato, ottenendo un primo
+bilanciamento tra reward di movimento e un training ben strutturato per far prendere all'auto
+familiarità con il singolo pedone sull'attraversamento pedonale.
+
+Di rilievo è da considerarsi il singolo training 4_7 che ha permesso di riconoscere il singolo pedone
+e di frenare molto accuratamente ad una distanza accettabile da esso, permettendo così di 
+avere una solida base per le successive sessioni di addestramento.

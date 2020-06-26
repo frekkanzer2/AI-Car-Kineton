@@ -1,0 +1,46 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1593166136",
+        "python_version": "3.7.7 (tags/v3.7.7:d7c567b08f, Mar 10 2020, 11:52:54) [MSC v.1900 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\carmi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python37\\Scripts\\mlagents-learn thrmln_config.yaml --run-id=CrossWalkS6_9 --initialize-from CrossWalkS7_0 --initialize-from CrossWalkS6_9 --force",
+        "mlagents_version": "0.16.1",
+        "mlagents_envs_version": "0.16.1",
+        "communication_protocol_version": "1.0.0",
+        "tensorflow_version": "2.2.0",
+        "end_time_seconds": "1593166144"
+    },
+    "total": 8.2808429,
+    "count": 1,
+    "self": 0.1606602999999982,
+    "children": {
+        "run_training.setup": {
+            "total": 0.04254650000000004,
+            "count": 1,
+            "self": 0.04254650000000004
+        },
+        "TrainerController.start_learning": {
+            "total": 8.077636100000001,
+            "count": 1,
+            "self": 0.0021055999999983754,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 8.069648800000001,
+                    "count": 1,
+                    "self": 8.069648800000001
+                },
+                "trainer_threads": {
+                    "total": 4.699999999857596e-06,
+                    "count": 1,
+                    "self": 4.699999999857596e-06
+                },
+                "TrainerController._save_model": {
+                    "total": 0.005877000000001686,
+                    "count": 1,
+                    "self": 0.005877000000001686
+                }
+            }
+        }
+    }
+}

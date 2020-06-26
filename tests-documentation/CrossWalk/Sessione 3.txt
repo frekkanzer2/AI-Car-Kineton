@@ -1,0 +1,14 @@
+La terza sessione di training è stata avviata a seguito di un meeting,
+in cui è sorta l'ipotesi di semplificare per i primi addestramenti l'ambientazione circostante, 
+e di limitare almeno momentanemamente i movimenti dell'auto. 
+
+A seguito di tale discussione, sono state introdotte pesanti penalità nel caso l'auto
+collideva con un pedone e sono stati rimossi i movimenti sull'asse orizzontale, permettendo all'
+auto solo di muoversi in linea retta davanti a se.
+
+Inoltre il sistema di reward sui movimenti dell'auto sotto controllo della risk zone è stato specializzato
+al fine di migliorare i comportamenti della macchina specificando dei reward più granulari sui singoli movimenti
+dell'agente in vicinanza o lontananza dai pedoni.
+
+Inoltre il numero di pedoni per questa sessione di 5 training - tutti da 500.000 step è stata effettuata con un pedone singolo.
+portando fievoli miglioramenti e un primo utilizzo corretto dei freni in prossimità del pedone se pur molto sporadico.

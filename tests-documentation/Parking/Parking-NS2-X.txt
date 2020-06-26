@@ -1,0 +1,11 @@
+Parking-NS2-{1,2,3}
+	dedicati al test dell'auto sul parcheggio libero, per un totale di 9MLN di steps.
+	L'auto deve imparare a effettuare parcheggi da quante più posizioni iniziali possibili.
+	A differenza dalle sessioni Parking-NS1-X, sono state aggiunte molte più posizioni iniziali che
+	favorissero l'uso della retromarcia, onde evitare che l'auto imparasse a parcheggiare solo
+	frontalmente. Nonostante ciò, si nota che l'auto preferisce comunque effettuare parcheggi
+	frontali anzichè in retromarcia: è disposta a fare strane manovre al fine di raddrizzarsi ed
+	effettuare il parcheggio frontale anzichè in retromarcia. D'altronde, ci sono comunque alcune
+	situazioni in cui preferisce la retromarcia, ma nel complesso sono comunque poche.
+
+Parking-NS2-{4,5} dedicati al test dell'auto sul parcheggio con un'auto all'interno.
