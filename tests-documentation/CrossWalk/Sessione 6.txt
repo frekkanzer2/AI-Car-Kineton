@@ -1,0 +1,44 @@
+La sesta sessione di lavoro (ufficialmente la prima della seconda scena di crosswalk)
+è stata iniziata al seguito della riabilitazione dei movimenti di sterzata all'agente.
+
+Primi tests.
+L'agente partendo dalla base del test 5_7 (poi 5_8) rispondeva bene alla presenza dei pedoni su strada, 
+ma ovviamente la traiettoria dell'auto era molto poco precisa e non limitata in alcun modo,
+quindi inevitabilmente la macchina cominciava ad effettuare delle curve indesiderate.
+
+al fine di migliorare la traiettoria dell'auto con il training 6_2 sono stati reintrodotti i
+WalkLimit. e il sistema di raggi della sessione precedente non ha ben reagito al cambiamento 
+in quanto l'auto pur avendo uno spazio di sterzata limitato, cominciava a perdere precisione 
+a contatto con i pedoni.
+
+-----------------------------------------------------------
+TRAINING - 6 {3-4-5} da 1.5 a 3 milioni di step
+prima di procedere per queste sessioni di training si è pensato
+di implementare il sistema di ricezione dell'end game sia per la scena di CrossWalk che Parking.
+
+A sistema implementato si è provato con i sopracitati training ad addestrare l'auto assegnando reward positivi o negativi
+a seconda dell'angolo di precisione con cui l'auto mirava all'end game... I risultati non sono stati dei più soddisfacenti.
+
+-----------------------------------------------------------
+Training session da 6_6 a 6_9 - 3 milioni di step in media
+dati gli scarsi risultati dei training precedenti si è pensato di sdoppiare il sistema di raggi, ponendo 
+un fascio a ventaglio inferiore per monitorare i walk limit e uno a ventaglio superiore per monitorare
+i pedoni.
+
+-- inoltre a seguito di meeting sono stati cambiati le osservazioni dell'agente incentrandole di più sui 
+wheelCollider e sulla velocity dell'auto.
+
+avendo cambiato i parametri fondanti della rete neurale. l'addestramento è ripartito da zero con un singolo pedone.
+a seguito dei primi training. l'agente rispondeva discretamente bene nei movimenti. Ostico è stato far capire 
+all'agente il corretto utilizzo della retromarcia e del freno.
+
+Alla fine della sessione... in particolar modo alla fine del training CrossWalkS6_9 l'agente ha aquisito un ottima
+padronanza dei movimenti si per quanto riguarda rotazioni, frenate e accellerate. Difficilmente capisce come
+comportarsi vicino ai pedoni, in quanto la maggiorparte delle volte tende a muoversi evitandoli senza fermarsi all'attraversamento
+sfruttando i punti liberi tra il pedone in movimento e il walklimit.
+
+---IMPORTANTE ---
+
+In questa sessione di training, è stata cambiata nello script CrossWalk 2 la funzione di calcolo della riskzone, in modo
+tale da renderla indipendente dal senso di marcia dell'auto, al fine di effettuare dei training a doppio agente
+-- in sensi di marcia opposti.

@@ -1,0 +1,9 @@
+[IN CORSO]
+Al fine di migliorare la precisione con cui l'agente valuta la necessità di frenare vicino all'attraversamento
+si è deciso di apportare modifica alla grandezza delle sfere.
+
+Con raggiuìo sferico più grande l'agente meglio valuta la presenza dei pedoni rispetto a prima, se pur con reward ancora meglio da definire,
+l'agente con i trainings 7_0 e 7_1 risponde meglio alla presenza di pedoni davanti alla sua traiettoria e evita 
+quasi totalmente le sterzate anomale vicino le striscie pedonali.
+
+--- Sono ancora da migliorare i reward di riskzone in prossimità dei pedoni e i comportamenti generali dell'auto.

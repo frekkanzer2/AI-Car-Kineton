@@ -1,0 +1,19 @@
+La quinta sessione di training
+è stata l'ultima della scena CrossWalk 1, dove si è ampliato il numero di pedoni 
+
+Base delle sessione 5 è stato il test 4_7, base della precedente sessione di lavoro 4.
+dal TEST 5_1 sal test 5_3 si è porgressivamente portato il numero di pedoni da 1 a 2
+e una volta definite delle traiettorie pedonali che permettessero un addestramento soddisfacente
+il sistema ha ben reagito all'aggiunta del secondo pedone.
+
+dal Test 5_4 al test 5_7 l'auto ha continuato a lavorare in maniera progressiva rispetto a prima
+con l'agiunta del 3° pedone e un incremento esaustivo degli step per singolo training...
+in particolare in questa sotto sessione, l'agente è stato sottoposto a training di 1.5 milioni di 
+step ciascuno. 
+
+-l'agenete alla fine della quinta sessione di training ha migliorato di molto le sue caratteristiche,
+pur rimanendo incerto con un numero alto di pedoni e la sua posizione al centro della strada.
+
+-- Durante la sessione 6 (effettuata nella scena CrossWalk 2) è stato effettuato anche il training 5_8 
+(nella scena CrossWalk) dove precedentemente sono state ampliate le traiettorie pedonali in modo tale da 
+rilassare leggermente il carico di lavoro all'agente di questa scena.
