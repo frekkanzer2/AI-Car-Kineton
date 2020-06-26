@@ -8,4 +8,16 @@ Parking-NS2-{1,2,3}
 	effettuare il parcheggio frontale anzichè in retromarcia. D'altronde, ci sono comunque alcune
 	situazioni in cui preferisce la retromarcia, ma nel complesso sono comunque poche.
 
-Parking-NS2-{4,5} dedicati al test dell'auto sul parcheggio con un'auto all'interno.
+Parking-NS2-{4,5,6}
+	dedicati al test dell'auto sul parcheggio con un'auto ostacolo all'interno.
+	A differenza dei precedenti 3 test, è stata aggiunta un'auto ostacolo al fianco del parcheggio
+	verde, in modo tale che determinate posizioni iniziali risultassero complesse da gestire per
+	l'auto. Nei test Parking-NS2-{4,5} l'auto ha imparato a gestire molte delle situazioni
+	complesse, ma alcune presentano ancora qualche difficoltà: l'auto preferisce entrare ed uscire
+	dal parcheggio per ottenere più punti (entrata nel parcheggio: +250; parcheggio completo: +500).
+	Nel test Parking-NS2-6 è stato fatto in modo che l'auto guadagna solo una volta dall'entrata nel
+	parcheggio, quindi se ci rientra non guadagnerà una seconda volta +250. Ciò ha spinto l'auto ad
+	andare oltre al semplice movimento "avanti-indietro" tenuto, quindi ha imparato a gestire qualsiasi
+	altra situazione e riesce a gestire ogni parcheggio della scena (ricordiamo, con una sola auto
+	ostacolo).
+	
