@@ -20,4 +20,19 @@ Parking-NS2-{4,5,6}
 	andare oltre al semplice movimento "avanti-indietro" tenuto, quindi ha imparato a gestire qualsiasi
 	altra situazione e riesce a gestire ogni parcheggio della scena (ricordiamo, con una sola auto
 	ostacolo).
-	
+
+Parking-NS2-{7,8,9,10}
+	Dedicati al test dell'auto sul parcheggio con due auto ostacolo all'interno: entrambe sono
+	posizionate lateralmente al posto in cui posizionare l'auto, in modo tale che essa impari sin da
+	subito ad effettuare manovre più precise.
+	La riduzione dello spazio in cui entrare per posizionarsi, ha comportato un grande incremento di
+	steps per far assumere all'auto un comportamento normale: da tre test, ora sono stati necessari 4
+	test. Giustamente, rispetto ai tre test precedenti, ora l'auto ha comunque meno spazio libero e
+	le manovre sono decisamente più complesse.
+
+Parking-NS2-{11,12,13}
+	Tali test simulano il parcheggio della macchina in un posto con due auto ostacolo laterali (come nei
+	test precedenti) con la differenza che sono state aggiunte ulteriori due auto. Tali due auto
+	ostacolo aggiunte non influenzano più di tanto la traiettoria dell'auto, ma hanno comunque
+	contribuito al learning: l'auto ora schiva maggiormente le auto ostacolo e fa più attenzione con le
+	manovre, sia frontali che retromarcia.

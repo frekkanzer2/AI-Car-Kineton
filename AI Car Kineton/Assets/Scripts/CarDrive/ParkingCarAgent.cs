@@ -30,17 +30,17 @@ public class ParkingCarAgent : CarAgent {
         spawner.Add(new Spawn(new Vector3(3.33f, 0.438f, -1.16f), Quaternion.Euler(0, 90, 0)));
         spawner.Add(new Spawn(new Vector3(3.33f, 0.438f, -1.16f), Quaternion.Euler(0, 270, 0)));
         spawner.Add(new Spawn(new Vector3(-2.37f, 0.438f, -4.7f), Quaternion.Euler(0, 180, 0)));
-        spawner.Add(new Spawn(new Vector3(6.2f, 0.438f, -4.7f), Quaternion.Euler(0, 180, 0)));
-        spawner.Add(new Spawn(new Vector3(6.54f, 0.438f, 4.66f), Quaternion.Euler(0, 0, 0)));
-        spawner.Add(new Spawn(new Vector3(3.43f, 0.438f, 4.66f), Quaternion.Euler(0, 0, 0)));
         spawner.Add(new Spawn(new Vector3(0.42f, 0.438f, 4.66f), Quaternion.Euler(0, 0, 0)));
         spawner.Add(new Spawn(new Vector3(-4.62f, 0.438f, 4.11f), Quaternion.Euler(0, 270, 0)));
         spawner.Add(new Spawn(new Vector3(-5.29f, 0.438f, 3.11f), Quaternion.Euler(0, 200, 0)));
         spawner.Add(new Spawn(new Vector3(-7.78f, 0.438f, -0.63f), Quaternion.Euler(0, 90, 0)));
+        spawner.Add(new Spawn(new Vector3(0.44f, 0.438f, 5.19f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(0.44f, 0.438f, 5.19f), Quaternion.Euler(0, 180, 0)));
         spawner.Add(new Spawn(new Vector3(-7.79f, 0.438f, 5.58f), Quaternion.Euler(0, 90, 0)));
         spawner.Add(new Spawn(new Vector3(-2.66f, 0.438f, 0.15f), Quaternion.Euler(0, 270, 0)));
         spawner.Add(new Spawn(new Vector3(-2.52f, 0.438f, -4.69f), Quaternion.Euler(0, 180, 0)));
         spawner.Add(new Spawn(new Vector3(-5.21f, 0.438f, -4.58f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(7.09f, 0.438f, 0.12f), Quaternion.Euler(0, 90, 0)));
         spawner.Add(new Spawn(new Vector3(-5.32839f, 0.438f, 3.110045f), Quaternion.Euler(0, 200, 0)));
         spawner.Add(new Spawn(new Vector3(-5.370404f, 0.438f, 3.118563f), Quaternion.Euler(0, 396, 0)));
 
