@@ -13,6 +13,7 @@ public class ParkingCarAgent : CarAgent {
     //Initialization
     public override void Initialize() {
         base.Initialize();
+        getLocalEndGame(transform.parent);
 
         spawner.Add(new Spawn(new Vector3(-7.15f, 0.438f, 3.97f), Quaternion.Euler(0, 180, 0)));
         spawner.Add(new Spawn(new Vector3(-3.29f, 0.438f, 2f), Quaternion.Euler(0, 180, 0)));

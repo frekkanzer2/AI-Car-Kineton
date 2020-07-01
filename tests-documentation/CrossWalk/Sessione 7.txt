@@ -2,8 +2,20 @@
 Al fine di migliorare la precisione con cui l'agente valuta la necessità di frenare vicino all'attraversamento
 si è deciso di apportare modifica alla grandezza delle sfere.
 
-Con raggiuìo sferico più grande l'agente meglio valuta la presenza dei pedoni rispetto a prima, se pur con reward ancora meglio da definire,
+
+7.0 -250.000 step / 7_1 500.000 step
+Con raggio sferico più grande l'agente meglio valuta la presenza dei pedoni rispetto a prima, se pur con reward ancora meglio da definire,
 l'agente con i trainings 7_0 e 7_1 risponde meglio alla presenza di pedoni davanti alla sua traiettoria e evita 
 quasi totalmente le sterzate anomale vicino le striscie pedonali.
 
---- Sono ancora da migliorare i reward di riskzone in prossimità dei pedoni e i comportamenti generali dell'auto.
+--- Session Training - 7_2/7_3 - 500.000 step a testa
+
+Dopo alcune valutazioni preventive, si nota che la macchina pur seguendo una traiettoria quasi lineare, tende ancora a sterzare incorrettamente
+evitando una corretta tenuta di strada, per evitare ciò sono stati reintrodotti i controlli di reward sulla velocità dell'auto (in particolare
+i reward negativi scattano se l'auto tende a superarare la velocità in valore float di 4), il riscontro è stato abbastanza positivo, in quanto
+l'auto già dai primi step del training 7_2 ha progressivamente migliorato la velocità. Oltretutto sono stati riaggiunti i controlli di direzionamento
+rispetto all'end game in modo tale da migliorare la traiettiria, con reward molto basso (di 0.001f) nel metodo update. 
+-Fievoli miglioramenti si notano al termine del training 7_3.
+
+---Al termine di questi training si nota ancora un'importante incertezza quando l'auto si trova sulle strisce con un pedone frontale e 
+uno di lato, la configurazione delle sfere permette di rilevare entrambi i pedoni, ma l'auto tende a rimanere ferma.

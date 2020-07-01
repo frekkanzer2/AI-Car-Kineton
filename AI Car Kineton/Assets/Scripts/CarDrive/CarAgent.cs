@@ -32,7 +32,7 @@ public class CarAgent : Agent {
     public float staticSpeed = 5000f;
     public float brakeForce = 100000f;
     protected float speed = 0;
-    protected GameObject connectedEndGame;
+    public GameObject connectedEndGame;
     protected Rigidbody carBody;
     protected WheelCollider wc_fl, wc_fr, wc_bl, wc_br; // f -> front, l -> left, r -> right
     protected GameObject wheel_front_left, wheel_front_right, wheel_back_left, wheel_back_right;
@@ -96,7 +96,7 @@ public class CarAgent : Agent {
 
         /*recursive Hierarchy assigment for Wheels, Wheelcolliders and lights*/ 
         componentsAssigment(transform);
-        getLocalEndGame(transform.parent);
+        
 
         wc_fl = wheel_front_left.GetComponentInParent<WheelCollider>();
         wc_fr = wheel_front_right.GetComponentInParent<WheelCollider>();

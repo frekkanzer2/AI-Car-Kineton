@@ -22,6 +22,7 @@ public class CrossWalkCarAgent2 : CarAgent
     // brake boolean checks
     private bool manualBrake = false, pedCheck;
 
+   
 
     //Initialization
     public override void Initialize()
@@ -167,7 +168,7 @@ public class CrossWalkCarAgent2 : CarAgent
 
         //rotation check
         rotationAngle = debug_Destination();
-        if ((vectorAction[2] > 0.1 || vectorAction[2] < 0.1) && pedCheck) AddReward(-10f);
+        if ((vectorAction[2] > 0.1 || vectorAction[2] < 0.1) && pedCheck) AddReward(-100f);
         if (transform.position.y < -0.5) EndEpisode();
 
        // Debug.Log(GetCumulativeReward());
@@ -308,13 +309,13 @@ public class CrossWalkCarAgent2 : CarAgent
     {
 
         //AddReward(-0.1f);
-        /* if (getVelocitySpeed() > 4 || getVelocitySpeed() < -4)
+         if (getVelocitySpeed() > 4 || getVelocitySpeed() < -4)
          {
              Debug.Log("High speed!");
-             AddReward(-0.05f);
-         }*/
+             AddReward(-0.005f);
+         }
 
-        //directionAssignmentSystem(0.01f, true);
+        directionAssignmentSystem(0.01f, true);
     }
 
     
