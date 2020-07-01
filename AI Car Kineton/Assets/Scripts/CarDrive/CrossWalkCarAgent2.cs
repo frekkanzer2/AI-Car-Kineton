@@ -122,6 +122,7 @@ public class CrossWalkCarAgent2 : CarAgent
             //Debug.Log("Retro");
             AddReward(-5f);
         }
+        else AddReward(0.1f);
 
         if (vectorAction[0] > 0 && !pedCheck) AddReward(10f);
 
@@ -143,9 +144,9 @@ public class CrossWalkCarAgent2 : CarAgent
             if (getVelocitySpeed() < 3 && getVelocitySpeed() > -3)
             {
 
-                AddReward(-10f);
+                AddReward(-1000f);
             }
-            else AddReward(0.0005f);
+            else AddReward(0.5f);
         }
 
         if (!pedCheck && manualBrake)

@@ -19,3 +19,24 @@ rispetto all'end game in modo tale da migliorare la traiettiria, con reward molt
 
 ---Al termine di questi training si nota ancora un'importante incertezza quando l'auto si trova sulle strisce con un pedone frontale e 
 uno di lato, la configurazione delle sfere permette di rilevare entrambi i pedoni, ma l'auto tende a rimanere ferma.
+
+--- Session Training - 7_4/7_5/7_6 --- 500.000 step ognuno
+Miglioramento dei raggi di rilevamento dei pedoni, l'auto tende a migliorare i movimenti e il caso di incertezza si presenta meno frequentemente
+il riscontro in generale è molto positivo e l'auto bilancia bene l'alternanza di comportamenti da avere in vicinanza con i pedoni e quando la traiettoria
+risulta libera.
+
+--- Session Training -7_7 --Agginunta di un secondo agente in senso di marcia opposto nello stesso environment 100.000.000 step per due agenti
+dopo alcuni controlli positivi tra reward e fix di raggi l'auto mantiene un comportamento nel complesso abbastanza positivo
+per entrambi i sensi di marcia, le fermate sulle strisce sono quasi del tutto assenti.... Quando l'auto si ferma in maniera obliqua e non ha visibilità della 
+strada tende a restare ferma nella sua traiettoria....
+
+
+--- Session Training - 7_8 - allargamento sfere per tenuta di strada -- 500.000 steps + Copie dell'environment
+L'auto percepisce molto meglio la presenza dei pedoni, però con sfere più grandi diventa molto più incerta su quando avanzare e su quando
+spegnere i freni, l'addestramento non è andato a buon fine.
+
+--- Session training - 7_9 -- ripristino delle condizioni precedenti e pedone singolo -- 500.000 - singola copia environment
+
+l'addestramento è ripartito come base dal training 7_7, e con un singolo pedone la reattività dei movimenti è stata correttamente ripristinata
+la tenuta di strada si è mantenuta costante per quasi tutto l'addestramento e l'alternanza di comportamento con la presenza
+del pedone è davvero ottimale per questa sessione di training.
