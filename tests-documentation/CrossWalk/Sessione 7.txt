@@ -40,3 +40,22 @@ spegnere i freni, l'addestramento non è andato a buon fine.
 l'addestramento è ripartito come base dal training 7_7, e con un singolo pedone la reattività dei movimenti è stata correttamente ripristinata
 la tenuta di strada si è mantenuta costante per quasi tutto l'addestramento e l'alternanza di comportamento con la presenza
 del pedone è davvero ottimale per questa sessione di training.
+
+---Tests a doppio pedone --- Nuove Problematiche e tentativi di miglioramento avvenuti...
+--Session training - 7_10 -- 100.000 step -- intervalli di lavoro alti e bassi -- eliminata più volte;
+l'auto continua a mantenere un comportamento ottimale vicino ai pedoni, però nella corsia di sinistra se la frenata avviene con un angolazione poco precisa,
+l'agente tende ad andare in IDLE anche dopo l'attraversamento del pedone.
+
+--Cambiamanti generali al sistema di raggi 
+	-Rilevatore pedoni. a fascio più stretto e in traiettoria più alta al fine di non avere interferenza con i walk limit.
+	- Fascio di raggi inferiore per il corretto cammino in traiettoria con sfere più piccole;
+
+--- Session training 7_11 --- meno di 500.000 step scarsi risultati, ripartito da training 7_7
+L'agente tende a collidere maggiormente con i pedoni, non calcolando bene le traiettorie del movimento.
+
+--- Session training 7_12 e 7_13 -- 500.000 step a testa
+---Pre test --- Reintrodotta la funzione di controllo reward sulla rotation dei wheel collider
+l'agente fin da subito tende a migliorare la traiettoria e a migliorare la percezione dei pedoni ma continua ad essere incerto nel caso il fascio di raggi
+per il movimento collida a metà con il walk limi, una volta che il pedone è fuori traiettoria, l'auto tende a ripartire, ma non riesce bene a concepire 
+come muoversi e resta in Idle o fino a quando non vede l'end game, riposizionandosi e continuando a ricamminare in maniera lineare, oppure se la distanza non consente il primo caso
+l'auto è costretta a collidere con il walk limit e terminare l'episodio.

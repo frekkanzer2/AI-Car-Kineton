@@ -117,12 +117,12 @@ public class CrossWalkCarAgent2 : CarAgent
         //mooving controls
 
         //retro
-        if (vectorAction[0] < 0 && !pedCheck)
+        /*if (vectorAction[0] < 0 && !pedCheck)
         {
-            //Debug.Log("Retro");
-            AddReward(-5f);
-        }
-        else AddReward(0.1f);
+            Debug.Log("Retro");
+            AddReward(-0.001f);
+        }*/
+       
 
         if (vectorAction[0] > 0 && !pedCheck) AddReward(10f);
 
@@ -130,31 +130,22 @@ public class CrossWalkCarAgent2 : CarAgent
         {
             if (getVelocitySpeed() < 0.4 && getVelocitySpeed() > -0.4)
             {
-                Debug.Log("Correct Speed " + (maxZdist * 10f));
-                AddReward(maxZdist * 100f);
+                Debug.Log("Correct Speed " + (maxZdist * 20f));
+                AddReward(maxZdist * 20f);
             }
             else
             {
                 AddReward(-10f);
             }
         }
-        else
-        {
-
-            if (getVelocitySpeed() < 3 && getVelocitySpeed() > -3)
-            {
-
-                AddReward(-1000f);
-            }
-            else AddReward(0.5f);
-        }
+       
 
         if (!pedCheck && manualBrake)
         {
 
             // Debug.Log("Wrong Brake");
 
-            AddReward(-10f);
+            AddReward(-100f);
         }
 
         if (pedCheck && manualBrake)
@@ -162,38 +153,20 @@ public class CrossWalkCarAgent2 : CarAgent
 
             //Debug.Log("Correct Brake");
             //Debug.Log("Uncorrect brake");
-            AddReward(1f);
+            AddReward(10f);
         }
 
         //Debug.Log(GetCumulativeReward());
 
         //rotation check
         rotationAngle = debug_Destination();
-        if ((vectorAction[2] > 0.1 || vectorAction[2] < 0.1) && pedCheck) AddReward(-100f);
+        if ((vectorAction[2] > 0.1 || vectorAction[2] < 0.1) && pedCheck) AddReward(-0.1f);
         if (transform.position.y < -0.5) EndEpisode();
 
        // Debug.Log(GetCumulativeReward());
     }
 
 
-    /* if (pedCheck && (vectorAction[0] <= 0.1 && vectorAction[0] >= 0))
-      {
-          AddReward(maxZdist/10);
-
-      }*/
-
-    /* if (pedCheck && (vectorAction[0] > 0))
-     {
-         AddReward(-0.5f);
-
-     }*/
-
-    //braking controls
-    /*if (pedCheck && manualBrake)
-    {
-        AddReward(maxZdist/4);
-    }
-    */
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -310,14 +283,111 @@ public class CrossWalkCarAgent2 : CarAgent
     {
 
         //AddReward(-0.1f);
-         if (getVelocitySpeed() > 4 || getVelocitySpeed() < -4)
+       /* if (getVelocitySpeed() > 4 || getVelocitySpeed() < -4)
          {
              Debug.Log("High speed!");
-             AddReward(-0.005f);
-         }
+             AddReward(-0.00005f);
+         }*/
 
         directionAssignmentSystem(0.01f, true);
     }
 
-    
+
+    protected void directionAssignmentSystem(float reward, bool debug = false)
+    {
+        //Getting angle
+        float carAngle = getAngleMeasure(connectedEndGame);
+        float assignment = 0;
+        //Checking by direction
+        if (actualDirection == Direction.Acceleration)
+        {
+            /*
+             * OK CASES
+             */
+            //straight check
+            if ((carAngle < 3 && carAngle >= 0 && wc_fl.steerAngle <= 15f && wc_fl.steerAngle >= 0) ||
+                (carAngle > -3 && carAngle < 0 && wc_fl.steerAngle >= -15f && wc_fl.steerAngle < 0))
+                assignment = reward * 2;
+            //Car should steer of max 35*
+            //right steer check
+            if ((carAngle > 3 && carAngle <= 35 && wc_fl.steerAngle > 3 && wc_fl.steerAngle <= 35) ||
+                //left steer check
+                (carAngle < -3 && carAngle >= -35 && wc_fl.steerAngle < -3 && wc_fl.steerAngle >= -35))
+                assignment = reward * 2;
+            //Checking for angle > 35 or < -35
+            //right steer check
+            if ((carAngle > 35 && wc_fl.steerAngle > 20) ||
+                //left steer check
+                (carAngle < -35 && wc_fl.steerAngle < -20))
+                assignment = reward * 2;
+            assignment = reward * 2;
+            /*
+             * WRONG CASES
+             */
+            //straight check
+            if ((carAngle < 3 && carAngle >= 0 && wc_fl.steerAngle >= -15f && wc_fl.steerAngle <= 0) ||
+                (carAngle > -3 && carAngle < 0 && wc_fl.steerAngle <= 15f && wc_fl.steerAngle > 0))
+                assignment = reward * (-1);
+            //Car should steer of max 35*
+            //right steer check
+            if ((carAngle > 3 && carAngle <= 35 && wc_fl.steerAngle < -3 && wc_fl.steerAngle >= -35) ||
+                //left steer check
+                (carAngle < -3 && carAngle >= -35 && wc_fl.steerAngle > 3 && wc_fl.steerAngle <= 35))
+                assignment = reward * (-1);
+            //Checking for angle > 35 or < -35
+            //right steer check
+            if ((carAngle > 35 && wc_fl.steerAngle < -20) ||
+                //left steer check
+                (carAngle < -35 && wc_fl.steerAngle > 20))
+                assignment = reward * (-1);
+        }
+        else if (actualDirection == Direction.Backward)
+        {
+            /*
+             * WRONG CASES
+             */
+            //straight check
+            if ((carAngle < 3 && carAngle >= 0 && wc_fl.steerAngle <= 15f && wc_fl.steerAngle >= 0) ||
+                (carAngle > -3 && carAngle < 0 && wc_fl.steerAngle >= -15f && wc_fl.steerAngle < 0))
+                assignment = reward * (-1);
+            //Car should steer of max 35*
+            //right steer check
+            if ((carAngle > 3 && carAngle <= 35 && wc_fl.steerAngle > 3 && wc_fl.steerAngle <= 35) ||
+                //left steer check
+                (carAngle < -3 && carAngle >= -35 && wc_fl.steerAngle < -3 && wc_fl.steerAngle >= -35))
+                assignment = reward * (-1);
+            //Checking for angle > 35 or < -35
+            //right steer check
+            if ((carAngle > 35 && wc_fl.steerAngle > 20) ||
+                //left steer check
+                (carAngle < -35 && wc_fl.steerAngle < -20))
+                assignment = reward * (-1);
+            /*
+             * OK CASES
+             */
+            //straight check
+            if ((carAngle < 3 && carAngle >= 0 && wc_fl.steerAngle >= -15f && wc_fl.steerAngle <= 0) ||
+                (carAngle > -3 && carAngle < 0 && wc_fl.steerAngle <= 15f && wc_fl.steerAngle > 0))
+                assignment = reward * 2;
+            //Car should steer of max 35*
+            //right steer check
+            if ((carAngle > 3 && carAngle <= 35 && wc_fl.steerAngle < -3 && wc_fl.steerAngle >= -35) ||
+                //left steer check
+                (carAngle < -3 && carAngle >= -35 && wc_fl.steerAngle > 3 && wc_fl.steerAngle <= 35))
+                assignment = reward * 2;
+            //Checking for angle > 35 or < -35
+            //right steer check
+            if ((carAngle > 35 && wc_fl.steerAngle < -20) ||
+                //left steer check
+                (carAngle < -35 && wc_fl.steerAngle > 20))
+                assignment = reward * 2;
+        }
+        AddReward(assignment);
+        if (debug)
+        {
+            if (assignment > 0) Debug.Log("Right direction");
+            if (assignment < 0) Debug.Log("Wrong direction");
+        }
+    }
+
 }
