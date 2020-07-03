@@ -649,7 +649,7 @@ Transform:
   m_LocalScale: {x: 499.2099, y: 0.19999994, z: 451.7256}
   m_Children: []
   m_Father: {fileID: 1093565997}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1043059598
 GameObject:
@@ -784,6 +784,7 @@ Transform:
   m_Children:
   - {fileID: 1957641185}
   - {fileID: 959806269}
+  - {fileID: 8063408832768996991}
   - {fileID: 1229985347}
   - {fileID: 979423453}
   - {fileID: 1631146752}
@@ -882,6 +883,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCar
       objectReference: {fileID: 0}
+    - target: {fileID: 7947011537409886379, guid: 1ff7e699860757e4db5027915478e1e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -920,7 +926,7 @@ PrefabInstance:
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
@@ -967,6 +973,7 @@ MonoBehaviour:
   epDurationNegativeReward: 0
   staticSpeed: 5000
   brakeForce: 100000
+  connectedEndGame: {fileID: 0}
   SPD_LIMIT_STEERING: 14
   autoCam: 0
   camControllerObj: {fileID: 1957641182}
@@ -1171,7 +1178,7 @@ Transform:
   - {fileID: 1613620386}
   - {fileID: 492265009}
   m_Father: {fileID: 1093565997}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1851643357
 PrefabInstance:
@@ -1234,6 +1241,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4adbbae4831a7774ea0645c19218c458, type: 3}
+--- !u!1 &1909461354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6854977694570684728, guid: 18b580789a8e437409f46ce37e00003e,
+    type: 3}
+  m_PrefabInstance: {fileID: 573889281}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1919145432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1586,4 +1599,99 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 461710, guid: 4adbbae4831a7774ea0645c19218c458,
     type: 3}
   m_PrefabInstance: {fileID: 2089006636}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6446563370383886184
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1093565997}
+    m_Modifications:
+    - target: {fileID: 2800134228706730206, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154646875511324738, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: connectedEndGame
+      value: 
+      objectReference: {fileID: 1909461354}
+    - target: {fileID: 6154646875511324738, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: camControllerObj
+      value: 
+      objectReference: {fileID: 1957641182}
+    - target: {fileID: 6154646875511324741, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154646875511324751, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerCar
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: deb22adb312621a45b6ebfcfe5007dba, type: 3}
+--- !u!4 &8063408832768996991 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3931695966133399831, guid: deb22adb312621a45b6ebfcfe5007dba,
+    type: 3}
+  m_PrefabInstance: {fileID: 6446563370383886184}
   m_PrefabAsset: {fileID: 0}
