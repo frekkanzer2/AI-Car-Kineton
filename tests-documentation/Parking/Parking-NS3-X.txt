@@ -1,0 +1,30 @@
+Intro
+	Parking-NS3-X è una nuova sessione di test che tende a risolvere un piccolo "problema" delle
+	sessioni precedenti: l'auto non parcheggiava entrando perfettamente nel parcheggio a causa
+	della zona in cui posizionarsi troppo larga (EndGame box). In questa sessione, la EndGame box
+	è stata ridotta e verranno rieseguiti i test per far abituare l'auto a tale zona più piccola.
+	Siccome i test Parking-NS2-{1,2,3} hanno fornito all'auto un comportamento decisamente buono
+	riguardo i movimenti e le sterzate, i test Parking-NS3-X partiranno da Parking-NS2-3.
+
+Parking-NS3-1
+	Tale test è servito all'auto per migliorare i movimenti nel parcheggio libero ma con posto
+	più piccolo.
+
+Parking-NS3-{2-3}
+	I test 2 e 3 sono serviti all'auto per imparare a parcheggiare nel posto più piccolo rispetto alla
+	sessione di test precedente. La differenza dal precedente test sta nel fatto che nel parcheggio è
+	presente una auto ostacolo. L'auto ha trovato non poche difficoltà nel gestire l'ostacolo, più che
+	altro per via del parcheggio abbastanza stretto: ciò richiede molte più manovre rispetto al 
+	posto largo, quindi l'auto ha imparato gradualmente a prestare attenzione all'auto ostacolo nel
+	durante delle manovre.
+
+Parking-NS3-{4-5}
+	L'auto impara a parcheggiare nel posto più piccolo posto in mezzo a due auto: la difficoltà sta
+	nel fatto che l'auto, ora, non ha lo spazio laterale libero rispetto ai precedenti test. Dovrà,
+	quindi, parcheggiare in uno spazio decisamente minore prestando attenzione a due auto.
+
+Parking-NS3-{6-7-8}
+	L'auto impara a parcheggiare in un parcheggio parzialmente completo, quindi con il 50% dei posti
+	occupati da auto ostacolo. Grazie all'allenamento dei precedenti test, non ha avuto troppe
+	difficoltà nel migliorarsi: la migliorie assunte riguardo la guida consistono in manovre in spazi
+	più stretti e manovre più precise, siccome il numero dei posti liberi è comunque diminuito.
