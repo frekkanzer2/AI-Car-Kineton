@@ -54,8 +54,30 @@ l'agente tende ad andare in IDLE anche dopo l'attraversamento del pedone.
 L'agente tende a collidere maggiormente con i pedoni, non calcolando bene le traiettorie del movimento.
 
 --- Session training 7_12 e 7_13 -- 500.000 step a testa
----Pre test --- Reintrodotta la funzione di controllo reward sulla rotation dei wheel collider
+---Pre test --- Reintrodotta la funzione di controllo reward sulla rotation dei wheel collider.
+
 l'agente fin da subito tende a migliorare la traiettoria e a migliorare la percezione dei pedoni ma continua ad essere incerto nel caso il fascio di raggi
-per il movimento collida a metà con il walk limi, una volta che il pedone è fuori traiettoria, l'auto tende a ripartire, ma non riesce bene a concepire 
+per il movimento collida a metà con il walk limit, una volta che il pedone è fuori traiettoria, l'auto tende a ripartire, ma non riesce bene a concepire 
 come muoversi e resta in Idle o fino a quando non vede l'end game, riposizionandosi e continuando a ricamminare in maniera lineare, oppure se la distanza non consente il primo caso
 l'auto è costretta a collidere con il walk limit e terminare l'episodio.
+
+
+--- Session training 7_14 to 7_16 / circa 500.000 step a testa - ripetuti più volte
+-- accorgimenti vari sul sistema di raggi e movimenti dell'auto in generale.
+l'agente progressivamente migliora le valutazioni in presenza di due pedoni in scena, tempestivamente frena quando ha un pedone in traiettoria,
+e riparte se il flusso di raggi è in traiettoria dritta.
+
+l'auto, specialmente quella di destra tende molto spesso a ruotare involontatiamente quando vede un pedone verso il walk limit, non riuscendo 
+a frenare correttamente, rimane in idle cercando di riposizionarsi.
+
+fievoli miglioramenti si sono avuti con il session trainining 7_16 dove appunto l'auto quando ha leggermente spazio tende a recuperare 
+la sua traiettoria.
+
+
+--- Session training 7_17 - 100.010.000 step
+
+allingamento dei raggi di traiettoria in modo da vedere sempre i walk limit
+
+l'auto tende a migliorare il suo comportamento pur trovandosi in alcuni casi di incertezza dove seguendo i movimenti del pedone tende a
+sbattere vicino al walk limit, tutto sommato però non si verificano più spiacevoli fenomeni di idle già dopo 200.000 step, quando l'auto ha
+cominciato a prendere familiarità con il nuovo sistema di raggi.
