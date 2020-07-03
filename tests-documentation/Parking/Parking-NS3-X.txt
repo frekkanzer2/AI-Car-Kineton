@@ -28,3 +28,11 @@ Parking-NS3-{6-7-8}
 	occupati da auto ostacolo. Grazie all'allenamento dei precedenti test, non ha avuto troppe
 	difficoltà nel migliorarsi: la migliorie assunte riguardo la guida consistono in manovre in spazi
 	più stretti e manovre più precise, siccome il numero dei posti liberi è comunque diminuito.
+
+Parking-NS3-9
+	L'auto impara, per la prima volta, a parcheggiare nel parcheggio completo ad eccezione di un posto:
+	sono occupati tutti i posti tranne quello in cui deve parcheggiare la nostra auto. L'auto ha
+	riscontrato molte difficoltà iniziali date dal numero di auto ostacolo presenti; inoltre, ha
+	riscontrato problemi nel completare il parcheggio in determinate angolazioni rispetto al posto.
+	Imparando dagli errori, ha iniziato a parcheggiare con più calma prestando più attenzione alle auto
+	poste attorno a sè. Unico problema: ha ancora un po' di difficoltà nei parcheggi con la retromarcia.

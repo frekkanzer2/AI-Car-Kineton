@@ -15,36 +15,7 @@ public class ParkingCarAgent : CarAgent {
         base.Initialize();
         getLocalEndGame(transform.parent);
 
-        spawner.Add(new Spawn(new Vector3(-7.15f, 0.438f, 3.97f), Quaternion.Euler(0, 180, 0)));
-        spawner.Add(new Spawn(new Vector3(-3.29f, 0.438f, 2f), Quaternion.Euler(0, 180, 0)));
-        spawner.Add(new Spawn(new Vector3(5.26f, 0.438f, 0.33f), Quaternion.Euler(0, 180, 0)));
-        spawner.Add(new Spawn(new Vector3(5.38f, 0.438f, 0.66f), Quaternion.Euler(0, 250, 0)));
-        spawner.Add(new Spawn(new Vector3(-7.54f, 0.438f, 0.96f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(-5.74f, 0.438f, 3.17f), Quaternion.Euler(0, 120, 0)));
-        spawner.Add(new Spawn(new Vector3(-7.74f, 0.438f, 2.64f), Quaternion.Euler(0, 0, 0)));
-        spawner.Add(new Spawn(new Vector3(-4.56f, 0.438f, 2.64f), Quaternion.Euler(0, 0, 0)));
-        spawner.Add(new Spawn(new Vector3(-4.8f, 0.438f, 1.2f), Quaternion.Euler(0, 270, 0)));
-        spawner.Add(new Spawn(new Vector3(7.34f, 0.438f, 0.39f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(-5.62f, 0.438f, 5.63f), Quaternion.Euler(0, 270, 0)));
-        spawner.Add(new Spawn(new Vector3(0.52f, 0.438f, -1.16f), Quaternion.Euler(0, 270, 0)));
-        spawner.Add(new Spawn(new Vector3(-5.27f, 0.438f, -1.16f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(3.33f, 0.438f, -1.16f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(3.33f, 0.438f, -1.16f), Quaternion.Euler(0, 270, 0)));
-        spawner.Add(new Spawn(new Vector3(0.42f, 0.438f, 4.66f), Quaternion.Euler(0, 0, 0)));
-        spawner.Add(new Spawn(new Vector3(-4.62f, 0.438f, 4.11f), Quaternion.Euler(0, 270, 0)));
-        spawner.Add(new Spawn(new Vector3(-5.29f, 0.438f, 3.11f), Quaternion.Euler(0, 200, 0)));
-        spawner.Add(new Spawn(new Vector3(-7.78f, 0.438f, -0.63f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(0.44f, 0.438f, 5.19f), Quaternion.Euler(0, 0, 0)));
-        spawner.Add(new Spawn(new Vector3(0.44f, 0.438f, 5.19f), Quaternion.Euler(0, 180, 0)));
-        spawner.Add(new Spawn(new Vector3(-7.79f, 0.438f, 5.58f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(-2.66f, 0.438f, 0.15f), Quaternion.Euler(0, 270, 0)));
-        spawner.Add(new Spawn(new Vector3(-5.21f, 0.438f, -4.58f), Quaternion.Euler(0, 0, 0)));
-        spawner.Add(new Spawn(new Vector3(7.09f, 0.438f, 0.12f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(-5.32839f, 0.438f, 3.110045f), Quaternion.Euler(0, 200, 0)));
-        spawner.Add(new Spawn(new Vector3(-5.370404f, 0.438f, 3.118563f), Quaternion.Euler(0, 396, 0)));
-        /*Parking spawns*/
-        /*Down*/
-        spawner.Add(new Spawn(new Vector3(6.45f, 0.438f, 5.19f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(-6.02f, 0.438f, 1.33f), Quaternion.Euler(0, 270, 0)));
 
         latestRecordDistance = getDistanceFromObject(connectedEndGame);
     }
