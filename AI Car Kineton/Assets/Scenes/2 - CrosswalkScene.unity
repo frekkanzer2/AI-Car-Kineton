@@ -1462,8 +1462,8 @@ MonoBehaviour:
   - Walklimit2
   - RiskZone
   m_RaysPerDirection: 4
-  m_MaxRayDegrees: 22
-  m_SphereCastRadius: 0.03
+  m_MaxRayDegrees: 20
+  m_SphereCastRadius: 0.1
   m_RayLength: 16
   m_RayLayerMask:
     serializedVersion: 2
@@ -3201,7 +3201,7 @@ PrefabInstance:
     - target: {fileID: 153616470, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 96abed0a5ec63074693797ec7309695c,
+      objectReference: {fileID: 5022602860645237092, guid: 92422b3fd7da4e54095d7487bf813371,
         type: 3}
     - target: {fileID: 153616470, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: m_BehaviorType
@@ -3452,7 +3452,7 @@ PrefabInstance:
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.86
+      value: 9.66
       objectReference: {fileID: 0}
     - target: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
         type: 3}
@@ -4564,8 +4564,8 @@ MonoBehaviour:
   - Walklimit2
   - RiskZone
   m_RaysPerDirection: 4
-  m_MaxRayDegrees: 22
-  m_SphereCastRadius: 0.03
+  m_MaxRayDegrees: 20
+  m_SphereCastRadius: 0.1
   m_RayLength: 16
   m_RayLayerMask:
     serializedVersion: 2
@@ -4799,7 +4799,7 @@ PrefabInstance:
     - target: {fileID: 153616470, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 96abed0a5ec63074693797ec7309695c,
+      objectReference: {fileID: 5022602860645237092, guid: 92422b3fd7da4e54095d7487bf813371,
         type: 3}
     - target: {fileID: 153616470, guid: 1ff7e699860757e4db5027915478e1e5, type: 3}
       propertyPath: m_BehaviorType

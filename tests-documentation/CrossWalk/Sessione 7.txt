@@ -74,10 +74,16 @@ fievoli miglioramenti si sono avuti con il session trainining 7_16 dove appunto 
 la sua traiettoria.
 
 
---- Session training 7_17 - 100.010.000 step
+--- Session training 7_17 - 1.010.000 step
 
 allingamento dei raggi di traiettoria in modo da vedere sempre i walk limit
 
 l'auto tende a migliorare il suo comportamento pur trovandosi in alcuni casi di incertezza dove seguendo i movimenti del pedone tende a
 sbattere vicino al walk limit, tutto sommato però non si verificano più spiacevoli fenomeni di idle già dopo 200.000 step, quando l'auto ha
 cominciato a prendere familiarità con il nuovo sistema di raggi.
+
+
+--- Session training 7_18 - 500.000 step
+l'addestramento è partito nelle stesse condizioni del  precedente, l'agente nei primi 400.000 step ha migliorato costantemente la sua 
+familiarità con l'ambiente e i pedoni senza presentare problemi, successivamente, pur avendo un comportamento ottimale tende nuovamente a 
+presentare i problema di idle nel movimento.

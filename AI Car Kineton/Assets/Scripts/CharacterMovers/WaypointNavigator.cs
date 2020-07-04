@@ -15,7 +15,9 @@ public class WaypointNavigator : MonoBehaviour
     {
         startWaypoint = currentWaypoint;
         startDirection = direction;
-        controller = GetComponent<CharacterNavigationController>(); 
+        controller = gameObject.GetComponent<CharacterNavigationController>(); 
+
+        
        
     }
 
@@ -73,6 +75,7 @@ public class WaypointNavigator : MonoBehaviour
     public void respawn()
     {
         currentWaypoint = startWaypoint;
+        controller.SetDestination(startWaypoint.transform.position);
         controller.respawn();
     }
 

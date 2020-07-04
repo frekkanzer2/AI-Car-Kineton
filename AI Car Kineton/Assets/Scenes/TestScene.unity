@@ -1667,6 +1667,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4108073461040643602, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6096416068622412741, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6154646875511324738, guid: deb22adb312621a45b6ebfcfe5007dba,
         type: 3}
       propertyPath: connectedEndGame
@@ -1686,6 +1696,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271977185117167821, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323615043131779177, guid: deb22adb312621a45b6ebfcfe5007dba,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deb22adb312621a45b6ebfcfe5007dba, type: 3}

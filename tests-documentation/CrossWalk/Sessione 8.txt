@@ -1,0 +1,26 @@
+L'ottava sessione di training è nata dopo aver riscontrato l'esigenza di maggiore dinamizzazione 
+nel comportamento degli agenti, al fine di capire meglio come l'auto si comporta, con pedoni 
+su più punti di strada, è stata creata la 3 scena di crosswalk con due attraversamenti pedonali paralleli,
+mantenendo le due auto nei sensi di marcia opposti.
+
+-- per tale sessione, si intende verificare se il problema di idle dell'agente, dipende dalla doppia presenza di auto in entrambi 
+i sensi di marcia, la causale dell'idle di arresto sull'attraversamento, dipende forse dai movimenti da quella che procede
+in senso opposto?---
+
+--inoltre è stato fixato il problema di respawn dei pedoni, e ora anche su istanze multiple dell'environment, almeno per
+i pedoni non si registrano comportamenti anomali.
+
+Session training  8_0 -- Singola copia dell'environment -- doppio attraversamento a singolo pedone -- doppio agente nei due sensi di
+marcia opposti -- 500.000 step
+
+--- base di addestramento, session training 7_17.
+
+L'auto in un primo momento (come per il training 7_18 precedente) - procede in leggera tendenza di miglioramento,
+sia in un senso di marcia che nell'altro dopo già 200.000 step sembra meglio acquisire la capacita di riconoscere il pedone
+posto sul nuovo addestramento... PRESENTE il problema di idle.
+
+Session training 8_1 -- uguale al precedente, con singolo agente, nel senso di marcia  originale (9 copie dell'environment).
+L'agente come prima (anche se su un singlolo senso di marcia) tende a rispondere bene al riconoscimento dei pedoni
+anche se a volte tende ad essere impreciso nei singoli movimenti toccando talvolta i walklimit.
+--nel complesso sembra avere un buon comportamento, e si sospetta che sensa l'influenza dell'altro agente non abbia problemi,
+nel procedere avanti -- fattosta che il problema di idle non sembra essersi verificato.
