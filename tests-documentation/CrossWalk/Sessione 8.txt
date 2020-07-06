@@ -24,3 +24,5 @@ L'agente come prima (anche se su un singlolo senso di marcia) tende a rispondere
 anche se a volte tende ad essere impreciso nei singoli movimenti toccando talvolta i walklimit.
 --nel complesso sembra avere un buon comportamento, e si sospetta che sensa l'influenza dell'altro agente non abbia problemi,
 nel procedere avanti -- fattosta che il problema di idle non sembra essersi verificato.
+
+-- Terminazione anticipata al traning 8_3 - data la persistenza del problema di Idle anche a singolo agente.

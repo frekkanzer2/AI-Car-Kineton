@@ -1,0 +1,54 @@
+La sessione di training nove (in collaborazione con francesco), nasce dopo aver analizzato che il problema di
+Idle vicino all'attraversamento pedonale resta persistente in casi particolari legati alle rotazioni dell'auto.
+
+Si è quindi deciso di iniziare una nuova sessione di training orientata principalmente alla visibilità dei walklimit
+in particolar modo tenendo conto delle rotazioni critiche dell'auto in vicinanza dell'attraversamento pedonale.
+
+-- Aggiunte decisioni iniziali.
+
+	- fascio di raggi per traiettoria rispetto ai walk limit invariato nel numero di raggi, ma 
+	portato a singolo tag, per la singola visione e orientamento rispetto ai walklimit.
+	-fascio di raggi pedonale invariato
+	-aggiunta di un terzo fascio di raggi ampio e lungo per avere sempre visibilità dell'end game.
+
+--la sessione di training non prevede basi di addestramento preventive, quindi l'auto è sprovvista di intelligenza 
+derivante da test precedenti.
+
+-- La sessione sarà basata su un singolo senso di marcia.
+
+-- WalkingNS1_1 1.000.000 di step - 12 copie dell'agente - nessuna prensenza di pedoni su attraversamenti.
+
+L'agente in questo training di sessione impara nuovamente la traiettoria di movimento dritta, da una posizione molto vicina rispetto
+al primo atttraversamento... è stato reintrodotto anche se in modo molto fievole il Reward negativo per la retromarcia, e dopo poche
+decine di migliaia di step, l'agente ha ripreso a muoversi secondo traiettoria, raggiungendo quasi sempre l'end game.
+
+ 	-- al termine del training, l'agente sembra avere padronanza del movimento, e mantiene una traiettoria stabile.
+		anche se alcune volte tende ancora a collidere con i walklimit. Ma mantiene una velocita costante di movimento.
+
+--- WalkingNS1_2 3.000.000 di step - 12 copie agente - nessun pedone nell'environment.
+L'agente su base del precedente training riprende l'addestramento su traiettoria dritta, mantenendo un comportamento costante,
+la posizione di spawn è stata indietreggiata in posizione antecendente rispetto al primo attraversamento. Nel complesso l'agente mantiene
+un comportamento costante, a meno di due copie dell'environment, nella prima l'auto tende ad assumere un movimento molto lento (con l'ausilio 
+dei freni) ad una distanza molto ridotta dal walklimit di sinistra, nel secondo environment problematico, l'agente tende ad assumere
+un comportamento molto simile al problema di Idle avuto nelle sessioni precedenti.
+
+Tutto somamto il training è da considerarsi positivo, in quanto l'agente in seguito alla fine del training risponde molto bene anche in vicinanza
+al walklimit evitando quasi del tutto le collisioni.
+
+--- WalkingNS1_3 1.000.000 di step - 11 copie dell'ambiente.
+ --- base di trainig WalkgingNS1_2
+Questo training è stato avviato dopo aver aggiunto nello script 4 posizioni/mirate a simulare le posizioni critiche che assume la macchina quando 
+tende a fermari in corrispondenza di un attraversamento pedonale in maniera costante (10, 20, -10, -20 gradi di rotazione sull'asse Y).
+A più di metà training l'agente sembra assumere un comportamento in linea con il training precendente, raggiungendo quasi sempre l'end-game, 
+curvando in maniera ottimale rispetto alle posizioni di spawn mirate a tale scopo.
+
+--- WalkingNS1_4 1.000.000 di step - 11 copie dell'environment - nessun pedone su strada.
+Il training 4 di questa sessione è stato avviato in diretta continuazione rispetto al training precedente, partendo da una posizione
+di spawn iniziale antecedente al primo attraversamento, mantenendo le 4 rotazioni casuali sull'asse Y.
+-- All'inizio del training l'agente sembra mantenere un comportamento incerto rispetto alla nuova posizione, collidendo talvolta con il walklimit
+Con il prosieguo dell'addestramento la vettura sembra mantenere un comportamento costante e lineare. Al termine dell'addestramento l'auto ha capito bene 
+come curvare, e riprendere la corretta traiettoria verso l'end-game.
+
+---WalkingNS1_5 3.000.000 di step - 12 copie environmnet - singolo pedone su primo addestramento in vicinanza all'auto.
+Al termine del 4 training, l'auto è pronta a compinciare l'addestramento con i pedoni. All'inizio come atteso l'agente non riconosce il pedone, e mantenendo
+la stessa velocità anche quando il pedone è sulla sua traiettoria, la collisione è inevitabile.
