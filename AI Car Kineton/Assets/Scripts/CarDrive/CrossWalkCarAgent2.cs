@@ -214,7 +214,7 @@ public class CrossWalkCarAgent2 : CarAgent
         //Collision code for Crosswalk Scene
         if (other.gameObject.CompareTag("EndGame"))
         {
-            AddReward(50f);
+            AddReward(1000f);
             EndEpisode();
         }
 
