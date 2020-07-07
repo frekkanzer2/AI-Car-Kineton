@@ -29,9 +29,11 @@ public class CrossWalkCarAgent2 : CarAgent
     {
         base.Initialize();
 
-
-        spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -26.8f), Quaternion.identity));
-        spawner.Add(new Spawn(new Vector3(-2.32f, -0.07f, -12f), Quaternion.identity));
+        //spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(2f, -0.07f, 10f), Quaternion.Euler(0, 180, 0)));
+        /* spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, -24f, 0)));
+         spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, 18f, 0)));
+         spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, 24f, 0)));*/
 
         //Getting RiskPoint
 
@@ -101,50 +103,65 @@ public class CrossWalkCarAgent2 : CarAgent
         //Rotation
         rotation(vectorAction[2]);
         followWheelRotation();
+
+        pedCheck = checkPedastrians();
+
         //brake
         if (vectorAction[1] >= 0.5)
         {
+           
             //Debug.Log(vectorAction[1]);
             manualBrake = true;
-            brake(1f);
+            brake(vectorAction[1]);
+                if (pedCheck) {
+                    AddReward(100f);
+                    Debug.Log("agent brake");
+                }
+            }
+        else
+        {
+            manualBrake = false;
+            AddReward(-5f);
+           if (pedCheck) 
+            {
+
+                Debug.Log("forced brake");
+                vectorAction[1] = 0.1f;
+                brake(vectorAction[1]);
+            }
         }
-        else manualBrake = false;
-
-        pedCheck = checkPedastrians();
-        // if (pedCheck) Debug.Log(gameObject.name + "Pedastrian on street");
 
 
-        //mooving controls
 
-        //retro
-        /*if (vectorAction[0] < 0 && !pedCheck)
+            //mooving controls
+
+            //retro
+            if (vectorAction[0] < 0 && !pedCheck)
         {
             Debug.Log("Retro");
             AddReward(-0.001f);
-        }*/
+        }
        
 
         if (vectorAction[0] > 0 && !pedCheck) AddReward(100f);
 
-        if (pedCheck)
-        {
-            if (getVelocitySpeed() < 0.4 && getVelocitySpeed() > -0.4)
-            {
-                Debug.Log("Correct Speed " + (maxZdist * 20f));
-                AddReward(maxZdist * 20f);
+        if (pedCheck) {
+            if (getVelocitySpeed() < 1f && getVelocitySpeed() > -1f) {
+                Debug.Log("PEDCHECK - Correct Speed");
+                AddReward(maxZdist * 5f);
             }
-            else
-            {
-                AddReward(-10f);
+            else {
+                Debug.Log("PEDCHECK - Does not stop");
+                AddReward(-1000f);
             }
         }
-        else if (getVelocitySpeed() < 3) AddReward(-100f);
+        else if (getVelocitySpeed() < 3) {
+            Debug.Log("NOT PEDCHECK - Too slow");
+            AddReward(-100f);
+        }
 
-        if (pedCheck && manualBrake)
-        {
-
-            //Debug.Log("Correct Brake");
-            //Debug.Log("Uncorrect brake");
+        if (pedCheck && manualBrake) {
+            Debug.Log("Correct Brake");
             AddReward(10f);
         }
 
@@ -214,7 +231,7 @@ public class CrossWalkCarAgent2 : CarAgent
         //Collision code for Crosswalk Scene
         if (other.gameObject.CompareTag("EndGame"))
         {
-            AddReward(1000f);
+            AddReward(800f);
             EndEpisode();
         }
 
