@@ -52,3 +52,30 @@ come curvare, e riprendere la corretta traiettoria verso l'end-game.
 ---WalkingNS1_5 3.000.000 di step - 12 copie environmnet - singolo pedone su primo addestramento in vicinanza all'auto.
 Al termine del 4 training, l'auto è pronta a compinciare l'addestramento con i pedoni. All'inizio come atteso l'agente non riconosce il pedone, e mantenendo
 la stessa velocità anche quando il pedone è sulla sua traiettoria, la collisione è inevitabile.
+
+
+--- WalkingNS1_6  - 1_7 1.000.000 di step ciascuno 12 copie environment - singolo pedone su entrambi gli attraversamenti
+
+-- Code fix per l'analisi dei pedoni;
+dopo una piccola modifica da codice nell'analisi dei pedoni, l'agente ha i movimenti ottimali per muoversi correttamente dal punto di spawn all'endgame, l'analisi dei
+pedoni è ottimale, con un piccolo ausilio da codice che permetta all'auto di meglio concepire la presenza di pedoni davanti a se.
+
+-- durante il training 7 la macchina migliora costantemente il comportamento in vicinanza all'attraversamento, riconoscendo maggiormente i pedoni.
+Alla fine del traininig 7 di addestramento la macchina si muove in modo quasi ottimale nel singolo senso di marcia.
+
+
+
+--- WalkingNS1_8  - 1_9 1.500.000 di step circa ciascuno 12 copie environment - numero di pedoni specifico per training
+---Per questi training l'agente è stato posto nella corsia di marcia opposta a quella utilizzata negli addestramenti antecedenti a quella attuale.
+per il training 8 (nessun pedone su strada) l'agente all'inizio risente molto della nuova posizione e le collisioni con il walk limit sono ancora 
+abbastanza numerose, con il procedere degli step però quasi in tutte le copie dell'environment, l'agente ha assunto un comportamento positivo, riprendendo quasi
+la marcia come nella corsia precedente -- da notare che una volta terminato il traininig la vettura si muove agevolmente in entrambi i sensi di marcia, senza
+risentire delle singole posizioni.
+
+--- Dopo aver appreso la traiettoria nel nuovo senso, sono stati reintrodotti i due pedoni utilizzati nella sessione di training precedente, e con gli accorgimenti da
+codice apportati, l'agente migliora notevolmente l'aspetto di riconoscimento dei singoli pedoni.
+le fermate in vicinanza ai due attraversamenti sembrano essere ottimali, e le collisioni con i walklimit sono molto diminuite rispetto al precedente training 8
+
+--- Al termine dell'addestramento 9 sono stati reintrodotti i due agenti in entrambi i sensi di marcia, e l'agente riporta un comportamento molto preciso in entrambi i sensi,
+la traiettoria della corsia di sinistra non è ancora del tutto precisa ma le collisioni con i walklimit sono molto rare, come visibile da documentazione video.
+
