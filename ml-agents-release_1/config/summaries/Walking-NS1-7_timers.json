@@ -1,0 +1,46 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1594118703",
+        "python_version": "3.7.8 (tags/v3.7.8:4b47a5b6ba, Jun 28 2020, 10:03:53) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\carmi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python37\\Scripts\\mlagents-learn thrmln_config.yaml --run-id=Walking-NS1-7 --initialize-from Walking-NS1-6 --force",
+        "mlagents_version": "0.16.1",
+        "mlagents_envs_version": "0.16.1",
+        "communication_protocol_version": "1.0.0",
+        "tensorflow_version": "2.2.0",
+        "end_time_seconds": "1594118709"
+    },
+    "total": 6.3059206,
+    "count": 1,
+    "self": 0.1603298000000004,
+    "children": {
+        "run_training.setup": {
+            "total": 0.029002799999999995,
+            "count": 1,
+            "self": 0.029002799999999995
+        },
+        "TrainerController.start_learning": {
+            "total": 6.116588,
+            "count": 1,
+            "self": 0.0033802000000004995,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 6.1104234,
+                    "count": 1,
+                    "self": 6.1104234
+                },
+                "trainer_threads": {
+                    "total": 4.5999999995771645e-06,
+                    "count": 1,
+                    "self": 4.5999999995771645e-06
+                },
+                "TrainerController._save_model": {
+                    "total": 0.002779799999999888,
+                    "count": 1,
+                    "self": 0.002779799999999888
+                }
+            }
+        }
+    }
+}

@@ -29,10 +29,11 @@ public class CrossWalkCarAgent2 : CarAgent
     {
         base.Initialize();
 
-        spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, -18f, 0)));
-        spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, -24f, 0)));
-        spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, 18f, 0)));
-        spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, 24f, 0)));
+        //spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(2f, -0.07f, 10f), Quaternion.Euler(0, 180, 0)));
+        /* spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, -24f, 0)));
+         spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, 18f, 0)));
+         spawner.Add(new Spawn(new Vector3(-2.17f, -0.07f, -28.8f), Quaternion.Euler(0, 24f, 0)));*/
 
         //Getting RiskPoint
 
@@ -102,23 +103,40 @@ public class CrossWalkCarAgent2 : CarAgent
         //Rotation
         rotation(vectorAction[2]);
         followWheelRotation();
+
+        pedCheck = checkPedastrians();
+
         //brake
         if (vectorAction[1] >= 0.5)
         {
+           
             //Debug.Log(vectorAction[1]);
             manualBrake = true;
-            brake(1f);
+            brake(vectorAction[1]);
+                if (pedCheck) {
+                    AddReward(100f);
+                    Debug.Log("agent brake");
+                }
+            }
+        else
+        {
+            manualBrake = false;
+            AddReward(-5f);
+           if (pedCheck) 
+            {
+
+                Debug.Log("forced brake");
+                vectorAction[1] = 0.1f;
+                brake(vectorAction[1]);
+            }
         }
-        else manualBrake = false;
-
-        pedCheck = checkPedastrians();
-        // if (pedCheck) Debug.Log(gameObject.name + "Pedastrian on street");
 
 
-        //mooving controls
 
-        //retro
-        if (vectorAction[0] < 0 && !pedCheck)
+            //mooving controls
+
+            //retro
+            if (vectorAction[0] < 0 && !pedCheck)
         {
             Debug.Log("Retro");
             AddReward(-0.001f);
@@ -128,13 +146,13 @@ public class CrossWalkCarAgent2 : CarAgent
         if (vectorAction[0] > 0 && !pedCheck) AddReward(100f);
 
         if (pedCheck) {
-            if (getVelocitySpeed() < 0.4f && getVelocitySpeed() > -0.4f) {
+            if (getVelocitySpeed() < 1f && getVelocitySpeed() > -1f) {
                 Debug.Log("PEDCHECK - Correct Speed");
-                AddReward(maxZdist * 20f);
+                AddReward(maxZdist * 5f);
             }
             else {
                 Debug.Log("PEDCHECK - Does not stop");
-                AddReward(-100f);
+                AddReward(-1000f);
             }
         }
         else if (getVelocitySpeed() < 3) {
