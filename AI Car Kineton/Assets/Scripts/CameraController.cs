@@ -41,6 +41,15 @@ public class CameraController : MonoBehaviour {
         keys.Add(KeyCode.Alpha7);
         keys.Add(KeyCode.Alpha8);
         keys.Add(KeyCode.Alpha9);
+
+        //Initialize from camera 1
+        for (int i = 0; i < 10; i++)
+        {
+            Camera c = (Camera)cameraList[i];
+            if (c == null) continue;
+            if (i == 1) c.enabled = true;
+            else c.enabled = false;
+        }
     }
 
     // Update is called once per frame

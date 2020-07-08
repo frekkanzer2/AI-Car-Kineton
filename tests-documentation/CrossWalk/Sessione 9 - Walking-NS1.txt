@@ -79,3 +79,24 @@ le fermate in vicinanza ai due attraversamenti sembrano essere ottimali, e le co
 --- Al termine dell'addestramento 9 sono stati reintrodotti i due agenti in entrambi i sensi di marcia, e l'agente riporta un comportamento molto preciso in entrambi i sensi,
 la traiettoria della corsia di sinistra non è ancora del tutto precisa ma le collisioni con i walklimit sono molto rare, come visibile da documentazione video.
 
+
+
+--- Walking training NS9_10 --- Test Faild ---
+
+
+--- Walking training NS9_11 -- 3.000.000 di step - un pedone per attraversamento -- doppio agente per environment -- 9 copie environment -- walklimit leggermente
+ristretti --- piccoli accorgimenti riskZone da script.
+
+il training ha riportato maggior successo, e precisione nella traiettoria dell'auto, a questo punto i movimenti sono da ritenersi ottimali su entrambe le corisie e regolando 
+bene walklimit e RiskZone da codice, le collisioni con i pedoni sembrano non verificarsi, mentre le collisioni con i limiti di corsia sono quasi del tutto assenti
+o comunque di importanza quasi trascurabile.
+
+-- la base di questo training è stata il training 5 delle corrente sessione, che meglio ha fatto avere all'auto movimenti corretti.
+
+L'apprendimento su entrambe le corsie è stato ottimale sia dal punto di vista delle frenate che rispetto a quellod della traiettoria.
+
+
+--- Walking training NS9_12 -- 500.000 di step - un pedone per attraversamento -- doppio agente per environment -- singola copia environment
+il training finale della sessione 9 è stato avviato una volta riattivati gli enviroment object (palazzi e decorazioni), in previsione di futuri accorgimenti.
+L'agente nonostante percepisca gli enviroment object con i fasci fi raggi, comunque mantiene un comportamento ottimale rispetto a questi ultimi, in particolare movimenti 
+risultano molto affidabili e non sembrano esserci collisioni con i pedoni.

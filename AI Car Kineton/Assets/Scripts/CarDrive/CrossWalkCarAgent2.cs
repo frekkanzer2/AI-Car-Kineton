@@ -115,7 +115,7 @@ public class CrossWalkCarAgent2 : CarAgent
             brake(vectorAction[1]);
                 if (pedCheck) {
                     AddReward(100f);
-                    Debug.Log("agent brake");
+                   // Debug.Log("agent brake");
                 }
             }
         else
@@ -125,7 +125,7 @@ public class CrossWalkCarAgent2 : CarAgent
            if (pedCheck) 
             {
 
-                Debug.Log("forced brake");
+               // Debug.Log("forced brake");
                 vectorAction[1] = 0.1f;
                 brake(vectorAction[1]);
             }
@@ -138,7 +138,7 @@ public class CrossWalkCarAgent2 : CarAgent
             //retro
             if (vectorAction[0] < 0 && !pedCheck)
         {
-            Debug.Log("Retro");
+           // Debug.Log("Retro");
             AddReward(-0.001f);
         }
        
@@ -147,21 +147,21 @@ public class CrossWalkCarAgent2 : CarAgent
 
         if (pedCheck) {
             if (getVelocitySpeed() < 1f && getVelocitySpeed() > -1f) {
-                Debug.Log("PEDCHECK - Correct Speed");
+              //  Debug.Log("PEDCHECK - Correct Speed");
                 AddReward(maxZdist * 5f);
             }
             else {
-                Debug.Log("PEDCHECK - Does not stop");
+               // Debug.Log("PEDCHECK - Does not stop");
                 AddReward(-1000f);
             }
         }
         else if (getVelocitySpeed() < 3) {
-            Debug.Log("NOT PEDCHECK - Too slow");
+          //  Debug.Log("NOT PEDCHECK - Too slow");
             AddReward(-100f);
         }
 
         if (pedCheck && manualBrake) {
-            Debug.Log("Correct Brake");
+          //  Debug.Log("Correct Brake");
             AddReward(10f);
         }
 
@@ -273,6 +273,8 @@ public class CrossWalkCarAgent2 : CarAgent
                     pedOnTrajectory = true;
                 }
             }
+
+            Debug.Log("Riskpoint");
 
         }
 
