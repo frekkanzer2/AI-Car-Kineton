@@ -37,7 +37,7 @@ Parking-NS3-9
 	Imparando dagli errori, ha iniziato a parcheggiare con più calma prestando più attenzione alle auto
 	poste attorno a sè. Unico problema: ha ancora un po' di difficoltà nei parcheggi con la retromarcia.
 
-Parking-NS3-10
-	Test aggiuntivo per il parcheggio pieno: l'auto viene testata solamente in posizioni favorevoli
+Parking-NS3-{10-11}
+	Test aggiuntivi per il parcheggio pieno: l'auto viene testata solamente in posizioni favorevoli
 	alla retromarcia e, con un po' di esitazione, è riuscita a gestire bene qualsiasi parcheggio senza
 	problemi. L'auto, ora, riesce a parcheggiare in un parcheggio con un unico posto pieno.
