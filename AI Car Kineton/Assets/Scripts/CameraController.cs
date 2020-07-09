@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,7 @@ public class CameraController : MonoBehaviour {
     public Camera camera9;
     public Camera camera0;
 
-    public Text actualCam;
+    public TMP_Text actualCam;
 
     // Start is called before the first frame update
     void Start() {

@@ -10,7 +10,7 @@ public class GUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Dio");
+           
             if (SceneManager.GetActiveScene().name == "ParkingScene") SceneManager.LoadScene("Menu");
             if (SceneManager.GetActiveScene().name == "CrosswalkScene") SceneManager.LoadScene("Menu");
         }
