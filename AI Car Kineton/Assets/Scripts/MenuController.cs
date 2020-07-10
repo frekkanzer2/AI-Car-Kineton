@@ -83,13 +83,22 @@ public class MenuController : MonoBehaviour {
     }
 
     [SerializeField]
-    private TMP_Text startText, creditsText, exitText, mode_autopilotText, mode_manualpilotText, level_parking, level_crosswalk;
+    private TMP_Text startText, creditsText, exitText, mode_autopilotText, mode_manualpilotText, level_parking, level_crosswalk,
+        credits_devBy, credits_name1, credits_name2, credits_githubLink, credits_help;
 
     //Lists of buttons
     private List<DecoButton> buttons = new List<DecoButton>();
     private List<DecoButton> modeButtons = new List<DecoButton>();
     private List<DecoButton> levelButtons = new List<DecoButton>();
-    
+    private List<DecoButton> creditButtons = new List<DecoButton>();
+
+    //Animation vars
+    [SerializeField]
+    private Camera homeCamera;
+    [SerializeField]
+    private GameObject directionalLight;
+    private Animator animator_camera, animator_light;
+
     //Lists of animations
     private List<DecoAnimation> toAnimate = new List<DecoAnimation>();
     private List<DecoAnimation> backupToAnimate = new List<DecoAnimation>();
@@ -113,6 +122,11 @@ public class MenuController : MonoBehaviour {
         modeButtons.Add(new DecoButton("MANUAL", mode_manualpilotText));
         levelButtons.Add(new DecoButton("PARKING", level_parking));
         levelButtons.Add(new DecoButton("CROSSWALK", level_crosswalk));
+        creditButtons.Add(new DecoButton("DEVELOPED BY", credits_devBy));
+        creditButtons.Add(new DecoButton("FRANCESCO ABATE", credits_name1));
+        creditButtons.Add(new DecoButton("CARMINE FERRARA", credits_name2));
+        creditButtons.Add(new DecoButton("ABOUT THE PROJECT", credits_githubLink));
+        creditButtons.Add(new DecoButton("CLICK WITH THE MOUSE TO CHOOSE", credits_help));
 
         //Setting buttons
         foreach (DecoButton b in buttons) b.updateGUI();
@@ -125,6 +139,10 @@ public class MenuController : MonoBehaviour {
             b.updateGUI();
             b.changeAlpha(0f);
             b.changeAlphaOfIcon(0f);
+        }
+        foreach (DecoButton b in creditButtons) {
+            b.updateGUI();
+            b.changeAlpha(0f);
         }
 
         //Setting underline on the first button of each category
@@ -152,6 +170,8 @@ public class MenuController : MonoBehaviour {
         settingButtons();
         differencePositionAnimation = 90f;
         variationPositionAnimation = 0f;
+        animator_camera = homeCamera.GetComponent<Animator>();
+        animator_light = directionalLight.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -265,17 +285,23 @@ public class MenuController : MonoBehaviour {
                         b.updateGUI();
                         toAnimate.Add(new DecoAnimation(b, false, AnimationType.FADE));
                         backupToAnimate.Add(new DecoAnimation(b, false, AnimationType.FADE));
-                        selection = 1;
                     }
+                    selection = 1;
                     modeButtons[0].updateGUI(true);
                 }
-                /*
-                 * 
-                 * 
-                        ADD HERE OTHER SELECTIONS 
-                 *
-                 * 
-                */
+                if (selection == 2) {
+                    actualTab = Tab.CREDITS;
+                    canSwitch = false;
+                    animator_camera.SetBool("menuSelection", true);
+                    animator_light.SetBool("menuSelection", true);
+                    selection = 1;
+                    foreach (DecoButton b in creditButtons) {
+                        b.changeAlpha(0f);
+                        b.changeAlphaOfIcon(0f);
+                        toAnimate.Add(new DecoAnimation(b, false, AnimationType.FADE));
+                        backupToAnimate.Add(new DecoAnimation(b, false, AnimationType.FADE));
+                    }
+                }
                 if (selection == 3) {
                     Application.Quit();
                 }
@@ -293,6 +319,7 @@ public class MenuController : MonoBehaviour {
             }
             else if (Input.GetKeyUp(KeyCode.LeftArrow)) {
                 actualTab = Tab.HOME_MENU;
+                canSwitch = false;
                 foreach (DecoButton b in modeButtons) {
                     b.changeAlpha(1f);
                     b.changeAlphaOfIcon(1f);
@@ -336,9 +363,24 @@ public class MenuController : MonoBehaviour {
                     b.changeAlphaOfIcon(1f);
                     toAnimate.Add(new DecoAnimation(b, true, AnimationType.FADE));
                     backupToAnimate.Add(new DecoAnimation(b, true, AnimationType.FADE));
-                    selection = 1;
                 }
+                selection = 1;
             }
+        if (actualTab == Tab.CREDITS && canSwitch) {
+            if (Input.GetKeyUp(KeyCode.LeftArrow)) {
+                actualTab = Tab.HOME_MENU;
+                canSwitch = false;
+                foreach (DecoButton b in creditButtons) {
+                    b.changeAlpha(1f);
+                    b.changeAlphaOfIcon(1f);
+                    toAnimate.Add(new DecoAnimation(b, true, AnimationType.FADE));
+                    backupToAnimate.Add(new DecoAnimation(b, true, AnimationType.FADE));
+                    animator_camera.SetBool("menuSelection", false);
+                    animator_light.SetBool("menuSelection", false);
+                }
+                selection = 2;
+            }
+        }
 
     }
 
