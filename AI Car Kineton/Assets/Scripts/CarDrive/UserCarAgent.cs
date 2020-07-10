@@ -10,6 +10,7 @@ public class UserCarAgent : CarAgent {
     private Vector2 latestRecordDistance;
     private bool hasCollidedWithEndGame = false;
     public List<GameObject> parckedAuto;
+    public List<GameObject> pedastrians;
 
     //Initialization
     public override void Initialize() {
@@ -36,6 +37,12 @@ public class UserCarAgent : CarAgent {
         connectedEndGame.transform.position = auto.transform.position;
         auto.transform.position = tmpPos;
 
+
+        foreach(GameObject pedastrian in pedastrians)
+        {
+            if (Random.Range(0, 2) == 1) pedastrian.SetActive(true);
+            else pedastrian.SetActive(false);
+        }
 
     }
 
