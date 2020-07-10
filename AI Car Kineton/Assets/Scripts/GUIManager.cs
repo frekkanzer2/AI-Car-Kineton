@@ -10,9 +10,7 @@ public class GUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-           
-            if (SceneManager.GetActiveScene().name == "ParkingScene") SceneManager.LoadScene("Menu");
-            if (SceneManager.GetActiveScene().name == "CrosswalkScene") SceneManager.LoadScene("Menu");
+           SceneManager.LoadScene("Menu");
         }
     }
 }

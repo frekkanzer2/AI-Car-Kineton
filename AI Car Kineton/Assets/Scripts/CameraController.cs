@@ -54,6 +54,7 @@ public class CameraController : MonoBehaviour {
             if (i == 1){
                 c.enabled = true;
                 actualCam.text = "Actual Camera - 1";
+                Debug.Log("Pippo");
             }
             else c.enabled = false;
         }

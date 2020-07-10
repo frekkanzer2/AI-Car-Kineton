@@ -5,28 +5,38 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using UnityEngine.SceneManagement;
 
-public class ParkingCarAgent : CarAgent {
+public class UserCarAgent : CarAgent {
 
     private Vector2 latestRecordDistance;
     private bool hasCollidedWithEndGame = false;
+    public List<GameObject> parckedAuto;
 
     //Initialization
     public override void Initialize() {
         base.Initialize();
-        getLocalEndGame(transform.parent);
+       
 
-        spawner.Add(new Spawn(new Vector3(-6.58f, 0.438f, 3.97f), Quaternion.Euler(0, 0, 0)));
-        spawner.Add(new Spawn(new Vector3(-6.58f, 0.438f, 3.97f), Quaternion.Euler(0, 180, 0)));
-        spawner.Add(new Spawn(new Vector3(-6.48f, 0.438f, 1.25f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(-6.48f, 0.438f, 1.25f), Quaternion.Euler(0, 270, 0)));
-        spawner.Add(new Spawn(new Vector3(3.11f, 0.438f, 1.02f), Quaternion.Euler(0, 270, 0)));
-        spawner.Add(new Spawn(new Vector3(3.11f, 0.438f, 1.02f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(8.76f, 0.438f, -0.54f), Quaternion.Euler(0, 120, 0)));
-        spawner.Add(new Spawn(new Vector3(8.76f, 0.438f, -0.54f), Quaternion.Euler(0, 300, 0)));
-        spawner.Add(new Spawn(new Vector3(-8.78f, 0.438f, 2.7f), Quaternion.Euler(0, 0, 0)));
-        spawner.Add(new Spawn(new Vector3(-8.78f, 0.438f, 2.7f), Quaternion.Euler(0, 180, 0)));
-        
+        spawner.Add(new Spawn(new Vector3(-2.07f, 0f, -34f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(-2.07f, 0f, -6f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(21.5f, 0f, -15f), Quaternion.Euler(0, 0, 0)));
+        spawner.Add(new Spawn(new Vector3(-0.82f, 0f, -17.54f), Quaternion.Euler(0, 25.355f, 0)));
+        spawner.Add(new Spawn(new Vector3(15.98f, 0f, 25.93f), Quaternion.Euler(0, 90f, 0)));
+        spawner.Add(new Spawn(new Vector3(15.98f, 0f, 25.93f), Quaternion.Euler(0, 90f, 0)));
+        spawner.Add(new Spawn(new Vector3(30f, 0f, 26.3f), Quaternion.Euler(0, 90f, 0)));
         latestRecordDistance = getDistanceFromObject(connectedEndGame);
+    }
+
+
+    public override void OnEpisodeBegin()
+    {
+        base.OnEpisodeBegin();
+
+        GameObject auto = parckedAuto[Random.Range(0, parckedAuto.Count - 1)];
+        Vector3 tmpPos = connectedEndGame.transform.position;
+        connectedEndGame.transform.position = auto.transform.position;
+        auto.transform.position = tmpPos;
+
+
     }
 
     //Update
@@ -64,10 +74,8 @@ public class ParkingCarAgent : CarAgent {
         else return false;
     }
 
-    public override void OnEpisodeBegin() {
-        base.OnEpisodeBegin();
-        latestRecordDistance = getDistanceFromObject(connectedEndGame);
-    }
+    
+      
 
     /*
      
