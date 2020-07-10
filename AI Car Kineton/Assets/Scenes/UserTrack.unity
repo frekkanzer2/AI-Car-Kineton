@@ -3531,6 +3531,13 @@ MonoBehaviour:
   - {fileID: 1628420114}
   - {fileID: 1207820824}
   - {fileID: 200752635}
+  pedastrians:
+  - {fileID: 404647185}
+  - {fileID: 2048670112}
+  - {fileID: 629547591}
+  - {fileID: 1364935305}
+  - {fileID: 902361755}
+  - {fileID: 225428556}
 --- !u!4 &398390601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7952488297789682515, guid: 1ff7e699860757e4db5027915478e1e5,
@@ -6133,7 +6140,7 @@ PrefabInstance:
     - target: {fileID: 9029884920900085777, guid: fb0136cb5bc9dcc4e9453e369de6f8d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.27
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 9029884920900085777, guid: fb0136cb5bc9dcc4e9453e369de6f8d7,
         type: 3}
