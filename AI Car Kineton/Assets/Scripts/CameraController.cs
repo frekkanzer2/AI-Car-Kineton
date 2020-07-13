@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour {
 
@@ -16,6 +18,8 @@ public class CameraController : MonoBehaviour {
     public Camera camera8;
     public Camera camera9;
     public Camera camera0;
+
+    public TMP_Text actualCam;
 
     // Start is called before the first frame update
     void Start() {
@@ -47,7 +51,11 @@ public class CameraController : MonoBehaviour {
         {
             Camera c = (Camera)cameraList[i];
             if (c == null) continue;
-            if (i == 1) c.enabled = true;
+            if (i == 1){
+                c.enabled = true;
+                actualCam.text = "Actual Camera - 1";
+
+            }
             else c.enabled = false;
         }
     }
@@ -64,7 +72,11 @@ public class CameraController : MonoBehaviour {
                             for (int i = 0; i < 10; i++) {
                                 Camera c = (Camera)cameraList[i];
                                 if (c == null) continue;
-                                if (i == 0) c.enabled = true;
+                                if (i == 0)
+                                {
+                                    c.enabled = true;
+                                    actualCam.text = "Actual Camera - 0";
+                                }
                                 else c.enabled = false;
                             }
                         break;
@@ -74,7 +86,11 @@ public class CameraController : MonoBehaviour {
                             for (int i = 0; i < 10; i++) {
                                 Camera c = (Camera)cameraList[i];
                                 if (c == null) continue;
-                                if (i == 1) c.enabled = true;
+                                if (i == 1)
+                                {
+                                    c.enabled = true;
+                                    actualCam.text = "Actual Camera - 1";
+                                }
                                 else c.enabled = false;
                             }
                         break;
@@ -84,7 +100,11 @@ public class CameraController : MonoBehaviour {
                             for (int i = 0; i < 10; i++) {
                                Camera c = (Camera)cameraList[i];
                                 if (c == null) continue;
-                                if (i == 2) c.enabled = true;
+                                if (i == 2)
+                                {
+                                    c.enabled = true;
+                                    actualCam.text = "Actual Camera - 2";
+                                }
                                 else c.enabled = false;
                             }
                         break;
@@ -94,7 +114,11 @@ public class CameraController : MonoBehaviour {
                             for (int i = 0; i < 10; i++) {
                                Camera c = (Camera)cameraList[i];
                                 if (c == null) continue;
-                                if (i == 3) c.enabled = true;
+                                if (i == 3)
+                                {
+                                    c.enabled = true;
+                                    actualCam.text = "Actual Camera - 3";
+                                }
                                 else c.enabled = false;
                             }
                         break;
@@ -104,7 +128,11 @@ public class CameraController : MonoBehaviour {
                             for (int i = 0; i < 10; i++) {
                                 Camera c = (Camera)cameraList[i];
                                 if (c == null) continue;
-                                if (i == 4) c.enabled = true;
+                                if (i == 4)
+                                {
+                                    c.enabled = true;
+                                    actualCam.text = "Actual Camera - 4";
+                                }
                                 else c.enabled = false;
                             }
                         break;
@@ -114,7 +142,11 @@ public class CameraController : MonoBehaviour {
                             for (int i = 0; i < 10; i++) {
                                 Camera c = (Camera)cameraList[i];
                                 if (c == null) continue;
-                                if (i == 5) c.enabled = true;
+                                if (i == 5)
+                                {
+                                    c.enabled = true;
+                                    actualCam.text = "Actual Camera - 5";
+                                }
                                 else c.enabled = false;
                             }
                         break;
@@ -124,7 +156,11 @@ public class CameraController : MonoBehaviour {
                             for (int i = 0; i < 10; i++) {
                                 Camera c = (Camera)cameraList[i];
                                 if (c == null) continue;
-                                if (i == 6) c.enabled = true;
+                                if (i == 6)
+                                {
+                                    c.enabled = true;
+                                    actualCam.text = "Actual Camera - 6";
+                                }
                                 else c.enabled = false;
                             }
                         break;
@@ -134,7 +170,11 @@ public class CameraController : MonoBehaviour {
                             for (int i = 0; i < 10; i++) {
                                 Camera c = (Camera)cameraList[i];
                                 if (c == null) continue;
-                                if (i == 7) c.enabled = true;
+                                if (i == 7)
+                                {
+                                    c.enabled = true;
+                                    actualCam.text = "Actual Camera - 7";
+                                }
                                 else c.enabled = false;
                             }
                         break;
@@ -144,7 +184,11 @@ public class CameraController : MonoBehaviour {
                             for (int i = 0; i < 10; i++) {
                                 Camera c = (Camera)cameraList[i];
                                 if (c == null) continue;
-                                if (i == 8) c.enabled = true;
+                                if (i == 8)
+                                {
+                                    c.enabled = true;
+                                    actualCam.text = "Actual Camera - 8";
+                                }
                                 else c.enabled = false;
                             }
                         break;
@@ -154,7 +198,11 @@ public class CameraController : MonoBehaviour {
                             for (int i = 0; i < 10; i++) {
                                Camera c = (Camera)cameraList[i];
                                 if (c == null) continue;
-                                if (i == 9) c.enabled = true;
+                                if (i == 9)
+                                {
+                                    c.enabled = true;
+                                    actualCam.text = "Actual Camera - 9";
+                                }
                                 else c.enabled = false;
                             }
                         break;

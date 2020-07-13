@@ -15,16 +15,12 @@ public class ParkingCarAgent : CarAgent {
         base.Initialize();
         getLocalEndGame(transform.parent);
 
-        spawner.Add(new Spawn(new Vector3(-6.58f, 0.438f, 3.97f), Quaternion.Euler(0, 0, 0)));
-        spawner.Add(new Spawn(new Vector3(-6.58f, 0.438f, 3.97f), Quaternion.Euler(0, 180, 0)));
-        spawner.Add(new Spawn(new Vector3(-6.48f, 0.438f, 1.25f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(-6.48f, 0.438f, 1.25f), Quaternion.Euler(0, 270, 0)));
-        spawner.Add(new Spawn(new Vector3(3.11f, 0.438f, 1.02f), Quaternion.Euler(0, 270, 0)));
-        spawner.Add(new Spawn(new Vector3(3.11f, 0.438f, 1.02f), Quaternion.Euler(0, 90, 0)));
-        spawner.Add(new Spawn(new Vector3(8.76f, 0.438f, -0.54f), Quaternion.Euler(0, 120, 0)));
-        spawner.Add(new Spawn(new Vector3(8.76f, 0.438f, -0.54f), Quaternion.Euler(0, 300, 0)));
-        spawner.Add(new Spawn(new Vector3(-8.78f, 0.438f, 2.7f), Quaternion.Euler(0, 0, 0)));
-        spawner.Add(new Spawn(new Vector3(-8.78f, 0.438f, 2.7f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(-6.24f, 0.438f, 4.27f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(-7.85f, 0.438f, 4.27f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(-4.16f, 0.438f, 4.27f), Quaternion.Euler(0, 180, 0)));
+        spawner.Add(new Spawn(new Vector3(-5.94f, 0.438f, 0.62f), Quaternion.Euler(0, 270, 0)));
+        spawner.Add(new Spawn(new Vector3(-5.94f, 0.438f, 0.62f), Quaternion.Euler(0, 90, 0)));
+        spawner.Add(new Spawn(new Vector3(-6.87f, 0.438f, 3.41f), Quaternion.Euler(0, 90, 0)));
         
         latestRecordDistance = getDistanceFromObject(connectedEndGame);
     }
@@ -85,6 +81,10 @@ public class ParkingCarAgent : CarAgent {
             AddReward(-100f);
             EndEpisode();
         }
+        else if (collision.gameObject.CompareTag("Human"))
+        {
+            EndEpisode();
+        }
         else if (collision.gameObject.CompareTag("Untagged")) {
             GameObject myParent;
             myParent = collision.gameObject.transform.parent.gameObject;
@@ -106,6 +106,11 @@ public class ParkingCarAgent : CarAgent {
                     Debug.Log("Inside collided with " + myParent.tag);
                     EndEpisode();
                     break;
+                }
+
+                else if (collision.gameObject.CompareTag("Human"))
+                {
+                    EndEpisode();
                 }
             }
         }
