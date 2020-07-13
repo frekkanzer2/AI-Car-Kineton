@@ -85,6 +85,8 @@ public class MenuController : MonoBehaviour {
     [SerializeField]
     private TMP_Text startText, creditsText, exitText, mode_autopilotText, mode_manualpilotText, level_parking, level_crosswalk,
         credits_devBy, credits_name1, credits_name2, credits_githubLink, credits_help;
+    [SerializeField]
+    private Button button_name1, button_name2, button_githubLink;
 
     //Lists of buttons
     private List<DecoButton> buttons = new List<DecoButton>();
@@ -107,6 +109,7 @@ public class MenuController : MonoBehaviour {
     private int selection = 1;
     private bool canSwitch = true;
     private Tab actualTab = Tab.HOME_MENU;
+    private bool canClick = false;
 
     //Scrolling animation variables
     private float differencePositionAnimation;
@@ -149,6 +152,11 @@ public class MenuController : MonoBehaviour {
         buttons[0].updateGUI(true);
         modeButtons[0].updateGUI(true);
         levelButtons[0].updateGUI(true);
+
+        //Setting credit buttons
+        button_name1.onClick.AddListener(clickedFirstName);
+        button_name2.onClick.AddListener(clickedSecondName);
+        button_githubLink.onClick.AddListener(clickedGitHub);
     }
 
     private int changeSelectionCounter(int selectionValue, int maxValue, bool increment) {
@@ -259,22 +267,28 @@ public class MenuController : MonoBehaviour {
             }
         }
 
+        //check if can click links in the credits section
+        if (actualTab == Tab.CREDITS)
+            canClick = true;
+        else canClick = false;
+
+        //check if can switch between texts
         if (toAnimate.Count == 0) canSwitch = true;
         else canSwitch = false;
 
         //Checking input in tabs
         if (actualTab == Tab.HOME_MENU && canSwitch)
-            if (Input.GetKeyUp(KeyCode.DownArrow)) {
+            if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) {
                 buttons[selection - 1].updateGUI(false);
                 selection = changeSelectionCounter(selection, buttons.Count, true);
                 buttons[selection - 1].updateGUI(true);
             }
-            else if (Input.GetKeyUp(KeyCode.UpArrow)) {
+            else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) {
                 buttons[selection - 1].updateGUI(false);
                 selection = changeSelectionCounter(selection, buttons.Count, false);
                 buttons[selection - 1].updateGUI(true);
             }
-            else if (Input.GetKeyUp(KeyCode.RightArrow)) {
+            else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.Space)) {
                 if (selection == 1) {
                     //Spawning other buttons (tab play_choise)
                     actualTab = Tab.PLAY_CHOISE;
@@ -307,17 +321,17 @@ public class MenuController : MonoBehaviour {
                 }
             }
         if (actualTab == Tab.PLAY_CHOISE && canSwitch)
-            if (Input.GetKeyUp(KeyCode.DownArrow)) {
+            if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) {
                 modeButtons[selection - 1].updateGUI(false);
                 selection = changeSelectionCounter(selection, modeButtons.Count, true);
                 modeButtons[selection - 1].updateGUI(true);
             }
-            else if (Input.GetKeyUp(KeyCode.UpArrow)) {
+            else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) {
                 modeButtons[selection - 1].updateGUI(false);
                 selection = changeSelectionCounter(selection, modeButtons.Count, false);
                 modeButtons[selection - 1].updateGUI(true);
             }
-            else if (Input.GetKeyUp(KeyCode.LeftArrow)) {
+            else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.A)) {
                 actualTab = Tab.HOME_MENU;
                 canSwitch = false;
                 foreach (DecoButton b in modeButtons) {
@@ -328,7 +342,7 @@ public class MenuController : MonoBehaviour {
                     selection = 1;
                 }
             }
-            else if (Input.GetKeyUp(KeyCode.RightArrow)) {
+            else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.Space)) {
                 if (selection == 1) {
                     //Moving first button
                     actualTab = Tab.LEVEL_CHOISE;
@@ -339,24 +353,33 @@ public class MenuController : MonoBehaviour {
                     levelButtons[0].updateGUI(true);
                     levelButtons[1].updateGUI(false);
                 }
-                else if (selection == 2) SceneManager.LoadScene("UserTrack", LoadSceneMode.Single);
+                else if (selection == 2) {
+                    PlayerPrefs.SetString("SCENE_NAME", "UserTrack");
+                    SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);
+                }
             }
         if (actualTab == Tab.LEVEL_CHOISE && canSwitch)
-            if (Input.GetKeyUp(KeyCode.DownArrow)) {
+            if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) {
                 levelButtons[selection - 1].updateGUI(false);
                 selection = changeSelectionCounter(selection, levelButtons.Count, true);
                 levelButtons[selection - 1].updateGUI(true);
             }
-            else if (Input.GetKeyUp(KeyCode.UpArrow)) {
+            else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) {
                 levelButtons[selection - 1].updateGUI(false);
                 selection = changeSelectionCounter(selection, levelButtons.Count, false);
                 levelButtons[selection - 1].updateGUI(true);
             }
-            else if (Input.GetKeyUp(KeyCode.RightArrow)) {
-                if (selection == 1) SceneManager.LoadScene("ParkingScene", LoadSceneMode.Single);
-                else if (selection == 2) SceneManager.LoadScene("CrosswalkScene", LoadSceneMode.Single);
+            else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.Space)) {
+                if (selection == 1) {
+                    PlayerPrefs.SetString("SCENE_NAME", "ParkingScene");
+                    SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);
+                }
+                else if (selection == 2) {
+                    PlayerPrefs.SetString("SCENE_NAME", "CrosswalkScene");
+                    SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);
+                }
             }
-            else if (Input.GetKeyUp(KeyCode.LeftArrow)) {
+            else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.A)) {
                 actualTab = Tab.PLAY_CHOISE;
                 foreach (DecoButton b in levelButtons) {
                     b.changeAlpha(1f);
@@ -367,7 +390,7 @@ public class MenuController : MonoBehaviour {
                 selection = 1;
             }
         if (actualTab == Tab.CREDITS && canSwitch) {
-            if (Input.GetKeyUp(KeyCode.LeftArrow)) {
+            if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.A)) {
                 actualTab = Tab.HOME_MENU;
                 canSwitch = false;
                 foreach (DecoButton b in creditButtons) {
@@ -382,6 +405,21 @@ public class MenuController : MonoBehaviour {
             }
         }
 
+    }
+
+    private void clickedFirstName() {
+        if (canClick)
+            Application.OpenURL("https://www.linkedin.com/in/francescoabateimtech/");
+    }
+
+    private void clickedSecondName() {
+        if (canClick)
+            Application.OpenURL("https://www.linkedin.com/in/carmine-ferrara-67412a167/");
+    }
+
+    private void clickedGitHub() {
+        if (canClick)
+            Application.OpenURL("https://github.com/frekkanzer2/AI-Car-Kineton");
     }
 
 }
