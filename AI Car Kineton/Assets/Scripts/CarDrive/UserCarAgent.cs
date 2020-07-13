@@ -13,8 +13,9 @@ public class UserCarAgent : CarAgent
     private bool hasCollidedWithEndGame = false;
     public List<GameObject> parckedAuto;
     public List<GameObject> pedastrians;
-    private bool commandIdle = false, coroutineIdle = true;
-
+    private bool commandIdle = false, coroutineIdle = true, startedCoroutine = false;
+   
+    private float time = 0f;
     public TMP_Text goodParkMessage;
     //Initialization
     public override void Initialize()
@@ -64,7 +65,6 @@ public class UserCarAgent : CarAgent
         debug_drawDestination();
         if (getVelocitySpeed() > 4 || getVelocitySpeed() < -4)
         {
-            Debug.Log("High speed!");
             AddReward(-0.5f);
         }
         episodeExecution();
@@ -79,13 +79,21 @@ public class UserCarAgent : CarAgent
             commandIdle = true;
             brake(1.0f);
 
-            coroutineIdle = true;
-            time = 0f;
-
-
-            Invoke("deactiveMessage", 1.5f);
-            EndEpisode();
+            //coroutineIdle = true;
+            if(!startedCoroutine) StartCoroutine(IdleToEndEpisode());
+            
+      
         }
+    }
+
+    IEnumerator IdleToEndEpisode()
+    {
+        startedCoroutine = true;
+        yield return new WaitForSecondsRealtime(0.75f);
+        
+        EndEpisode();
+        goodParkMessage.gameObject.SetActive(false);
+        startedCoroutine = false;
     }
 
     /*
@@ -247,8 +255,6 @@ public class UserCarAgent : CarAgent
 
                     assign = 500;
                     AddReward(assign);
-
-
                 }
 
                 
@@ -273,11 +279,10 @@ public class UserCarAgent : CarAgent
         carBody.isKinematic = false;
         episode_actualSeconds = episodeDuration;
         hasCollidedWithEndGame = false;
+
+
+        startedCoroutine = false;
     }
 
-    private float time = 0f;
-    private void deactiveMessage()
-    {
-        goodParkMessage.gameObject.SetActive(false);
-    }
+   
 }
