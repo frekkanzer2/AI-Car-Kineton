@@ -1,4 +1,4 @@
-[IN CORSO]
+
 Al fine di migliorare la precisione con cui l'agente valuta la necessità di frenare vicino all'attraversamento
 si è deciso di apportare modifica alla grandezza delle sfere.
 
