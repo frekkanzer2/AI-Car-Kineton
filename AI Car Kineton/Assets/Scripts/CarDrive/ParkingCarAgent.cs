@@ -15,6 +15,12 @@ public class ParkingCarAgent : CarAgent {
         base.Initialize();
         getLocalEndGame(transform.parent);
 
+        /*
+         
+            ADD HERE NEW SPAWNS
+         
+         */
+
         spawner.Add(new Spawn(new Vector3(-6.24f, 0.438f, 4.27f), Quaternion.Euler(0, 180, 0)));
         spawner.Add(new Spawn(new Vector3(-7.85f, 0.438f, 4.27f), Quaternion.Euler(0, 180, 0)));
         spawner.Add(new Spawn(new Vector3(-4.16f, 0.438f, 4.27f), Quaternion.Euler(0, 180, 0)));
